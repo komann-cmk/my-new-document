@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aide — MY NEW DOCUMENT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FAF9F5;--surface:#FFFFFF;--ink:#1B2436;--ink-soft:#5A6276;--muted:#8A92A6;--brand:#26408B;--brand-dark:#1B2F66;--brand-tint:#EEF1F9;--seal:#B0843E;--seal-light:#D7B36B;--seal-tint:#F6EFE0;--wa:#25D366;--wa-dark:#1da851;--border:#E7E3D6;--radius:16px;--radius-sm:11px;--shadow-sm:0 1px 2px rgba(27,36,54,.06),0 2px 6px rgba(27,36,54,.05);--shadow:0 22px 48px -20px rgba(27,36,54,.32);--shadow-seal:0 14px 30px -12px rgba(176,132,62,.5);--font-display:"Newsreader",Georgia,serif;--font-ui:"Inter",system-ui,-apple-system,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-ui);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+.btn-gold{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--seal-light),var(--seal));color:#fff;text-decoration:none;border:0;border-radius:999px;font-weight:600;box-shadow:var(--shadow-seal)}
+.site-header{position:sticky;top:0;z-index:40;background:rgba(27,36,54,.97);backdrop-filter:blur(8px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.header-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:13px 0}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:#fff}
+.brand-seal{width:38px;height:38px;border-radius:50%;flex:0 0 auto;background:radial-gradient(circle at 35% 30%,var(--seal-light),var(--seal));display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)}
+.brand-seal svg{width:19px;height:19px}.brand img{height:38px;width:auto}
+.brand-name{font-family:var(--font-display);font-size:1.15rem;font-weight:600;line-height:1;white-space:nowrap}
+.brand-sub{display:none;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#A9B2C7;margin-top:3px}
+.nav-toggle{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:rgba(255,255,255,.08);border:0;border-radius:10px;cursor:pointer;padding:0 11px}
+.nav-toggle span{height:2px;background:#fff;border-radius:2px;transition:.2s}
+.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.nav-toggle.open span:nth-child(2){opacity:0}.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav{display:none;flex-basis:100%;flex-direction:column;gap:4px;padding:8px 0 6px}.nav.open{display:flex}
+.nav a.navlink{color:#D7DBE6;text-decoration:none;font-weight:600;font-size:.95rem;padding:11px 6px;border-radius:8px}
+.nav a.navlink:hover,.nav a.navlink.active{color:#fff}.nav a.navlink.active{color:var(--seal-light)}
+.lang-switch{display:inline-flex;background:rgba(255,255,255,.08);border-radius:999px;padding:3px;width:max-content;margin:6px 0}
+.lang-switch button{border:0;background:transparent;color:#C3CAD9;font:inherit;font-size:.78rem;font-weight:600;padding:6px 12px;border-radius:999px;cursor:pointer}
+.lang-switch button.active{background:#fff;color:var(--ink)}
+.nav .btn-gold{padding:11px 20px;font-size:.92rem}
+@media(min-width:900px){.header-inner{flex-wrap:nowrap}.brand-sub{display:block}.nav-toggle{display:none}.nav{display:flex;flex-basis:auto;flex-direction:row;align-items:center;gap:20px;padding:0}.lang-switch{margin:0}}
+
+.page{max-width:720px;margin:0 auto;padding:0 20px}
+.hero{padding:48px 0 4px;text-align:center}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--seal);font-weight:700}
+.hero .eyebrow::before,.hero .eyebrow::after{content:"";width:22px;height:1.5px;background:var(--seal)}
+.hero h1{font-family:var(--font-display);font-size:2.3rem;font-weight:500;line-height:1.1;margin:14px 0 12px}
+.hero p{color:var(--ink-soft);font-size:1.04rem;max-width:520px;margin:0 auto}
+
+.wa-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:34px 28px;margin:34px 0;text-align:center}
+.wa-ic{width:72px;height:72px;border-radius:20px;background:var(--wa);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 14px 30px -12px rgba(37,211,102,.6)}
+.wa-ic svg{width:40px;height:40px;color:#fff}
+.wa-card h2{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:8px}
+.wa-card p{color:var(--ink-soft);font-size:1rem;max-width:440px;margin:0 auto 22px}
+.wa-btn{display:inline-flex;align-items:center;gap:10px;background:var(--wa);color:#fff;text-decoration:none;font-weight:600;font-size:1.02rem;padding:15px 28px;border-radius:999px;box-shadow:0 12px 26px -12px rgba(37,211,102,.7);transition:.18s;min-height:54px}
+.wa-btn:hover{background:var(--wa-dark)}
+.wa-btn svg{width:22px;height:22px}
+.wa-num{margin-top:14px;font-size:.88rem;color:var(--muted)}
+.wa-num strong{color:var(--ink)}
+
+.faq{margin:10px 0 50px}
+.faq h3{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-bottom:16px;text-align:center}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 18px;margin-bottom:10px;box-shadow:var(--shadow-sm)}
+.faq-item .q{font-weight:600;font-size:.98rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:12px}
+.faq-item .q .chev{transition:.2s;color:var(--brand);flex:0 0 auto}
+.faq-item.open .q .chev{transform:rotate(180deg)}
+.faq-item .a{font-size:.92rem;color:var(--ink-soft);max-height:0;overflow:hidden;transition:max-height .25s ease,margin .25s ease}
+.faq-item.open .a{max-height:300px;margin-top:10px}
+.footer-note{text-align:center;color:var(--muted);font-size:.8rem;padding:0 0 50px}.footer-note a{color:var(--brand);text-decoration:none}
+@media(max-width:480px){.hero h1{font-size:2rem}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-seal" id="brandSeal"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/><path d="M9 13h6M9 17h4"/></svg></span>
+      <span><span class="brand-name">MY NEW DOCUMENT</span><span class="brand-sub" data-i18n="tagline">Service de documents</span></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="nav" id="nav">
+      <a class="navlink" href="index.html" data-i18n="navHome">Accueil</a>
+      <a class="navlink" href="apropos.html" data-i18n="navAbout">À propos</a>
+      <a class="navlink" href="suivi.html" data-i18n="navTrack">Suivi</a>
+      <a class="navlink active" href="aide.html" data-i18n="navHelp">Aide</a>
+      <a class="navlink" href="contact.html" data-i18n="navContact">Contact</a>
+      <div class="lang-switch" id="langSwitch"><button data-lang="fr">FR</button><button data-lang="en">EN</button><button data-lang="de">DE</button></div>
+      <a class="btn-gold" href="commander.html" data-i18n="navCta">Commander</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+  <section class="hero">
+    <span class="eyebrow" data-i18n="eyebrow">Besoin d'aide ?</span>
+    <h1 data-i18n="title">Nous sommes là pour vous</h1>
+    <p data-i18n="subtitle">Une question sur votre demande ou une difficulté ? Notre équipe vous répond directement sur WhatsApp.</p>
+  </section>
+
+  <div class="wa-card">
+    <div class="wa-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.94-.27-.1-.47-.15-.66.15-.2.3-.76.94-.93 1.13-.17.2-.34.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.57-.48-.5-.66-.5h-.56c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.2 1.87.12.57-.08 1.7-.7 1.95-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.57-.34zM12 2a10 10 0 0 0-8.6 15.05L2 22l5.07-1.33A10 10 0 1 0 12 2z"/></svg></div>
+    <h2 data-i18n="waTitle">Contactez-nous sur WhatsApp</h2>
+    <p data-i18n="waText">Réponse rapide pendant nos heures d'ouverture. Cliquez sur le bouton pour démarrer la conversation.</p>
+    <a class="wa-btn" href="https://wa.me/4915213781520" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.94-.27-.1-.47-.15-.66.15-.2.3-.76.94-.93 1.13-.17.2-.34.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.57-.48-.5-.66-.5h-.56c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.2 1.87.12.57-.08 1.7-.7 1.95-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.57-.34zM12 2a10 10 0 0 0-8.6 15.05L2 22l5.07-1.33A10 10 0 1 0 12 2z"/></svg>
+      <span data-i18n="waBtn">Discuter sur WhatsApp</span>
+    </a>
+    <div class="wa-num" data-i18n="waNum">ou par téléphone : <strong>+49 1521 3781520</strong></div>
+  </div>
+
+  <div class="faq">
+    <h3 data-i18n="faqTitle">Questions fréquentes</h3>
+    <div id="faqList"></div>
+  </div>
+
+  <p class="footer-note"><a href="index.html" data-i18n="footHome">← Retour à l'accueil</a></p>
+</div>
+
+<script>
+const LOGO_PATH="logo.png";
+const T={
+  fr:{ tagline:"Service de documents", navHome:"Accueil", navAbout:"À propos", navTrack:"Suivi", navHelp:"Aide", navContact:"Contact", navCta:"Commander",
+    eyebrow:"Besoin d'aide ?", title:"Nous sommes là pour vous",
+    subtitle:"Une question sur votre demande ou une difficulté ? Notre équipe vous répond directement sur WhatsApp.",
+    waTitle:"Contactez-nous sur WhatsApp", waText:"Réponse rapide pendant nos heures d'ouverture. Cliquez sur le bouton pour démarrer la conversation.",
+    waBtn:"Discuter sur WhatsApp", waNum:'ou par téléphone : <strong>+49 1521 3781520</strong>',
+    faqTitle:"Questions fréquentes", footHome:"← Retour à l'accueil",
+    faq:[
+      {q:"Comment faire une demande ?",a:"Rendez-vous sur la page « Commander », choisissez votre type de document, remplissez le formulaire et validez. Vous recevrez vos instructions par email."},
+      {q:"Quand vais-je recevoir mes instructions ?",a:"Dans les prochaines heures suivant votre demande, vous recevrez par email la liste des pièces nécessaires, le coût, le délai et les modalités de paiement."},
+      {q:"Je n'ai pas reçu d'email, que faire ?",a:"Vérifiez d'abord votre dossier spam ou courrier indésirable. Si vous ne trouvez toujours rien, contactez-nous sur WhatsApp et nous vérifierons votre demande."},
+      {q:"Comment suivre mon dossier ?",a:"Un code de suivi personnel vous est communiqué par notre équipe. Saisissez-le sur la page « Suivi » pour voir l'état de votre dossier en temps réel."}
+    ] },
+  en:{ tagline:"Document service", navHome:"Home", navAbout:"About", navTrack:"Tracking", navHelp:"Help", navContact:"Contact", navCta:"Order",
+    eyebrow:"Need help?", title:"We're here for you",
+    subtitle:"A question about your request or a difficulty? Our team replies directly on WhatsApp.",
+    waTitle:"Contact us on WhatsApp", waText:"Quick reply during our opening hours. Click the button to start the conversation.",
+    waBtn:"Chat on WhatsApp", waNum:'or by phone: <strong>+49 1521 3781520</strong>',
+    faqTitle:"Frequently asked questions", footHome:"← Back to home",
+    faq:[
+      {q:"How do I make a request?",a:"Go to the « Order » page, choose your document type, fill in the form and submit. You'll receive your instructions by email."},
+      {q:"When will I receive my instructions?",a:"Within a few hours of your request, you'll receive by email the list of required documents, the cost, the timeframe and the payment methods."},
+      {q:"I didn't receive an email, what should I do?",a:"First check your spam or junk folder. If you still can't find anything, contact us on WhatsApp and we'll check your request."},
+      {q:"How do I track my file?",a:"A personal tracking code is sent to you by our team. Enter it on the « Tracking » page to see your file status in real time."}
+    ] },
+  de:{ tagline:"Dokumentenservice", navHome:"Startseite", navAbout:"Über uns", navTrack:"Verfolgung", navHelp:"Hilfe", navContact:"Kontakt", navCta:"Bestellen",
+    eyebrow:"Brauchen Sie Hilfe?", title:"Wir sind für Sie da",
+    subtitle:"Eine Frage zu Ihrer Anfrage oder ein Problem? Unser Team antwortet Ihnen direkt über WhatsApp.",
+    waTitle:"Kontaktieren Sie uns über WhatsApp", waText:"Schnelle Antwort während unserer Öffnungszeiten. Klicken Sie auf den Button, um das Gespräch zu starten.",
+    waBtn:"Auf WhatsApp chatten", waNum:'oder telefonisch: <strong>+49 1521 3781520</strong>',
+    faqTitle:"Häufige Fragen", footHome:"← Zurück zur Startseite",
+    faq:[
+      {q:"Wie stelle ich eine Anfrage?",a:"Gehen Sie auf die Seite „Bestellen“, wählen Sie Ihren Dokumententyp, füllen Sie das Formular aus und senden Sie es ab. Sie erhalten Ihre Anweisungen per E-Mail."},
+      {q:"Wann erhalte ich meine Anweisungen?",a:"Innerhalb weniger Stunden nach Ihrer Anfrage erhalten Sie per E-Mail die Liste der erforderlichen Unterlagen, die Kosten, die Frist und die Zahlungsmodalitäten."},
+      {q:"Ich habe keine E-Mail erhalten, was soll ich tun?",a:"Prüfen Sie zuerst Ihren Spam-Ordner. Wenn Sie immer noch nichts finden, kontaktieren Sie uns über WhatsApp, und wir prüfen Ihre Anfrage."},
+      {q:"Wie verfolge ich meinen Antrag?",a:"Ein persönlicher Tracking-Code wird Ihnen von unserem Team mitgeteilt. Geben Sie ihn auf der Seite „Verfolgung“ ein, um den Status in Echtzeit zu sehen."}
+    ] }
+};
+const $=s=>document.querySelector(s); const t=()=>T[lang];
+let lang=localStorage.getItem("mnd_lang"); if(!["fr","en","de"].includes(lang)){const n=(navigator.language||"fr").slice(0,2); lang=["fr","en","de"].includes(n)?n:"fr";}
+if(LOGO_PATH){const s=$("#brandSeal");const img=new Image();img.alt="MY NEW DOCUMENT";img.src=LOGO_PATH;img.onload=()=>s.replaceWith(img);}
+const navToggle=$("#navToggle"),nav=$("#nav");
+navToggle.addEventListener("click",()=>{const o=nav.classList.toggle("open");navToggle.classList.toggle("open",o);navToggle.setAttribute("aria-expanded",o);});
+
+const chev='<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+function applyLang(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(t()[k]!==undefined&&typeof t()[k]==="string")el.innerHTML=t()[k];});
+  document.querySelectorAll("#langSwitch button").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
+  $("#faqList").innerHTML=t().faq.map(f=>`<div class="faq-item"><div class="q">${f.q}${chev}</div><div class="a">${f.a}</div></div>`).join("");
+  document.querySelectorAll(".faq-item").forEach(it=> it.querySelector(".q").addEventListener("click",()=> it.classList.toggle("open")));
+}
+document.querySelectorAll("#langSwitch button").forEach(b=>b.addEventListener("click",()=>{lang=b.dataset.lang;localStorage.setItem("mnd_lang",lang);applyLang();nav.classList.remove("open");navToggle.classList.remove("open");}));
+applyLang();
+</script>
+</body>
+</html>

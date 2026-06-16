@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>À propos — MY NEW DOCUMENT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FAF9F5;--surface:#FFFFFF;--ink:#1B2436;--ink-soft:#5A6276;--muted:#8A92A6;--brand:#26408B;--brand-dark:#1B2F66;--brand-tint:#EEF1F9;--seal:#B0843E;--seal-light:#D7B36B;--seal-tint:#F6EFE0;--success:#0E9F6E;--border:#E7E3D6;--radius:16px;--radius-sm:11px;--shadow-sm:0 1px 2px rgba(27,36,54,.06),0 2px 6px rgba(27,36,54,.05);--shadow:0 22px 48px -20px rgba(27,36,54,.32);--shadow-seal:0 14px 30px -12px rgba(176,132,62,.5);--font-display:"Newsreader",Georgia,serif;--font-ui:"Inter",system-ui,-apple-system,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--font-ui);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}img{max-width:100%;display:block}.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+.btn-gold{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--seal-light),var(--seal));color:#fff;text-decoration:none;border:0;border-radius:999px;font-weight:600;box-shadow:var(--shadow-seal)}
+.site-header{position:sticky;top:0;z-index:40;background:rgba(27,36,54,.97);backdrop-filter:blur(8px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}.header-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:13px 0}.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:#fff}.brand-seal{width:38px;height:38px;border-radius:50%;flex:0 0 auto;background:radial-gradient(circle at 35% 30%,var(--seal-light),var(--seal));display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)}.brand-seal svg{width:19px;height:19px}.brand img.brand-logo{height:38px;width:auto}.brand-name{font-family:var(--font-display);font-size:1.15rem;font-weight:600;line-height:1;white-space:nowrap}.brand-sub{display:none;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#A9B2C7;margin-top:3px}
+.nav-toggle{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:rgba(255,255,255,.08);border:0;border-radius:10px;cursor:pointer;padding:0 11px}.nav-toggle span{height:2px;background:#fff;border-radius:2px;transition:.2s}.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.nav-toggle.open span:nth-child(2){opacity:0}.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav{display:none;flex-basis:100%;flex-direction:column;gap:4px;padding:8px 0 6px}.nav.open{display:flex}.nav a.navlink{color:#D7DBE6;text-decoration:none;font-weight:600;font-size:.95rem;padding:11px 6px;border-radius:8px}.nav a.navlink:hover,.nav a.navlink.active{color:#fff}.nav a.navlink.active{color:var(--seal-light)}
+.lang-switch{display:inline-flex;background:rgba(255,255,255,.08);border-radius:999px;padding:3px;width:max-content;margin:6px 0}.lang-switch button{border:0;background:transparent;color:#C3CAD9;font:inherit;font-size:.78rem;font-weight:600;padding:6px 12px;border-radius:999px;cursor:pointer}.lang-switch button.active{background:#fff;color:var(--ink)}.nav .btn-gold{padding:11px 20px;font-size:.92rem}
+@media(min-width:900px){.header-inner{flex-wrap:nowrap}.brand-sub{display:block}.nav-toggle{display:none}.nav{display:flex;flex-basis:auto;flex-direction:row;align-items:center;gap:20px;padding:0}.lang-switch{margin:0}}
+
+.page{max-width:800px;margin:0 auto;padding:0 20px}
+.hero{padding:48px 0 4px;text-align:center}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--seal);font-weight:700}
+.hero .eyebrow::before,.hero .eyebrow::after{content:"";width:22px;height:1.5px;background:var(--seal)}
+.hero h1{font-family:var(--font-display);font-size:2.3rem;font-weight:500;line-height:1.1;margin:14px 0 12px}
+.hero p{color:var(--ink-soft);font-size:1.04rem;max-width:540px;margin:0 auto}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:30px 28px;margin:28px 0}
+.card h2{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-bottom:10px}
+.card p{color:var(--ink-soft);font-size:.96rem;line-height:1.7;margin-bottom:14px}
+.card p:last-child{margin-bottom:0}
+
+.values{display:grid;grid-template-columns:1fr;gap:14px;margin:28px 0 40px}
+.val{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:22px 20px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.val::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--brand),var(--seal))}
+.val .vic{width:42px;height:42px;border-radius:12px;background:linear-gradient(145deg,var(--brand-tint),#DDE3F4);color:var(--brand);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.val .vic svg{width:22px;height:22px}
+.val h3{font-size:1rem;font-weight:700;margin-bottom:5px}
+.val p{font-size:.88rem;color:var(--ink-soft);line-height:1.5}
+@media(min-width:640px){.values{grid-template-columns:repeat(3,1fr)}}
+
+.site-footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:34px 0}
+.footer-inner{display:flex;flex-direction:column;gap:18px}
+.footer-brand{display:flex;align-items:center;gap:10px}.footer-brand .brand-name{color:#fff;font-size:1.05rem}.footer-brand .brand-seal{width:34px;height:34px}.footer-brand .brand-seal svg{width:16px;height:16px}.footer-brand img.footer-logo{height:34px;width:auto}
+.footer-links{display:flex;flex-wrap:wrap;gap:16px 22px}.footer-links a{text-decoration:none;color:#A9B2C7;font-size:.92rem;font-weight:500}.footer-links a:hover{color:#fff}
+.footer-copy{font-size:.82rem;color:var(--muted)}
+@media(min-width:900px){.footer-inner{flex-direction:row;align-items:center;justify-content:space-between}}
+@media(max-width:480px){.hero h1{font-size:2rem}}
+</style>
+</head>
+<body>
+
+<header class="site-header"><div class="wrap header-inner">
+  <a class="brand" href="index.html" id="headerBrand"><span class="brand-seal" id="brandSeal"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/><path d="M9 13h6M9 17h4"/></svg></span><span><span class="brand-name">MY NEW DOCUMENT</span><span class="brand-sub" data-i18n="tagline">Service de documents</span></span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <nav class="nav" id="nav">
+    <a class="navlink" href="index.html" data-i18n="navHome">Accueil</a>
+    <a class="navlink active" href="apropos.html" data-i18n="navAbout">À propos</a>
+    <a class="navlink" href="suivi.html" data-i18n="navTrack">Suivi</a>
+    <a class="navlink" href="aide.html" data-i18n="navHelp">Aide</a>
+    <a class="navlink" href="contact.html" data-i18n="navContact">Contact</a>
+    <div class="lang-switch" id="langSwitch"><button data-lang="fr">FR</button><button data-lang="en">EN</button><button data-lang="de">DE</button></div>
+    <a class="btn-gold" href="commander.html" data-i18n="navCta">Commander</a>
+  </nav>
+</div></header>
+
+<div class="page">
+  <section class="hero">
+    <span class="eyebrow" data-i18n="eyebrow">Qui sommes-nous</span>
+    <h1 data-i18n="title">À propos de MY NEW DOCUMENT</h1>
+    <p data-i18n="subtitle">Votre partenaire de confiance pour la création et l'obtention de documents administratifs et professionnels.</p>
+  </section>
+
+  <div class="card" id="missionCard">
+    <h2 data-i18n="missionH">Notre mission</h2>
+    <p data-i18n="missionP1"></p>
+    <p data-i18n="missionP2"></p>
+  </div>
+
+  <div class="values" id="valuesGrid"></div>
+
+  <div class="card" id="whyCard">
+    <h2 data-i18n="whyH">Pourquoi nous choisir ?</h2>
+    <p data-i18n="whyP1"></p>
+    <p data-i18n="whyP2"></p>
+  </div>
+</div>
+
+<footer class="site-footer"><div class="wrap footer-inner">
+  <div class="footer-brand" id="footerBrand"><span class="brand-seal"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg></span><span class="brand-name">MY NEW DOCUMENT</span></div>
+  <nav class="footer-links"><a href="index.html" data-i18n="navHome">Accueil</a><a href="apropos.html" data-i18n="navAbout">À propos</a><a href="commander.html" data-i18n="navCta">Commander</a><a href="suivi.html" data-i18n="navTrack">Suivi</a><a href="aide.html" data-i18n="navHelp">Aide</a><a href="contact.html" data-i18n="navContact">Contact</a></nav>
+  <div class="footer-copy">© 2021 MY NEW DOCUMENT</div>
+</div></footer>
+
+<script>
+const LOGO_PATH="logo.png";
+const T={
+  fr:{tagline:"Service de documents",navHome:"Accueil",navAbout:"À propos",navTrack:"Suivi",navHelp:"Aide",navContact:"Contact",navCta:"Commander",
+    eyebrow:"Qui sommes-nous",title:"À propos de MY NEW DOCUMENT",
+    subtitle:"Votre partenaire de confiance pour la création et l'obtention de documents administratifs et professionnels.",
+    missionH:"Notre mission",
+    missionP1:"Depuis 2021, MY NEW DOCUMENT accompagne des particuliers et des professionnels dans leurs démarches administratives. Notre objectif est simple : vous faire gagner du temps en prenant en charge la constitution et le suivi de vos dossiers.",
+    missionP2:"Que vous ayez besoin d'un passeport, d'une carte d'identité, d'une carte de séjour ou d'un permis de conduire, notre équipe vous guide à chaque étape — de la demande initiale jusqu'à la réception de votre document.",
+    whyH:"Pourquoi nous choisir ?",
+    whyP1:"Notre force réside dans la simplicité de notre processus et la transparence de notre communication. Vous savez toujours où en est votre dossier grâce à un code de suivi personnel, et notre équipe reste disponible par WhatsApp et email pour répondre à vos questions.",
+    whyP2:"Nous opérons en trois langues (français, anglais, allemand) pour servir une clientèle européenne diversifiée, et nous nous engageons à traiter chaque demande avec rigueur et confidentialité.",
+    vals:[{h:"Simplicité",p:"Un formulaire clair, un suivi transparent, zéro complication.",ic:"simple"},
+      {h:"Rapidité",p:"Des instructions envoyées en quelques heures après votre demande.",ic:"fast"},
+      {h:"Confiance",p:"Vos données sont traitées avec le plus grand sérieux et protégées.",ic:"trust"}]},
+  en:{tagline:"Document service",navHome:"Home",navAbout:"About",navTrack:"Tracking",navHelp:"Help",navContact:"Contact",navCta:"Order",
+    eyebrow:"Who we are",title:"About MY NEW DOCUMENT",
+    subtitle:"Your trusted partner for the creation and obtaining of administrative and professional documents.",
+    missionH:"Our mission",
+    missionP1:"Since 2021, MY NEW DOCUMENT has been supporting individuals and professionals with their administrative procedures. Our goal is simple: to save you time by handling the preparation and tracking of your files.",
+    missionP2:"Whether you need a passport, an identity card, a residence permit or a driving licence, our team guides you at every step — from the initial request to receiving your document.",
+    whyH:"Why choose us?",
+    whyP1:"Our strength lies in the simplicity of our process and the transparency of our communication. You always know where your file stands with a personal tracking code, and our team is available via WhatsApp and email to answer your questions.",
+    whyP2:"We operate in three languages (French, English, German) to serve a diverse European clientele, and we are committed to handling every request with rigour and confidentiality.",
+    vals:[{h:"Simplicity",p:"A clear form, transparent tracking, zero complication.",ic:"simple"},
+      {h:"Speed",p:"Instructions sent within a few hours of your request.",ic:"fast"},
+      {h:"Trust",p:"Your data is handled with the utmost care and protection.",ic:"trust"}]},
+  de:{tagline:"Dokumentenservice",navHome:"Startseite",navAbout:"Über uns",navTrack:"Verfolgung",navHelp:"Hilfe",navContact:"Kontakt",navCta:"Bestellen",
+    eyebrow:"Wer wir sind",title:"Über MY NEW DOCUMENT",
+    subtitle:"Ihr vertrauenswürdiger Partner für die Erstellung und Beschaffung von Verwaltungs- und Geschäftsdokumenten.",
+    missionH:"Unsere Mission",
+    missionP1:"Seit 2021 unterstützt MY NEW DOCUMENT Privatpersonen und Fachleute bei ihren Behördengängen. Unser Ziel ist einfach: Ihnen Zeit zu sparen, indem wir die Zusammenstellung und Verfolgung Ihrer Unterlagen übernehmen.",
+    missionP2:"Ob Sie einen Reisepass, einen Personalausweis, einen Aufenthaltstitel oder einen Führerschein benötigen – unser Team begleitet Sie bei jedem Schritt, von der ersten Anfrage bis zum Erhalt Ihres Dokuments.",
+    whyH:"Warum uns wählen?",
+    whyP1:"Unsere Stärke liegt in der Einfachheit unseres Prozesses und der Transparenz unserer Kommunikation. Sie wissen jederzeit, wo Ihr Antrag steht, dank eines persönlichen Tracking-Codes, und unser Team ist per WhatsApp und E-Mail erreichbar.",
+    whyP2:"Wir arbeiten in drei Sprachen (Französisch, Englisch, Deutsch), um eine vielfältige europäische Kundschaft zu bedienen, und verpflichten uns, jeden Antrag mit Sorgfalt und Vertraulichkeit zu behandeln.",
+    vals:[{h:"Einfachheit",p:"Ein klares Formular, transparente Verfolgung, null Komplikationen.",ic:"simple"},
+      {h:"Schnelligkeit",p:"Anweisungen innerhalb weniger Stunden nach Ihrer Anfrage.",ic:"fast"},
+      {h:"Vertrauen",p:"Ihre Daten werden mit größter Sorgfalt behandelt und geschützt.",ic:"trust"}]}
+};
+const valIcons={
+  simple:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>',
+  fast:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
+  trust:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>'
+};
+const $=s=>document.querySelector(s); const t=()=>T[lang];
+let lang=localStorage.getItem("mnd_lang"); if(!["fr","en","de"].includes(lang)){const n=(navigator.language||"fr").slice(0,2); lang=["fr","en","de"].includes(n)?n:"fr";}
+if(LOGO_PATH){const s=$("#brandSeal");const img=new Image();img.alt="MY NEW DOCUMENT";img.className="brand-logo";img.src=LOGO_PATH;img.onload=()=>s.replaceWith(img);}
+if(LOGO_PATH){const fb=$("#footerBrand");const seal=fb.querySelector(".brand-seal");const img2=new Image();img2.alt="MY NEW DOCUMENT";img2.className="footer-logo";img2.src=LOGO_PATH;img2.onload=()=>seal.replaceWith(img2);}
+const navToggle=$("#navToggle"),nav=$("#nav");
+navToggle.addEventListener("click",()=>{const o=nav.classList.toggle("open");navToggle.classList.toggle("open",o);navToggle.setAttribute("aria-expanded",o);});
+function applyLang(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(t()[k]!==undefined&&typeof t()[k]==="string")el.innerHTML=t()[k];});
+  document.querySelectorAll("#langSwitch button").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
+  $("#valuesGrid").innerHTML=t().vals.map(v=>`<div class="val"><div class="vic">${valIcons[v.ic]}</div><h3>${v.h}</h3><p>${v.p}</p></div>`).join("");
+}
+document.querySelectorAll("#langSwitch button").forEach(b=>b.addEventListener("click",()=>{lang=b.dataset.lang;localStorage.setItem("mnd_lang",lang);applyLang();nav.classList.remove("open");navToggle.classList.remove("open");}));
+applyLang();
+</script>
+</body>
+</html>
