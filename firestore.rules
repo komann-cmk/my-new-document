@@ -1,0 +1,46 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /* ------------------------------------------------------------------
+       Collection "demandes" : la demande COMPLÈTE
+       (prénom, nom, email, téléphone, adresse…)
+       -> Lecture, liste et modification RÉSERVÉES à l'admin CONNECTÉ.
+       -> Création autorisée pour le formulaire public (avec contrôles).
+       -> Suppression interdite.
+    ------------------------------------------------------------------ */
+    match /demandes/{id} {
+      allow create: if isNewDemande();
+      allow get, list, update: if request.auth != null;
+      allow delete: if false;
+    }
+
+    /* ------------------------------------------------------------------
+       Collection "suivi_public" : MIROIR de suivi
+       (statut + historique uniquement — AUCUNE donnée personnelle)
+       -> Lecture d'UNE fiche autorisée si on connaît le code exact.
+       -> Énumération (liste) réservée à l'admin connecté.
+       -> Mise à jour réservée à l'admin connecté.
+    ------------------------------------------------------------------ */
+    match /suivi_public/{id} {
+      allow create: if isNewSuivi();
+      allow get:    if true;
+      allow list, update: if request.auth != null;
+      allow delete: if false;
+    }
+
+    function isNewDemande() {
+      let d = request.resource.data;
+      return d.status == 'Soumis'
+        && d.trackingNumber is string
+        && d.commonFields is map
+        && d.commonFields.email is string
+        && d.commonFields.email.size() <= 200;
+    }
+    function isNewSuivi() {
+      let d = request.resource.data;
+      return d.status == 'Soumis'
+        && d.trackingNumber is string;
+    }
+  }
+}
