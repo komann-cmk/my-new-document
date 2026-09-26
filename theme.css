@@ -256,12 +256,15 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,[t
   font-family:var(--font-display);text-transform:uppercase;font-size:clamp(40px,6vw,90px);line-height:1}
 
 /* ===== 12. SECTIONS VIDÉO PLEIN ÉCRAN ===== */
-.full{position:relative;min-height:92svh;display:grid;place-items:center;overflow:hidden;background:var(--Primaire3)}
+.full{position:relative;min-height:100svh;display:grid;place-items:center;overflow:hidden;background:var(--Primaire3)}
 .full-media{position:absolute;inset:0;width:100%;height:100%}
-.full-media video,.full-media img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.18);transform-origin:center}
+.full-media video,.full-media img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.05);transform-origin:center}
 .full-media::after{content:"";position:absolute;inset:0;
   background:linear-gradient(90deg,rgba(12,27,23,.82) 0%,rgba(12,27,23,.68) 42%,rgba(12,27,23,.28) 100%),
              linear-gradient(0deg,rgba(12,27,23,.75) 0%,rgba(12,27,23,.15) 100%)}
+/* Filtre sombre supplémentaire pour garantir la lisibilité du texte centré */
+.full::before{content:"";position:absolute;inset:0;z-index:1;
+  background:rgba(8,18,15,.55);pointer-events:none}
 .full .wrap{position:relative;z-index:2;color:var(--Primaire2);text-align:center;padding:80px var(--pad)}
 .full h2{font-size:clamp(44px,7.4vw,120px);display:inline-flex;flex-wrap:wrap;justify-content:center;gap:.16em}
 .gap-box{display:inline-block;background:var(--Secondaire1);color:var(--Primaire1);padding:.02em .18em .06em}
@@ -336,7 +339,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,[t
   border:3px solid rgba(255,255,255,.35);}
 .fab:hover{transform:translateY(-3px) scale(1.02);background:linear-gradient(135deg,#2ae06b,#19b654);color:#fff}
 .fab:focus-visible{outline:3px solid rgba(255,255,255,.75);outline-offset:3px}
-.fab svg{width:30px;height:30px;display:block;filter:drop-shadow(0 1px 0 rgba(0,0,0,.08))}
+.fab svg{width:28px;height:28px;display:block;filter:drop-shadow(0 1px 0 rgba(0,0,0,.08))}
 
 /* ===== 17. RESPONSIVE ===== */
 @media (max-width:1100px){
