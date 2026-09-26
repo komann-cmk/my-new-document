@@ -1,204 +1,478 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact — MY NEW DOCUMENT</title>
-  <meta name="description" content="Contactez MY NEW DOCUMENT par email ou via le formulaire de contact.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --paper:#FAF9F5;--surface:#FFFFFF;--ink:#1B2436;--ink-soft:#5A6276;--muted:#8A92A6;
-      --brand:#26408B;--brand-dark:#1B2F66;--brand-tint:#EEF1F9;
-      --seal:#B0843E;--seal-light:#D7B36B;--seal-tint:#F6EFE0;--wa:#25D366;--border:#E7E3D6;--radius:16px;--radius-sm:11px;
-      --shadow-sm:0 1px 2px rgba(27,36,54,.06),0 2px 6px rgba(27,36,54,.05);
-      --shadow:0 22px 48px -20px rgba(27,36,54,.32);--font-display:"Newsreader",Georgia,serif;--font-ui:"Inter",system-ui,-apple-system,sans-serif;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:var(--font-ui);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
-    img{max-width:100%;display:block}
-    a{text-decoration:none}
-    .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
-    .btn-gold{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--seal-light),var(--seal));color:#fff;border:0;border-radius:999px;padding:15px 26px;font-weight:600;box-shadow:0 12px 26px -12px rgba(176,132,62,.6)}
-    .site-header{position:sticky;top:0;z-index:40;background:rgba(27,36,54,.97);backdrop-filter:blur(8px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
-    .header-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:13px 0}
-    .brand{display:flex;align-items:center;gap:11px;color:#fff}
-    .brand-seal{width:38px;height:38px;border-radius:50%;flex:0 0 auto;background:radial-gradient(circle at 35% 30%,var(--seal-light),var(--seal));display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)}
-    .brand-seal svg{width:19px;height:19px}
-    .brand-name{font-family:var(--font-display);font-size:1.15rem;font-weight:600;line-height:1;white-space:nowrap}
-    .brand-sub{display:none;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#A9B2C7;margin-top:3px}
-    .nav-toggle{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:rgba(255,255,255,.08);border:0;border-radius:10px;cursor:pointer;padding:0 11px}
-    .nav-toggle span{height:2px;background:#fff;border-radius:2px;transition:.2s}
-    .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-    .nav-toggle.open span:nth-child(2){opacity:0}
-    .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-    .nav{display:none;flex-basis:100%;flex-direction:column;gap:4px;padding:8px 0 6px}
-    .nav.open{display:flex}
-    .nav a.navlink{color:#D7DBE6;font-weight:600;font-size:.95rem;padding:11px 6px;border-radius:8px}
-    .nav a.navlink:hover,.nav a.navlink.active{color:#fff}
-    .nav a.navlink.active{color:var(--seal-light)}
-    .lang-switch{display:inline-flex;background:rgba(255,255,255,.08);border-radius:999px;padding:3px;width:max-content;margin:6px 0}
-    .lang-switch button{border:0;background:transparent;color:#C3CAD9;font:inherit;font-size:.78rem;font-weight:600;padding:6px 12px;border-radius:999px;cursor:pointer}
-    .lang-switch button.active{background:#fff;color:var(--ink)}
-    .nav .btn-gold{padding:11px 20px;font-size:.92rem}
-    @media(min-width:900px){.header-inner{flex-wrap:nowrap}.brand-sub{display:block}.nav-toggle{display:none}.nav{display:flex;flex-basis:auto;flex-direction:row;align-items:center;gap:20px;padding:0}.lang-switch{margin:0}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title id="docTitle">Contact — MY NEW DOCUMENT</title>
+<meta id="docDesc" name="description" content="Contactez MY NEW DOCUMENT par email ou via le formulaire de contact.">
+<link rel="icon" href="logo.png">
 
-    .page{max-width:1120px;margin:0 auto;padding:28px 20px 70px}
-    .hero{padding:18px 0 6px}
-    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--seal);font-weight:700}
-    .eyebrow::before,.eyebrow::after{content:"";width:22px;height:1.5px;background:var(--seal)}
-    .hero h1{font-family:var(--font-display);font-size:2.6rem;font-weight:500;line-height:1.1;margin:16px 0 10px}
-    .hero p{max-width:620px;color:var(--ink-soft);font-size:1.04rem}
+<!-- =========================================================
+     MY NEW DOCUMENT — Contact (contact.html)
+     Même système de design et même squelette que index.html :
+     theme.css + theme.js (header, méga-menu, footer, FAB,
+     i18n FR/EN/DE/IT, reveal, marquees).
+     ========================================================= -->
 
-    .contact-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:34px}
-    .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:24px}
-    .info-list{display:grid;gap:16px}
-    .info-item{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(231,227,214,.8)}
-    .info-item:last-child{border-bottom:0;padding-bottom:0}
-    .info-ic{width:46px;height:46px;border-radius:12px;background:var(--brand-tint);color:var(--brand);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
-    .info-item h3{font-size:1rem;font-weight:700;margin-bottom:3px}
-    .info-item p,.info-item a{font-size:.94rem;color:var(--ink-soft)}
-    .info-item a{color:var(--brand);font-weight:600}
-
-    form{display:grid;gap:16px}
-    .field{display:grid;gap:8px}
-    label{font-size:.82rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
-    input,textarea{width:100%;border:1px solid var(--border);border-radius:12px;padding:14px 15px;font:inherit;background:#fff;color:var(--ink);resize:vertical}
-    input:focus,textarea:focus{outline:2px solid rgba(38,64,139,.15);border-color:var(--brand)}
-    textarea{min-height:180px}
-    .submit-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-    .submit-btn{background:var(--brand);color:#fff;border:0;border-radius:999px;padding:15px 26px;font-weight:600;cursor:pointer;min-height:52px}
-    .secondary{color:var(--brand);font-weight:600}
-    .status{font-size:.9rem;color:var(--muted);min-height:20px}
-
-    @media(min-width:880px){.contact-grid{grid-template-columns:0.95fr 1.25fr}}
-  </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="index.html">
-        <span class="brand-seal"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/><path d="M9 13h6M9 17h4"/></svg></span>
-        <span><span class="brand-name">MY NEW DOCUMENT</span><span class="brand-sub">Service de documents</span></span>
-      </a>
-      <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-      <nav class="nav" id="nav">
-        <a class="navlink" href="index.html">Accueil</a>
-        <a class="navlink" href="apropos.html">À propos</a>
-        <a class="navlink" href="suivi.html">Suivi</a>
-        <a class="navlink" href="aide.html">Aide</a>
-        <a class="navlink active" href="contact.html">Contact</a>
-        <div class="lang-switch"><button type="button" class="active">FR</button><button type="button">EN</button><button type="button">DE</button></div>
-        <a class="btn-gold" href="commander.html">Commander</a>
+<a class="skip" href="#main">Aller au contenu principal</a>
+
+<!-- ===== HEADER FIXE ===== -->
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html" data-i18n-aria="brandAria">
+      <img src="logo.png" alt="">
+      <span class="brand-txt">
+        <span class="brand-name">My New Document</span>
+        <span class="brand-sub" data-i18n="brandSub">Service de documents</span>
+      </span>
+    </a>
+    <img class="header-logo" src="logo.png" alt="">
+    <div class="header-right">
+      <div class="lang-switch" role="group" data-i18n-aria="langLabel">
+        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="de" aria-pressed="false">DE</button>
+        <button type="button" data-lang="it" aria-pressed="false">IT</button>
+      </div>
+      <a class="btn btn-accent" href="commander.html" data-i18n="navCta">Commander</a>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="mega" data-i18n-aria="menuOpen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MÉGA-MENU PLEIN ÉCRAN ===== -->
+<div class="mega" id="mega" role="dialog" aria-modal="true" data-i18n-aria="menuLabel">
+  <button class="burger mega-close" id="megaClose" data-i18n-aria="menuClose">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="mega-nav">
+    <a class="mega-link" href="index.html"><i>01</i><span data-i18n="navHome">Accueil</span></a>
+    <a class="mega-link" href="apropos.html"><i>02</i><span data-i18n="navAbout">À propos</span></a>
+    <a class="mega-link" href="soumission.html"><i>03</i><span>Soumission</span></a>
+    <a class="mega-link" href="commander.html"><i>04</i><span data-i18n="navOrder">Commander</span></a>
+    <a class="mega-link" href="suivi.html"><i>05</i><span data-i18n="navTrack">Suivi</span></a>
+    <a class="mega-link" href="aide.html"><i>06</i><span data-i18n="navHelp">Aide</span></a>
+    <a class="mega-link" href="contact.html"><i>07</i><span data-i18n="navContact">Contact</span></a>
+  </nav>
+  <aside class="mega-aside">
+    <span class="eyebrow on-dark" data-i18n="asideEyebrow">Documents administratifs</span>
+    <h3 data-i18n="asideTitle">Votre demande en ligne, suivie de A à Z</h3>
+    <p data-i18n="asideText">Passeport, carte d'identité, carte de séjour, permis de conduire. Instructions claires par email et code de suivi personnel.</p>
+    <a class="btn btn-accent" href="commander.html" data-i18n="asideCta">Commencer ma demande</a>
+    <a class="mail" href="mailto:service@mynewdocument.live">service@mynewdocument.live</a>
+    <p style="font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0" data-i18n="asideHours">
+      Lundi au vendredi · 09:00 – 18:00
+    </p>
+    <div class="lang-switch on-dark" role="group" data-i18n-aria="langLabel">
+      <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      <button type="button" data-lang="it" aria-pressed="false">IT</button>
+    </div>
+  </aside>
+</div>
+
+<main id="main" class="page-main">
+
+  <!-- ===== BANDEAU DE TITRE ===== -->
+  <section class="page-hero">
+    <div class="wrap wrap-narrow">
+      <span class="eyebrow on-dark" data-i18n="heroEyebrow">Contact</span>
+      <h1 data-i18n="heroTitle">Une question ? Nous répondons vite.</h1>
+      <p class="lead" data-i18n="heroLead">Contactez-nous par email ou via le formulaire ci-dessous. Nous vous répondons dans les meilleurs délais pour vous aider dans votre démarche.</p>
+      <nav class="crumbs" data-i18n-aria="crumbsLabel">
+        <a href="index.html" data-i18n="navHome">Accueil</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <span data-i18n="navContact">Contact</span>
       </nav>
     </div>
-  </header>
+  </section>
 
-  <main class="page">
-    <section class="hero">
-      <span class="eyebrow">Contact</span>
-      <h1>Une question ? Nous répondons vite.</h1>
-      <p>Contactez-nous par email ou via le formulaire ci-dessous. Nous vous répondrons dans les meilleurs délais pour vous aider dans votre démarche.</p>
-    </section>
+  <!-- ===== COORDONNÉES + FORMULAIRE ===== -->
+  <section class="sec">
+    <div class="wrap wrap-narrow">
+      <div class="grid-2">
 
-    <section class="contact-grid">
-      <div class="panel">
-        <div class="info-list">
-          <div class="info-item">
-            <div class="info-ic">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg>
+        <div class="panel panel-beige reveal">
+          <span class="eyebrow" data-i18n="infoTitle">Nous joindre</span>
+          <div class="list" style="margin-top:26px;gap:0">
+            <div class="step" style="align-items:flex-start;margin-bottom:0">
+              <span class="icon-tile" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M4 7l8 6 8-6"/></svg>
+              </span>
+              <div style="min-width:0">
+                <h3 data-i18n="infoEmailT">Email</h3>
+                <p class="hint" style="margin-top:6px" data-i18n="infoEmailP">Écrivez-nous : nous répondons généralement sous 24 h ouvrées.</p>
+                <a class="mail-line" style="margin-top:8px" href="mailto:service@mynewdocument.live">service@mynewdocument.live</a>
+              </div>
             </div>
-            <div>
-              <h3>Email</h3>
-              <a href="mailto:service@mynewdocument.live">service@mynewdocument.live</a>
-            </div>
-          </div>
 
-          <div class="info-item">
-            <div class="info-ic">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7zm0 9.5A2.5 2.5 0 1 0 12 6a2.5 2.5 0 0 0 0 5.5z"/></svg>
+            <div class="step" style="align-items:flex-start;margin:26px 0 0">
+              <span class="icon-tile" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+              </span>
+              <div style="min-width:0">
+                <h3 data-i18n="infoServiceT">Service</h3>
+                <p class="hint" style="margin-top:6px" data-i18n="infoServiceP">Support client pour les demandes, le suivi et les documents administratifs.</p>
+              </div>
             </div>
-            <div>
-              <h3>Service</h3>
-              <p>Support client pour les demandes, suivi et documents administratifs.</p>
-            </div>
-          </div>
 
-          <div class="info-item">
-            <div class="info-ic">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm1 17.93V19h-2v.93A8.013 8.013 0 0 1 4.07 13H5v-2H4.07A8.013 8.013 0 0 1 11 4.07V5h2V4.07A8.013 8.013 0 0 1 19.93 11H19v2h.93A8.013 8.013 0 0 1 13 19.93z"/></svg>
+            <div class="step" style="align-items:flex-start;margin:26px 0 0">
+              <span class="icon-tile" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg>
+              </span>
+              <div style="min-width:0">
+                <h3 data-i18n="infoHoursT">Horaires</h3>
+                <p class="hint" style="margin-top:6px"><span data-i18n="infoHoursP1">Du lundi au vendredi</span><br><span data-i18n="infoHoursP2">09:00 – 18:00</span></p>
+              </div>
             </div>
-            <div>
-              <h3>Horaires</h3>
-              <p>Du lundi au vendredi<br>09:00 – 18:00</p>
+
+            <div class="step" style="align-items:flex-start;margin:26px 0 0">
+              <span class="icon-tile" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg>
+              </span>
+              <div style="min-width:0">
+                <h3 data-i18n="infoRespT">Délai de réponse</h3>
+                <p class="hint" style="margin-top:6px" data-i18n="infoRespP">Sous 24 h ouvrées</p>
+              </div>
             </div>
           </div>
         </div>
+
+        <div class="panel reveal">
+          <h2 data-i18n="formTitle">Envoyer un message</h2>
+          <p class="hint" style="margin-top:10px" data-i18n="formIntro">Tous les champs sont obligatoires.</p>
+
+          <form id="contactForm" style="margin-top:28px" novalidate>
+            <div class="field">
+              <label for="name" data-i18n-html="labelName">Nom <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="name" name="name" type="text" autocomplete="name" required data-i18n-placeholder="phName" placeholder="Votre nom">
+            </div>
+            <div class="field">
+              <label for="email" data-i18n-html="labelEmail">Email <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="email" name="email" type="email" autocomplete="email" required data-i18n-placeholder="phEmail" placeholder="vous@example.com">
+            </div>
+            <div class="field">
+              <label for="subject" data-i18n-html="labelSubject">Objet <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="subject" name="subject" type="text" required data-i18n-placeholder="phSubject" placeholder="Objet de votre message">
+            </div>
+            <div class="field">
+              <label for="message" data-i18n-html="labelMessage">Message <span class="req" aria-hidden="true">*</span></label>
+              <textarea class="input" id="message" name="message" required data-i18n-placeholder="phMessage" placeholder="Décrivez votre demande..."></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-accent" type="submit" data-i18n="submit">Envoyer le message</button>
+              <a class="btn btn-ghost" style="color:var(--Primaire1);box-shadow:inset 0 0 0 1.5px var(--Primaire1)" href="aide.html" data-i18n="secondary">Consulter l’aide</a>
+            </div>
+            <div id="status" class="note" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+
       </div>
+    </div>
+  </section>
 
-      <div class="panel">
-        <form id="contactForm">
-          <div class="field">
-            <label for="name">Nom</label>
-            <input id="name" name="name" type="text" placeholder="Votre nom" required>
-          </div>
+  <!-- ===== BANDE D'INFORMATION (signature marquee) ===== -->
+  <div class="mq mq-info" aria-hidden="true">
+    <div class="mq-track"><span class="mq-item">Réponse sous 24 h ouvrées</span></div>
+  </div>
 
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="vous@example.com" required>
-          </div>
-
-          <div class="field">
-            <label for="subject">Objet</label>
-            <input id="subject" name="subject" type="text" placeholder="Objet de votre message" required>
-          </div>
-
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Décrivez votre demande..." required></textarea>
-          </div>
-
-          <div class="submit-row">
-            <button class="submit-btn" type="submit">Envoyer le message</button>
-            <a class="secondary" href="aide.html">Consulter l’aide</a>
-          </div>
-          <div id="status" class="status" aria-live="polite"></div>
-        </form>
+  <!-- ===== RACCOURCIS ===== -->
+  <section class="sec sec-alt">
+    <div class="wrap wrap-narrow">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="faqEyebrow">Avant d’écrire</span>
+        <h2 class="sec-title" style="margin-top:14px" data-i18n="faqTitle">Les réponses les plus rapides</h2>
+        <p class="sec-intro" data-i18n="faqIntro">La plupart des questions sont déjà traitées sur ces pages.</p>
       </div>
-    </section>
-  </main>
+      <div class="grid-3" style="margin-top:clamp(30px,4vw,54px)">
+        <a class="card-link reveal" href="suivi.html">
+          <h3 data-i18n="c1t">Suivre ma demande</h3>
+          <p data-i18n="c1p">Votre code de suivi et l’état de votre dossier en temps réel.</p>
+          <span class="go" data-i18n="c1cta">Ouvrir le suivi</span>
+        </a>
+        <a class="card-link reveal" href="commander.html">
+          <h3 data-i18n="c2t">Commander un document</h3>
+          <p data-i18n="c2p">Lancer une demande pour un passeport, une carte d’identité, un titre de séjour ou un permis.</p>
+          <span class="go" data-i18n="c2cta">Commander</span>
+        </a>
+        <a class="card-link reveal" href="aide.html">
+          <h3 data-i18n="c3t">Consulter l’aide</h3>
+          <p data-i18n="c3p">Questions fréquentes, documents à fournir, délais et paiement.</p>
+          <span class="go" data-i18n="c3cta">Ouvrir l’aide</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    const navToggle = document.querySelector('.nav-toggle');
-    const nav = document.querySelector('.nav');
-    navToggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-      navToggle.classList.toggle('open', open);
-      navToggle.setAttribute('aria-expanded', String(open));
-    });
+  <!-- ===== CTA DE BAS DE PAGE ===== -->
+  <section class="page-cta">
+    <div class="wrap page-cta-grid reveal">
+      <div>
+        <span class="eyebrow on-dark" data-i18n="ctaEyebrow">Prêt à commencer ?</span>
+        <h2 style="margin-top:12px" data-i18n="ctaTitle">Prêt à commander votre document ?</h2>
+      </div>
+      <p data-i18n="ctaText">Quelques minutes suffisent. Lancez votre demande dès maintenant.</p>
+      <a class="btn btn-accent" href="commander.html" data-i18n="ctaBtn">Commander mon document</a>
+    </div>
+  </section>
 
-    const form = document.getElementById('contactForm');
-    const status = document.getElementById('status');
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-brand reveal">
+        <img src="logo.png" alt="">
+        <span class="name">My New Document</span>
+      </div>
+      <nav class="footer-links" data-i18n-aria="footNavLabel">
+        <a href="index.html" data-i18n="navHome">Accueil</a>
+        <a href="apropos.html" data-i18n="navAbout">À propos</a>
+        <a href="soumission.html">Soumission</a>
+        <a href="commander.html" data-i18n="navOrder">Commander</a>
+        <a href="suivi.html" data-i18n="navTrack">Suivi</a>
+        <a href="aide.html" data-i18n="navHelp">Aide</a>
+        <a href="contact.html" data-i18n="navContact">Contact</a>
+      </nav>
+      <p class="giant-word" aria-hidden="true" data-i18n="giantWord">Documents</p>
+      <div class="foot-bottom">
+        <span class="mini-logos" aria-hidden="true">
+          <span>FR</span><span>EN</span><span>DE</span><span>IT</span>
+        </span>
+        <span>© 2021 MY NEW DOCUMENT — service@mynewdocument.live</span>
+      </div>
+    </div>
+  </footer>
 
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const subject = document.getElementById('subject').value.trim();
-      const message = document.getElementById('message').value.trim();
+</main>
 
-      if (!name || !email || !subject || !message) {
-        status.textContent = 'Merci de remplir tous les champs.';
-        return;
-      }
+<!-- ===== FAB ===== -->
+<a class="fab" href="https://wa.me/436703046023" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.5 3.5a11.7 11.7 0 0 0-16.8 16.2L2.4 21l1.4-4.1A11.7 11.7 0 1 0 20.5 3.5Zm-5.8 14.3c-.3 0-.7-.1-1.1-.3l-.7-.3-3.7 1 1-3.6-.4-.7a7.7 7.7 0 0 1-1-4 7.8 7.8 0 0 1 7.8-7.8 7.7 7.7 0 0 1 7.7 7.7 7.8 7.8 0 0 1-6.8 7.7Zm4.2-5.7c-.2-.1-1.1-.5-1.3-.6-.2-.1-.3-.1-.5.1-.1.1-.5.6-.6.7-.1.1-.3.1-.5.1s-.4-.1-.8-.4a6.2 6.2 0 0 1-1.8-1.8c-.2-.3-.2-.7 0-.9l.2-.2c.1-.1.1-.2.2-.3.1-.1.1-.2 0-.3l-.2-.5c-.1-.2-.4-.5-.7-.8-.2-.2-.4-.3-.6-.3h-.2c-.2 0-.5.1-.7.4-.2.2-.8.8-.8 2s.8 2.4 1 2.6c.1.2 1.8 2.9 4.5 4 .6.3 1.1.4 1.5.5.7.2 1.2.2 1.6.1.5-.1 1.6-.7 1.8-1.3.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
+</a>
 
-      const body = `Nom: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
-      const mailto = `mailto:service@mynewdocument.live?subject=${encodeURIComponent(subject)}&body=${body}`;
-      status.textContent = 'Ouverture de votre client email...';
-      window.location.href = mailto;
-    });
-  </script>
+<script src="theme.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  /* =========================================================
+     i18n — contenu propre à la page Contact (4 langues).
+     Les chaînes de structure (header, méga-menu, footer, CTA)
+     viennent déjà de theme.js.
+     ========================================================= */
+  var T = {
+  fr:{
+    docTitle:"Contact — MY NEW DOCUMENT",
+    docDesc:"Contactez MY NEW DOCUMENT par email ou via le formulaire de contact.",
+    crumbsLabel:"Fil d’Ariane",
+    heroEyebrow:"Contact",
+    heroTitle:"Une question ? Nous répondons vite.",
+    heroLead:"Contactez-nous par email ou via le formulaire ci-dessous. Nous vous répondons dans les meilleurs délais pour vous aider dans votre démarche.",
+    infoTitle:"Nous joindre",
+    infoEmailT:"Email",
+    infoEmailP:"Écrivez-nous : nous répondons généralement sous 24 h ouvrées.",
+    infoServiceT:"Service",
+    infoServiceP:"Support client pour les demandes, le suivi et les documents administratifs.",
+    infoHoursT:"Horaires",
+    infoHoursP1:"Du lundi au vendredi",
+    infoHoursP2:"09:00 – 18:00",
+    infoRespT:"Délai de réponse",
+    infoRespP:"Sous 24 h ouvrées",
+    formTitle:"Envoyer un message",
+    formIntro:"Tous les champs sont obligatoires.",
+    labelName:'Nom <span class="req" aria-hidden="true">*</span>',
+    phName:"Votre nom",
+    labelEmail:'Email <span class="req" aria-hidden="true">*</span>',
+    phEmail:"vous@example.com",
+    labelSubject:'Objet <span class="req" aria-hidden="true">*</span>',
+    phSubject:"Objet de votre message",
+    labelMessage:'Message <span class="req" aria-hidden="true">*</span>',
+    phMessage:"Décrivez votre demande...",
+    submit:"Envoyer le message",
+    secondary:"Consulter l’aide",
+    errFill:"Merci de remplir tous les champs.",
+    errEmail:"Merci d’indiquer une adresse email valide.",
+    opening:"Ouverture de votre client email...",
+    mqInfo:["Réponse sous 24 h ouvrées","FR · EN · DE · IT","Support par email","Suivi par code personnel","Documents administratifs"],
+    faqEyebrow:"Avant d’écrire",
+    faqTitle:"Les réponses les plus rapides",
+    faqIntro:"La plupart des questions sont déjà traitées sur ces pages.",
+    c1t:"Suivre ma demande", c1p:"Votre code de suivi et l’état de votre dossier en temps réel.", c1cta:"Ouvrir le suivi",
+    c2t:"Commander un document", c2p:"Lancer une demande pour un passeport, une carte d’identité, un titre de séjour ou un permis.", c2cta:"Commander",
+    c3t:"Consulter l’aide", c3p:"Questions fréquentes, documents à fournir, délais et paiement.", c3cta:"Ouvrir l’aide"
+  },
+  en:{
+    docTitle:"Contact — MY NEW DOCUMENT",
+    docDesc:"Contact MY NEW DOCUMENT by email or through the contact form.",
+    crumbsLabel:"Breadcrumb",
+    heroEyebrow:"Contact",
+    heroTitle:"A question? We answer quickly.",
+    heroLead:"Reach us by email or through the form below. We will get back to you as soon as possible to help with your request.",
+    infoTitle:"Get in touch",
+    infoEmailT:"Email",
+    infoEmailP:"Write to us: we usually reply within 24 working hours.",
+    infoServiceT:"Service",
+    infoServiceP:"Customer support for requests, tracking and administrative documents.",
+    infoHoursT:"Opening hours",
+    infoHoursP1:"Monday to Friday",
+    infoHoursP2:"09:00 – 18:00",
+    infoRespT:"Response time",
+    infoRespP:"Within 24 working hours",
+    formTitle:"Send a message",
+    formIntro:"All fields are required.",
+    labelName:'Name <span class="req" aria-hidden="true">*</span>',
+    phName:"Your name",
+    labelEmail:'Email <span class="req" aria-hidden="true">*</span>',
+    phEmail:"you@example.com",
+    labelSubject:'Subject <span class="req" aria-hidden="true">*</span>',
+    phSubject:"Subject of your message",
+    labelMessage:'Message <span class="req" aria-hidden="true">*</span>',
+    phMessage:"Describe your request...",
+    submit:"Send message",
+    secondary:"Read the help page",
+    errFill:"Please fill in all fields.",
+    errEmail:"Please enter a valid email address.",
+    opening:"Opening your email client...",
+    mqInfo:["Reply within 24 working hours","FR · EN · DE · IT","Email support","Personal tracking code","Administrative documents"],
+    faqEyebrow:"Before writing",
+    faqTitle:"The fastest answers",
+    faqIntro:"Most questions are already answered on these pages.",
+    c1t:"Track my request", c1p:"Your tracking code and the live status of your file.", c1cta:"Open tracking",
+    c2t:"Order a document", c2p:"Start a request for a passport, ID card, residence permit or driving licence.", c2cta:"Order",
+    c3t:"Read the help", c3p:"Frequently asked questions, documents to provide, timescales and payment.", c3cta:"Open help"
+  },
+  de:{
+    docTitle:"Kontakt — MY NEW DOCUMENT",
+    docDesc:"Kontaktieren Sie MY NEW DOCUMENT per E-Mail oder über das Kontaktformular.",
+    crumbsLabel:"Brotkrümelnavigation",
+    heroEyebrow:"Kontakt",
+    heroTitle:"Eine Frage? Wir antworten schnell.",
+    heroLead:"Schreiben Sie uns per E-Mail oder über das untenstehende Formular. Wir melden uns so schnell wie möglich, um Ihnen bei Ihrem Anliegen zu helfen.",
+    infoTitle:"So erreichen Sie uns",
+    infoEmailT:"E-Mail",
+    infoEmailP:"Schreiben Sie uns: Wir antworten in der Regel innerhalb von 24 Arbeitsstunden.",
+    infoServiceT:"Service",
+    infoServiceP:"Kundensupport für Anträge, Sendungsverfolgung und Verwaltungsdokumente.",
+    infoHoursT:"Öffnungszeiten",
+    infoHoursP1:"Montag bis Freitag",
+    infoHoursP2:"09:00 – 18:00",
+    infoRespT:"Antwortzeit",
+    infoRespP:"Innerhalb von 24 Arbeitsstunden",
+    formTitle:"Nachricht senden",
+    formIntro:"Alle Felder sind Pflichtfelder.",
+    labelName:'Name <span class="req" aria-hidden="true">*</span>',
+    phName:"Ihr Name",
+    labelEmail:'E-Mail <span class="req" aria-hidden="true">*</span>',
+    phEmail:"sie@beispiel.de",
+    labelSubject:'Betreff <span class="req" aria-hidden="true">*</span>',
+    phSubject:"Betreff Ihrer Nachricht",
+    labelMessage:'Nachricht <span class="req" aria-hidden="true">*</span>',
+    phMessage:"Beschreiben Sie Ihr Anliegen...",
+    submit:"Nachricht senden",
+    secondary:"Hilfeseite lesen",
+    errFill:"Bitte füllen Sie alle Felder aus.",
+    errEmail:"Bitte geben Sie eine gültige E-Mail-Adresse an.",
+    opening:"Ihr E-Mail-Programm wird geöffnet...",
+    mqInfo:["Antwort in 24 Arbeitsstunden","FR · EN · DE · IT","Support per E-Mail","Persönlicher Verfolgungscode","Verwaltungsdokumente"],
+    faqEyebrow:"Vor dem Schreiben",
+    faqTitle:"Die schnellsten Antworten",
+    faqIntro:"Die meisten Fragen sind auf diesen Seiten bereits beantwortet.",
+    c1t:"Antrag verfolgen", c1p:"Ihr Verfolgungscode und der aktuelle Status Ihrer Akte.", c1cta:"Sendungsverfolgung öffnen",
+    c2t:"Dokument bestellen", c2p:"Antrag für Reisepass, Personalausweis, Aufenthaltstitel oder Führerschein starten.", c2cta:"Bestellen",
+    c3t:"Hilfe lesen", c3p:"Häufige Fragen, benötigte Dokumente, Fristen und Zahlung.", c3cta:"Hilfe öffnen"
+  },
+  it:{
+    docTitle:"Contatti — MY NEW DOCUMENT",
+    docDesc:"Contatta MY NEW DOCUMENT via email o tramite il modulo di contatto.",
+    crumbsLabel:"Percorso di navigazione",
+    heroEyebrow:"Contatti",
+    heroTitle:"Una domanda? Rispondiamo in fretta.",
+    heroLead:"Scrivici via email o tramite il modulo qui sotto. Ti risponderemo il prima possibile per aiutarti nella tua pratica.",
+    infoTitle:"Come contattarci",
+    infoEmailT:"Email",
+    infoEmailP:"Scrivici: di solito rispondiamo entro 24 ore lavorative.",
+    infoServiceT:"Servizio",
+    infoServiceP:"Supporto clienti per richieste, tracciamento e documenti amministrativi.",
+    infoHoursT:"Orari",
+    infoHoursP1:"Dal lunedì al venerdì",
+    infoHoursP2:"09:00 – 18:00",
+    infoRespT:"Tempo di risposta",
+    infoRespP:"Entro 24 ore lavorative",
+    formTitle:"Invia un messaggio",
+    formIntro:"Tutti i campi sono obbligatori.",
+    labelName:'Nome <span class="req" aria-hidden="true">*</span>',
+    phName:"Il tuo nome",
+    labelEmail:'Email <span class="req" aria-hidden="true">*</span>',
+    phEmail:"tu@example.com",
+    labelSubject:'Oggetto <span class="req" aria-hidden="true">*</span>',
+    phSubject:"Oggetto del messaggio",
+    labelMessage:'Messaggio <span class="req" aria-hidden="true">*</span>',
+    phMessage:"Descrivi la tua richiesta...",
+    submit:"Invia il messaggio",
+    secondary:"Consulta l’aiuto",
+    errFill:"Compila tutti i campi.",
+    errEmail:"Inserisci un indirizzo email valido.",
+    opening:"Apertura del tuo programma di posta...",
+    mqInfo:["Risposta entro 24 ore lavorative","FR · EN · DE · IT","Supporto via email","Codice di tracciamento personale","Documenti amministrativi"],
+    faqEyebrow:"Prima di scrivere",
+    faqTitle:"Le risposte più rapide",
+    faqIntro:"La maggior parte delle domande ha già risposta in queste pagine.",
+    c1t:"Segui la richiesta", c1p:"Il tuo codice di tracciamento e lo stato della pratica in tempo reale.", c1cta:"Apri il tracciamento",
+    c2t:"Ordinare un documento", c2p:"Avvia una richiesta per passaporto, carta d’identità, permesso di soggiorno o patente.", c2cta:"Ordinare",
+    c3t:"Consulta l’aiuto", c3p:"Domande frequenti, documenti da fornire, tempi e pagamento.", c3cta:"Apri l’aiuto"
+  }
+  };
+
+  /* --- Socle commun : i18n 4 langues, méga-menu, reveal, sélecteur --- */
+  MND.init(T);
+  var t = MND.t;
+
+  /* --- Formulaire de contact : pas de backend, ouverture du client email --- */
+  var form = document.getElementById('contactForm');
+  var status = document.getElementById('status');
+
+  function showStatus(msg, kind){
+    status.textContent = msg;
+    status.classList.remove('error', 'ok');
+    if (kind) status.classList.add(kind);
+    status.classList.add('show');
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var subject = document.getElementById('subject').value.trim();
+    var message = document.getElementById('message').value.trim();
+
+    if (!name || !email || !subject || !message) {
+      showStatus(t('errFill'), 'error');
+      document.getElementById('name').focus();
+      return;
+    }
+    if (email.indexOf('@') < 1 || email.indexOf('.', email.indexOf('@')) < 0) {
+      showStatus(t('errEmail'), 'error');
+      document.getElementById('email').focus();
+      return;
+    }
+
+    var body = 'Nom: ' + name + '\r\nEmail: ' + email + '\r\n\r\nMessage:\r\n' + message;
+    var mailto = 'mailto:service@mynewdocument.live?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    showStatus(t('opening'), 'ok');
+    window.location.href = mailto;
+  });
+
+  /* Re-render du bandeau d'information à chaque changement de langue */
+  MND.onLang(function(){
+    if (status.textContent) status.textContent = '';
+    status.classList.remove('show');
+  });
+
+})();
+</script>
 </body>
 </html>

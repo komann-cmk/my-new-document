@@ -1,170 +1,363 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aide — MY NEW DOCUMENT</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
-<style>
-:root{--paper:#FAF9F5;--surface:#FFFFFF;--ink:#1B2436;--ink-soft:#5A6276;--muted:#8A92A6;--brand:#26408B;--brand-dark:#1B2F66;--brand-tint:#EEF1F9;--seal:#B0843E;--seal-light:#D7B36B;--seal-tint:#F6EFE0;--wa:#25D366;--wa-dark:#1da851;--border:#E7E3D6;--radius:16px;--radius-sm:11px;--shadow-sm:0 1px 2px rgba(27,36,54,.06),0 2px 6px rgba(27,36,54,.05);--shadow:0 22px 48px -20px rgba(27,36,54,.32);--shadow-seal:0 14px 30px -12px rgba(176,132,62,.5);--font-display:"Newsreader",Georgia,serif;--font-ui:"Inter",system-ui,-apple-system,sans-serif;}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font-ui);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
-.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
-.btn-gold{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--seal-light),var(--seal));color:#fff;text-decoration:none;border:0;border-radius:999px;font-weight:600;box-shadow:var(--shadow-seal)}
-.site-header{position:sticky;top:0;z-index:40;background:rgba(27,36,54,.97);backdrop-filter:blur(8px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
-.header-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:13px 0}
-.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:#fff}
-.brand-seal{width:38px;height:38px;border-radius:50%;flex:0 0 auto;background:radial-gradient(circle at 35% 30%,var(--seal-light),var(--seal));display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)}
-.brand-seal svg{width:19px;height:19px}.brand img{height:38px;width:auto}
-.brand-name{font-family:var(--font-display);font-size:1.15rem;font-weight:600;line-height:1;white-space:nowrap}
-.brand-sub{display:none;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#A9B2C7;margin-top:3px}
-.nav-toggle{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:rgba(255,255,255,.08);border:0;border-radius:10px;cursor:pointer;padding:0 11px}
-.nav-toggle span{height:2px;background:#fff;border-radius:2px;transition:.2s}
-.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.nav-toggle.open span:nth-child(2){opacity:0}.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.nav{display:none;flex-basis:100%;flex-direction:column;gap:4px;padding:8px 0 6px}.nav.open{display:flex}
-.nav a.navlink{color:#D7DBE6;text-decoration:none;font-weight:600;font-size:.95rem;padding:11px 6px;border-radius:8px}
-.nav a.navlink:hover,.nav a.navlink.active{color:#fff}.nav a.navlink.active{color:var(--seal-light)}
-.lang-switch{display:inline-flex;background:rgba(255,255,255,.08);border-radius:999px;padding:3px;width:max-content;margin:6px 0}
-.lang-switch button{border:0;background:transparent;color:#C3CAD9;font:inherit;font-size:.78rem;font-weight:600;padding:6px 12px;border-radius:999px;cursor:pointer}
-.lang-switch button.active{background:#fff;color:var(--ink)}
-.nav .btn-gold{padding:11px 20px;font-size:.92rem}
-@media(min-width:900px){.header-inner{flex-wrap:nowrap}.brand-sub{display:block}.nav-toggle{display:none}.nav{display:flex;flex-basis:auto;flex-direction:row;align-items:center;gap:20px;padding:0}.lang-switch{margin:0}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title id="docTitle">Aide — MY NEW DOCUMENT</title>
+<meta id="docDesc" name="description" content="Questions fréquentes sur les demandes de documents administratifs : étapes, délais, instructions par email et suivi du dossier. Support par email du lundi au vendredi.">
+<link rel="icon" href="logo.png">
 
-.page{max-width:720px;margin:0 auto;padding:0 20px}
-.hero{padding:48px 0 4px;text-align:center}
-.hero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--seal);font-weight:700}
-.hero .eyebrow::before,.hero .eyebrow::after{content:"";width:22px;height:1.5px;background:var(--seal)}
-.hero h1{font-family:var(--font-display);font-size:2.3rem;font-weight:500;line-height:1.1;margin:14px 0 12px}
-.hero p{color:var(--ink-soft);font-size:1.04rem;max-width:520px;margin:0 auto}
+<!-- MY NEW DOCUMENT — page intérieure sur le même système de design que index.html (theme.css + theme.js, 4 langues FR/EN/DE/IT). -->
 
-.wa-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:34px 28px;margin:34px 0;text-align:center}
-.wa-ic{width:72px;height:72px;border-radius:20px;background:var(--brand);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 14px 30px -12px rgba(38,64,139,.5)}
-.wa-ic svg{width:40px;height:40px;color:#fff}
-.wa-card h2{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:8px}
-.wa-card p{color:var(--ink-soft);font-size:1rem;max-width:440px;margin:0 auto 22px}
-.wa-btn{display:inline-flex;align-items:center;gap:10px;background:var(--brand);color:#fff;text-decoration:none;font-weight:600;font-size:1.02rem;padding:15px 28px;border-radius:999px;box-shadow:0 12px 26px -12px rgba(38,64,139,.6);transition:.18s;min-height:54px}
-.wa-btn:hover{background:#1d3268}
-.wa-btn svg{width:22px;height:22px}
-.wa-num{margin-top:14px;font-size:.88rem;color:var(--muted)}
-.wa-num strong{color:var(--ink)}
-
-.faq{margin:10px 0 50px}
-.faq h3{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-bottom:16px;text-align:center}
-.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 18px;margin-bottom:10px;box-shadow:var(--shadow-sm)}
-.faq-item .q{font-weight:600;font-size:.98rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:12px}
-.faq-item .q .chev{transition:.2s;color:var(--brand);flex:0 0 auto}
-.faq-item.open .q .chev{transform:rotate(180deg)}
-.faq-item .a{font-size:.92rem;color:var(--ink-soft);max-height:0;overflow:hidden;transition:max-height .25s ease,margin .25s ease}
-.faq-item.open .a{max-height:300px;margin-top:10px}
-.footer-note{text-align:center;color:var(--muted);font-size:.8rem;padding:0 0 50px}.footer-note a{color:var(--brand);text-decoration:none}
-@media(max-width:480px){.hero h1{font-size:2rem}}
-</style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip" href="#main">Aller au contenu principal</a>
 
+<!-- ===== HEADER FIXE ===== -->
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="index.html">
-      <span class="brand-seal" id="brandSeal"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/><path d="M9 13h6M9 17h4"/></svg></span>
-      <span><span class="brand-name">MY NEW DOCUMENT</span><span class="brand-sub" data-i18n="tagline">Service de documents</span></span>
+    <a class="brand" href="index.html" data-i18n-aria="brandAria">
+      <img src="logo.png" alt="">
+      <span class="brand-txt">
+        <span class="brand-name">My New Document</span>
+        <span class="brand-sub" data-i18n="brandSub">Service de documents</span>
+      </span>
     </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="nav" id="nav">
-      <a class="navlink" href="index.html" data-i18n="navHome">Accueil</a>
-      <a class="navlink" href="apropos.html" data-i18n="navAbout">À propos</a>
-      <a class="navlink" href="suivi.html" data-i18n="navTrack">Suivi</a>
-      <a class="navlink active" href="aide.html" data-i18n="navHelp">Aide</a>
-      <a class="navlink" href="contact.html" data-i18n="navContact">Contact</a>
-      <div class="lang-switch" id="langSwitch"><button data-lang="fr">FR</button><button data-lang="en">EN</button><button data-lang="de">DE</button></div>
-      <a class="btn-gold" href="commander.html" data-i18n="navCta">Commander</a>
-    </nav>
+    <img class="header-logo" src="logo.png" alt="">
+    <div class="header-right">
+      <div class="lang-switch" role="group" data-i18n-aria="langLabel">
+        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="de" aria-pressed="false">DE</button>
+        <button type="button" data-lang="it" aria-pressed="false">IT</button>
+      </div>
+      <a class="btn btn-accent" href="commander.html" data-i18n="navCta">Commander</a>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="mega" data-i18n-aria="menuOpen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
-<div class="page">
-  <section class="hero">
-    <span class="eyebrow" data-i18n="eyebrow">Besoin d'aide ?</span>
-    <h1 data-i18n="title">Nous sommes là pour vous</h1>
-    <p data-i18n="subtitle">Une question sur votre demande ou une difficulté ? Notre équipe vous répond directement par email.</p>
-  </section>
-
-  <div class="wa-card">
-    <div class="wa-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg></div>
-    <h2 data-i18n="waTitle">Contactez-nous par email</h2>
-    <p data-i18n="waText">Écrivez-nous via le formulaire de contact et notre équipe vous répond rapidement pendant nos heures d'ouverture.</p>
-    <a class="wa-btn" href="contact.html">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg>
-      <span data-i18n="waBtn">Nous écrire via le formulaire</span>
-    </a>
-    <div class="wa-num" data-i18n="waNum">ou par email : <strong>service@mynewdocument.live</strong></div>
-  </div>
-
-  <div class="faq">
-    <h3 data-i18n="faqTitle">Questions fréquentes</h3>
-    <div id="faqList"></div>
-  </div>
-
-  <p class="footer-note"><a href="index.html" data-i18n="footHome">← Retour à l'accueil</a></p>
+<!-- ===== MÉGA-MENU PLEIN ÉCRAN ===== -->
+<div class="mega" id="mega" role="dialog" aria-modal="true" data-i18n-aria="menuLabel">
+  <button class="burger mega-close" id="megaClose" data-i18n-aria="menuClose">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="mega-nav">
+    <a class="mega-link" href="index.html"><i>01</i><span data-i18n="navHome">Accueil</span></a>
+    <a class="mega-link" href="apropos.html"><i>02</i><span data-i18n="navAbout">À propos</span></a>
+    <a class="mega-link" href="soumission.html"><i>03</i><span>Soumission</span></a>
+    <a class="mega-link" href="commander.html"><i>04</i><span data-i18n="navOrder">Commander</span></a>
+    <a class="mega-link" href="suivi.html"><i>05</i><span data-i18n="navTrack">Suivi</span></a>
+    <a class="mega-link" href="aide.html"><i>06</i><span data-i18n="navHelp">Aide</span></a>
+    <a class="mega-link" href="contact.html"><i>07</i><span data-i18n="navContact">Contact</span></a>
+  </nav>
+  <aside class="mega-aside">
+    <span class="eyebrow on-dark" data-i18n="asideEyebrow">Documents administratifs</span>
+    <h3 data-i18n="asideTitle">Votre demande en ligne, suivie de A à Z</h3>
+    <p data-i18n="asideText">Passeport, carte d'identité, carte de séjour, permis de conduire. Instructions claires par email et code de suivi personnel.</p>
+    <a class="btn btn-accent" href="commander.html" data-i18n="asideCta">Commencer ma demande</a>
+    <a class="mail" href="mailto:service@mynewdocument.live">service@mynewdocument.live</a>
+    <p style="font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0" data-i18n="asideHours">
+      Lundi au vendredi · 09:00 – 18:00
+    </p>
+    <div class="lang-switch on-dark" role="group" data-i18n-aria="langLabel">
+      <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      <button type="button" data-lang="it" aria-pressed="false">IT</button>
+    </div>
+  </aside>
 </div>
 
+<main id="main" class="page-main">
+  <!-- ===== BANDEAU DE TITRE ===== -->
+  <section class="page-hero">
+    <div class="wrap wrap-narrow">
+      <span class="eyebrow on-dark" data-i18n="heroEyebrow">Besoin d’aide ?</span>
+      <h1 data-i18n="heroTitle">Nous sommes là pour vous</h1>
+      <p class="lead" data-i18n="heroLead">Une question sur votre demande ou une difficulté ? Notre équipe vous répond directement par email.</p>
+      <nav class="crumbs" data-i18n-aria="crumbsLabel">
+        <a href="index.html" data-i18n="navHome">Accueil</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <span data-i18n="navHelp">Aide</span>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT + ÉTAPES ===== -->
+  <section class="sec">
+    <div class="wrap wrap-narrow">
+      <div class="grid-2">
+
+        <div class="panel reveal">
+          <span class="icon-tile" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M4 7l8 6 8-6"/></svg>
+          </span>
+          <h2 style="margin-top:22px" data-i18n="waTitle">Contactez-nous par email</h2>
+          <p style="margin-top:14px" data-i18n="waText">Écrivez-nous via le formulaire de contact et notre équipe vous répond rapidement pendant nos heures d’ouverture.</p>
+          <div class="form-actions">
+            <a class="btn btn-accent" href="contact.html" data-i18n="waBtn">Nous écrire via le formulaire</a>
+          </div>
+          <a class="mail-line" style="margin-top:22px" href="mailto:service@mynewdocument.live">service@mynewdocument.live</a>
+          <p class="hint" style="margin-top:8px" data-i18n="waHours">Du lundi au vendredi · 09:00 – 18:00</p>
+        </div>
+
+        <div class="panel panel-beige reveal">
+          <span class="eyebrow" data-i18n="howEyebrow">Comment ça marche</span>
+          <h2 style="margin-top:14px" data-i18n="howTitle">Votre demande en quatre étapes</h2>
+          <div style="margin-top:28px">
+            <div class="step" style="align-items:flex-start">
+              <span class="n" aria-hidden="true">1</span>
+              <div>
+                <h3 data-i18n="s1h">Choisissez votre document</h3>
+                <p class="hint" style="margin-top:6px" data-i18n="s1p">Passeport, carte d’identité, carte de séjour ou permis de conduire.</p>
+              </div>
+            </div>
+            <div class="step" style="align-items:flex-start">
+              <span class="n" aria-hidden="true">2</span>
+              <div>
+                <h3 data-i18n="s2h">Remplissez le formulaire</h3>
+                <p class="hint" style="margin-top:6px" data-i18n="s2p">Vos coordonnées et votre adresse postale, en quelques minutes.</p>
+              </div>
+            </div>
+            <div class="step" style="align-items:flex-start">
+              <span class="n" aria-hidden="true">3</span>
+              <div>
+                <h3 data-i18n="s3h">Recevez vos instructions</h3>
+                <p class="hint" style="margin-top:6px" data-i18n="s3p">Par email : pièces nécessaires, coût, délai et modalités de paiement.</p>
+              </div>
+            </div>
+            <div class="step" style="align-items:flex-start;margin-bottom:0">
+              <span class="n" aria-hidden="true">4</span>
+              <div>
+                <h3 data-i18n="s4h">Suivez votre dossier</h3>
+                <p class="hint" style="margin-top:6px" data-i18n="s4p">Avec votre code de suivi personnel, à chaque étape.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="sec sec-alt">
+    <div class="wrap wrap-narrow">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="faqEyebrow">Questions fréquentes</span>
+        <h2 class="sec-title" style="margin-top:14px" data-i18n="faqTitle">Les réponses aux questions les plus posées</h2>
+        <p class="sec-intro" data-i18n="faqIntro">Si vous ne trouvez pas votre réponse, écrivez-nous : nous répondons sous 24 h ouvrées.</p>
+      </div>
+      <div class="faq" id="faqList" style="margin-top:clamp(28px,3.4vw,48px)"></div>
+    </div>
+  </section>
+
+  <!-- ===== BANDE D'INFORMATION ===== -->
+  <div class="mq mq-info" aria-hidden="true">
+    <div class="mq-track"><span class="mq-item">Support par email · FR · EN · DE · IT</span></div>
+  </div>
+
+  <!-- ===== CTA DE BAS DE PAGE ===== -->
+  <section class="page-cta">
+    <div class="wrap page-cta-grid reveal">
+      <div>
+        <span class="eyebrow on-dark" data-i18n="ctaEyebrow">Prêt à commencer ?</span>
+        <h2 style="margin-top:12px" data-i18n="ctaTitle">Prêt à commander votre document ?</h2>
+      </div>
+      <p data-i18n="ctaText">Quelques minutes suffisent. Lancez votre demande dès maintenant.</p>
+      <a class="btn btn-accent" href="commander.html" data-i18n="ctaBtn">Commander mon document</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-brand reveal">
+        <img src="logo.png" alt="">
+        <span class="name">My New Document</span>
+      </div>
+      <nav class="footer-links" data-i18n-aria="footNavLabel">
+        <a href="index.html" data-i18n="navHome">Accueil</a>
+        <a href="apropos.html" data-i18n="navAbout">À propos</a>
+        <a href="soumission.html">Soumission</a>
+        <a href="commander.html" data-i18n="navOrder">Commander</a>
+        <a href="suivi.html" data-i18n="navTrack">Suivi</a>
+        <a href="aide.html" data-i18n="navHelp">Aide</a>
+        <a href="contact.html" data-i18n="navContact">Contact</a>
+      </nav>
+      <p class="giant-word" aria-hidden="true" data-i18n="giantWord">Documents</p>
+      <div class="foot-bottom">
+        <span class="mini-logos" aria-hidden="true">
+          <span>FR</span><span>EN</span><span>DE</span><span>IT</span>
+        </span>
+        <span>© 2021 MY NEW DOCUMENT — service@mynewdocument.live</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<a class="fab" href="https://wa.me/436703046023" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.5 3.5a11.7 11.7 0 0 0-16.8 16.2L2.4 21l1.4-4.1A11.7 11.7 0 1 0 20.5 3.5Zm-5.8 14.3c-.3 0-.7-.1-1.1-.3l-.7-.3-3.7 1 1-3.6-.4-.7a7.7 7.7 0 0 1-1-4 7.8 7.8 0 0 1 7.8-7.8 7.7 7.7 0 0 1 7.7 7.7 7.8 7.8 0 0 1-6.8 7.7Zm4.2-5.7c-.2-.1-1.1-.5-1.3-.6-.2-.1-.3-.1-.5.1-.1.1-.5.6-.6.7-.1.1-.3.1-.5.1s-.4-.1-.8-.4a6.2 6.2 0 0 1-1.8-1.8c-.2-.3-.2-.7 0-.9l.2-.2c.1-.1.1-.2.2-.3.1-.1.1-.2 0-.3l-.2-.5c-.1-.2-.4-.5-.7-.8-.2-.2-.4-.3-.6-.3h-.2c-.2 0-.5.1-.7.4-.2.2-.8.8-.8 2s.8 2.4 1 2.6c.1.2 1.8 2.9 4.5 4 .6.3 1.1.4 1.5.5.7.2 1.2.2 1.6.1.5-.1 1.6-.7 1.8-1.3.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
+</a>
+
+<script src="theme.js"></script>
 <script>
-const LOGO_PATH="logo.png";
-const T={
-  fr:{ tagline:"Service de documents", navHome:"Accueil", navAbout:"À propos", navTrack:"Suivi", navHelp:"Aide", navContact:"Contact", navCta:"Commander",
-    eyebrow:"Besoin d'aide ?", title:"Nous sommes là pour vous",
-    subtitle:"Une question sur votre demande ou une difficulté ? Notre équipe vous répond directement par email.",
-    waTitle:"Contactez-nous par email", waText:"Écrivez-nous via le formulaire de contact et notre équipe vous répond rapidement pendant nos heures d'ouverture.",
-    waBtn:"Nous écrire via le formulaire", waNum:'ou par email : <strong>service@mynewdocument.live</strong>',
-    faqTitle:"Questions fréquentes", footHome:"← Retour à l'accueil",
+(function(){
+  "use strict";
+
+  /* Contenu propre à la page « Aide » (4 langues). */
+  var T = {
+  fr:{
+    docTitle:"Aide — MY NEW DOCUMENT",
+    docDesc:"Questions fréquentes sur les demandes de documents administratifs : étapes, délais, instructions par email et suivi du dossier. Support par email du lundi au vendredi.",
+    crumbsLabel:"Fil d’Ariane",
+    heroEyebrow:"Besoin d’aide ?",
+    heroTitle:"Nous sommes là pour vous",
+    heroLead:"Une question sur votre demande ou une difficulté ? Notre équipe vous répond directement par email.",
+    waTitle:"Contactez-nous par email",
+    waText:"Écrivez-nous via le formulaire de contact et notre équipe vous répond rapidement pendant nos heures d’ouverture.",
+    waBtn:"Nous écrire via le formulaire",
+    waHours:"Du lundi au vendredi · 09:00 – 18:00",
+    howEyebrow:"Comment ça marche",
+    howTitle:"Votre demande en quatre étapes",
+    s1h:"Choisissez votre document", s1p:"Passeport, carte d’identité, carte de séjour ou permis de conduire.",
+    s2h:"Remplissez le formulaire", s2p:"Vos coordonnées et votre adresse postale, en quelques minutes.",
+    s3h:"Recevez vos instructions", s3p:"Par email : pièces nécessaires, coût, délai et modalités de paiement.",
+    s4h:"Suivez votre dossier", s4p:"Avec votre code de suivi personnel, à chaque étape.",
+    faqEyebrow:"Questions fréquentes",
+    faqTitle:"Les réponses aux questions les plus posées",
+    faqIntro:"Si vous ne trouvez pas votre réponse, écrivez-nous : nous répondons sous 24 h ouvrées.",
     faq:[
       {q:"Comment faire une demande ?",a:"Rendez-vous sur la page « Commander », choisissez votre type de document, remplissez le formulaire et validez. Vous recevrez vos instructions par email."},
       {q:"Quand vais-je recevoir mes instructions ?",a:"Dans les prochaines heures suivant votre demande, vous recevrez par email la liste des pièces nécessaires, le coût, le délai et les modalités de paiement."},
-      {q:"Je n'ai pas reçu d'email, que faire ?",a:"Vérifiez d'abord votre dossier spam ou courrier indésirable. Si vous ne trouvez toujours rien, contactez-nous par email via le formulaire de contact et nous vérifierons votre demande."},
-      {q:"Comment suivre mon dossier ?",a:"Un code de suivi personnel vous est communiqué par notre équipe. Saisissez-le sur la page « Suivi » pour voir l'état de votre dossier en temps réel."}
-    ] },
-  en:{ tagline:"Document service", navHome:"Home", navAbout:"About", navTrack:"Tracking", navHelp:"Help", navContact:"Contact", navCta:"Order",
-    eyebrow:"Need help?", title:"We're here for you",
-    subtitle:"A question about your request or a difficulty? Our team replies directly by email.",
-    waTitle:"Contact us by email", waText:"Write to us via the contact form and our team will reply quickly during our opening hours.",
-    waBtn:"Message us via the form", waNum:'or by email: <strong>service@mynewdocument.live</strong>',
-    faqTitle:"Frequently asked questions", footHome:"← Back to home",
+      {q:"Combien coûte la prestation ?",a:"Le coût vous est communiqué par email après votre demande, en même temps que la liste des pièces à fournir et le délai estimatif. Aucun paiement n’est demandé sur le site."},
+      {q:"Je n’ai pas reçu d’email, que faire ?",a:"Vérifiez d’abord votre dossier spam ou courrier indésirable. Si vous ne trouvez toujours rien, contactez-nous par email via le formulaire de contact et nous vérifierons votre demande."},
+      {q:"Comment suivre mon dossier ?",a:"Un code de suivi personnel vous est communiqué par notre équipe. Saisissez-le sur la page « Suivi » pour voir l’état de votre dossier en temps réel."},
+      {q:"Mes données sont-elles protégées ?",a:"Vos informations servent uniquement au traitement de votre demande et sont traitées de manière confidentielle. Aucune donnée personnelle n’est publiée sur la page de suivi."}
+    ],
+    mqInfo:["Support par email","FR · EN · DE · IT","Réponse sous 24 h ouvrées","Code de suivi personnel","Documents administratifs"]
+  },
+  en:{
+    docTitle:"Help — MY NEW DOCUMENT",
+    docDesc:"Frequently asked questions about administrative document requests: steps, timescales, instructions by email and file tracking. Email support Monday to Friday.",
+    crumbsLabel:"Breadcrumb",
+    heroEyebrow:"Need help?",
+    heroTitle:"We’re here for you",
+    heroLead:"A question about your request or a difficulty? Our team replies directly by email.",
+    waTitle:"Contact us by email",
+    waText:"Write to us via the contact form and our team will reply quickly during our opening hours.",
+    waBtn:"Message us via the form",
+    waHours:"Monday to Friday · 09:00 – 18:00",
+    howEyebrow:"How it works",
+    howTitle:"Your request in four steps",
+    s1h:"Choose your document", s1p:"Passport, identity card, residence permit or driving licence.",
+    s2h:"Fill in the form", s2p:"Your contact details and postal address, in a few minutes.",
+    s3h:"Receive your instructions", s3p:"By email: required documents, cost, timeframe and payment methods.",
+    s4h:"Track your file", s4p:"With your personal tracking code, at every step.",
+    faqEyebrow:"Frequently asked questions",
+    faqTitle:"Answers to the most common questions",
+    faqIntro:"If you can’t find your answer, write to us: we reply within 24 working hours.",
     faq:[
-      {q:"How do I make a request?",a:"Go to the « Order » page, choose your document type, fill in the form and submit. You'll receive your instructions by email."},
-      {q:"When will I receive my instructions?",a:"Within a few hours of your request, you'll receive by email the list of required documents, the cost, the timeframe and the payment methods."},
-      {q:"I didn't receive an email, what should I do?",a:"First check your spam or junk folder. If you still can't find anything, contact us by email via the contact form and we'll check your request."},
-      {q:"How do I track my file?",a:"A personal tracking code is sent to you by our team. Enter it on the « Tracking » page to see your file status in real time."}
-    ] },
-  de:{ tagline:"Dokumentenservice", navHome:"Startseite", navAbout:"Über uns", navTrack:"Verfolgung", navHelp:"Hilfe", navContact:"Kontakt", navCta:"Bestellen",
-    eyebrow:"Brauchen Sie Hilfe?", title:"Wir sind für Sie da",
-    subtitle:"Eine Frage zu Ihrer Anfrage oder ein Problem? Unser Team antwortet Ihnen direkt per E-Mail.",
-    waTitle:"Kontaktieren Sie uns per E-Mail", waText:"Schreiben Sie uns über das Kontaktformular, und unser Team antwortet Ihnen schnell während unserer Öffnungszeiten.",
-    waBtn:"Über das Formular schreiben", waNum:'oder per E-Mail: <strong>service@mynewdocument.live</strong>',
-    faqTitle:"Häufige Fragen", footHome:"← Zurück zur Startseite",
+      {q:"How do I make a request?",a:"Go to the « Order » page, choose your document type, fill in the form and submit. You’ll receive your instructions by email."},
+      {q:"When will I receive my instructions?",a:"Within a few hours of your request, you’ll receive by email the list of required documents, the cost, the timeframe and the payment methods."},
+      {q:"How much does the service cost?",a:"The cost is sent to you by email after your request, together with the list of documents to provide and the estimated timeframe. No payment is requested on the website."},
+      {q:"I didn’t receive an email, what should I do?",a:"First check your spam or junk folder. If you still can’t find anything, contact us by email via the contact form and we’ll check your request."},
+      {q:"How do I track my file?",a:"A personal tracking code is sent to you by our team. Enter it on the « Tracking » page to see your file status in real time."},
+      {q:"Is my data protected?",a:"Your information is used only to process your request and is handled confidentially. No personal data is published on the tracking page."}
+    ],
+    mqInfo:["Email support","FR · EN · DE · IT","Reply within 24 working hours","Personal tracking code","Administrative documents"]
+  },
+  de:{
+    docTitle:"Hilfe — MY NEW DOCUMENT",
+    docDesc:"Häufige Fragen zu Anträgen auf Verwaltungsdokumente: Schritte, Fristen, Anweisungen per E-Mail und Verfolgung der Akte. E-Mail-Support von Montag bis Freitag.",
+    crumbsLabel:"Brotkrümelnavigation",
+    heroEyebrow:"Brauchen Sie Hilfe?",
+    heroTitle:"Wir sind für Sie da",
+    heroLead:"Eine Frage zu Ihrer Anfrage oder ein Problem? Unser Team antwortet Ihnen direkt per E-Mail.",
+    waTitle:"Kontaktieren Sie uns per E-Mail",
+    waText:"Schreiben Sie uns über das Kontaktformular, und unser Team antwortet Ihnen schnell während unserer Öffnungszeiten.",
+    waBtn:"Über das Formular schreiben",
+    waHours:"Montag bis Freitag · 09:00 – 18:00",
+    howEyebrow:"So funktioniert es",
+    howTitle:"Ihr Antrag in vier Schritten",
+    s1h:"Dokument auswählen", s1p:"Reisepass, Personalausweis, Aufenthaltstitel oder Führerschein.",
+    s2h:"Formular ausfüllen", s2p:"Ihre Kontaktdaten und Ihre Postanschrift, in wenigen Minuten.",
+    s3h:"Anweisungen erhalten", s3p:"Per E-Mail: benötigte Unterlagen, Kosten, Frist und Zahlungsmodalitäten.",
+    s4h:"Antrag verfolgen", s4p:"Mit Ihrem persönlichen Verfolgungscode, bei jedem Schritt.",
+    faqEyebrow:"Häufige Fragen",
+    faqTitle:"Antworten auf die häufigsten Fragen",
+    faqIntro:"Wenn Sie Ihre Antwort nicht finden, schreiben Sie uns: Wir antworten innerhalb von 24 Arbeitsstunden.",
     faq:[
       {q:"Wie stelle ich eine Anfrage?",a:"Gehen Sie auf die Seite „Bestellen“, wählen Sie Ihren Dokumententyp, füllen Sie das Formular aus und senden Sie es ab. Sie erhalten Ihre Anweisungen per E-Mail."},
       {q:"Wann erhalte ich meine Anweisungen?",a:"Innerhalb weniger Stunden nach Ihrer Anfrage erhalten Sie per E-Mail die Liste der erforderlichen Unterlagen, die Kosten, die Frist und die Zahlungsmodalitäten."},
+      {q:"Was kostet die Dienstleistung?",a:"Die Kosten werden Ihnen nach Ihrer Anfrage per E-Mail mitgeteilt, zusammen mit der Liste der benötigten Unterlagen und der voraussichtlichen Frist. Auf der Website ist keine Zahlung erforderlich."},
       {q:"Ich habe keine E-Mail erhalten, was soll ich tun?",a:"Prüfen Sie zuerst Ihren Spam-Ordner. Wenn Sie immer noch nichts finden, kontaktieren Sie uns per E-Mail über das Kontaktformular, und wir prüfen Ihre Anfrage."},
-      {q:"Wie verfolge ich meinen Antrag?",a:"Ein persönlicher Tracking-Code wird Ihnen von unserem Team mitgeteilt. Geben Sie ihn auf der Seite „Verfolgung“ ein, um den Status in Echtzeit zu sehen."}
-    ] }
-};
-const $=s=>document.querySelector(s); const t=()=>T[lang];
-let lang=localStorage.getItem("mnd_lang"); if(!["fr","en","de"].includes(lang)){const n=(navigator.language||"fr").slice(0,2); lang=["fr","en","de"].includes(n)?n:"fr";}
-if(LOGO_PATH){const s=$("#brandSeal");const img=new Image();img.alt="MY NEW DOCUMENT";img.src=LOGO_PATH;img.onload=()=>s.replaceWith(img);}
-const navToggle=$("#navToggle"),nav=$("#nav");
-navToggle.addEventListener("click",()=>{const o=nav.classList.toggle("open");navToggle.classList.toggle("open",o);navToggle.setAttribute("aria-expanded",o);});
+      {q:"Wie verfolge ich meinen Antrag?",a:"Ein persönlicher Verfolgungscode wird Ihnen von unserem Team mitgeteilt. Geben Sie ihn auf der Seite „Verfolgung“ ein, um den Status in Echtzeit zu sehen."},
+      {q:"Sind meine Daten geschützt?",a:"Ihre Angaben dienen ausschließlich der Bearbeitung Ihrer Anfrage und werden vertraulich behandelt. Auf der Verfolgungsseite werden keine personenbezogenen Daten veröffentlicht."}
+    ],
+    mqInfo:["Support per E-Mail","FR · EN · DE · IT","Antwort in 24 Arbeitsstunden","Persönlicher Verfolgungscode","Verwaltungsdokumente"]
+  },
+  it:{
+    docTitle:"Aiuto — MY NEW DOCUMENT",
+    docDesc:"Domande frequenti sulle richieste di documenti amministrativi: fasi, tempi, istruzioni via email e tracciamento della pratica. Supporto via email dal lunedì al venerdì.",
+    crumbsLabel:"Percorso di navigazione",
+    heroEyebrow:"Hai bisogno di aiuto?",
+    heroTitle:"Siamo qui per te",
+    heroLead:"Una domanda sulla tua richiesta o una difficoltà? Il nostro team risponde direttamente via email.",
+    waTitle:"Contattaci via email",
+    waText:"Scrivici tramite il modulo di contatto e il nostro team ti risponderà rapidamente durante gli orari di apertura.",
+    waBtn:"Scrivici tramite il modulo",
+    waHours:"Dal lunedì al venerdì · 09:00 – 18:00",
+    howEyebrow:"Come funziona",
+    howTitle:"La tua richiesta in quattro fasi",
+    s1h:"Scegli il documento", s1p:"Passaporto, carta d’identità, permesso di soggiorno o patente di guida.",
+    s2h:"Compila il modulo", s2p:"I tuoi recapiti e l’indirizzo postale, in pochi minuti.",
+    s3h:"Ricevi le istruzioni", s3p:"Via email: documenti necessari, costo, tempi e modalità di pagamento.",
+    s4h:"Segui la pratica", s4p:"Con il tuo codice di tracciamento personale, in ogni fase.",
+    faqEyebrow:"Domande frequenti",
+    faqTitle:"Le risposte alle domande più comuni",
+    faqIntro:"Se non trovi la risposta, scrivici: rispondiamo entro 24 ore lavorative.",
+    faq:[
+      {q:"Come faccio una richiesta?",a:"Vai alla pagina « Ordinare », scegli il tipo di documento, compila il modulo e invia. Riceverai le istruzioni via email."},
+      {q:"Quando riceverò le istruzioni?",a:"Entro poche ore dalla richiesta riceverai via email l’elenco dei documenti necessari, il costo, i tempi e le modalità di pagamento."},
+      {q:"Quanto costa il servizio?",a:"Il costo ti viene comunicato via email dopo la richiesta, insieme all’elenco dei documenti da fornire e ai tempi stimati. Sul sito non è richiesto alcun pagamento."},
+      {q:"Non ho ricevuto email, cosa devo fare?",a:"Controlla prima la cartella spam o posta indesiderata. Se non trovi nulla, contattaci via email tramite il modulo di contatto e verificheremo la tua richiesta."},
+      {q:"Come seguo la mia pratica?",a:"Il nostro team ti comunica un codice di tracciamento personale. Inseriscilo nella pagina « Tracciamento » per vedere lo stato della pratica in tempo reale."},
+      {q:"I miei dati sono protetti?",a:"Le tue informazioni servono solo a gestire la richiesta e sono trattate in modo riservato. Nessun dato personale viene pubblicato nella pagina di tracciamento."}
+    ],
+    mqInfo:["Supporto via email","FR · EN · DE · IT","Risposta entro 24 ore lavorative","Codice di tracciamento personale","Documenti amministrativi"]
+  }
+  };
 
-const chev='<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
-function applyLang(){
-  document.documentElement.lang=lang;
-  document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(t()[k]!==undefined&&typeof t()[k]==="string")el.innerHTML=t()[k];});
-  document.querySelectorAll("#langSwitch button").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
-  $("#faqList").innerHTML=t().faq.map(f=>`<div class="faq-item"><div class="q">${f.q}${chev}</div><div class="a">${f.a}</div></div>`).join("");
-  document.querySelectorAll(".faq-item").forEach(it=> it.querySelector(".q").addEventListener("click",()=> it.classList.toggle("open")));
-}
-document.querySelectorAll("#langSwitch button").forEach(b=>b.addEventListener("click",()=>{lang=b.dataset.lang;localStorage.setItem("mnd_lang",lang);applyLang();nav.classList.remove("open");navToggle.classList.remove("open");}));
-applyLang();
+  MND.init(T);
+
+  /* --- FAQ : accordéon reconstruit à chaque changement de langue --- */
+  var CHEV = '<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+
+  MND.onLang(function () {
+    var list = document.getElementById('faqList');
+    if (!list) return;
+    var items = MND.raw('faq') || [];
+    list.innerHTML = items.map(function (f, i) {
+      return '<div class="faq-item">' +
+        '<button type="button" class="faq-q" aria-expanded="false" aria-controls="faqA' + i + '">' +
+          '<span>' + MND.esc(f.q) + '</span>' + CHEV +
+        '</button>' +
+        '<div class="faq-a" id="faqA' + i + '"><p>' + MND.esc(f.a) + '</p></div>' +
+      '</div>';
+    }).join('');
+    Array.prototype.forEach.call(list.querySelectorAll('.faq-q'), function (btn) {
+      btn.addEventListener('click', function () {
+        var open = btn.parentNode.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(open));
+      });
+    });
+  });
+})();
 </script>
 </body>
 </html>

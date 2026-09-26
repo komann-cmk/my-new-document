@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Soumission de dossier — MY NEW DOCUMENT</title>
+  <meta name="description" content="Soumettre vos documents administratifs en ligne pour un passeport, carte d'identité, carte de séjour ou permis de conduire.">
+  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    :root {
+      --submit-panel: #ffffff;
+      --submit-soft: #f5f6fb;
+      --submit-line: #e7e3d6;
+      --submit-muted: #5a6276;
+      --submit-success: #0e9f6e;
+      --submit-error: #d64545;
+      --submit-warning: #f6e7b8;
+      --submit-shadow: 0 22px 48px -20px rgba(27, 36, 54, 0.32);
+    }
+
+    body { background: #faf9f5; }
+
+    .submit-wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .submission-hero {
+      background: linear-gradient(135deg, #0f1d34 0%, #1b2f66 100%);
+      color: #fff;
+      padding: 120px 0 64px;
+    }
+
+    .submission-hero h1 {
+      font-family: var(--font-display, Georgia, serif);
+      font-size: clamp(2.4rem, 4vw, 4.2rem);
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      margin-top: 16px;
+    }
+
+    .submission-hero .lead {
+      max-width: 680px;
+      color: rgba(255,255,255,0.78);
+      margin-top: 18px;
+      line-height: 1.7;
+    }
+
+    .crumbs {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: rgba(255,255,255,0.72);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .crumbs a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .crumbs .sep {
+      opacity: 0.7;
+    }
+
+    .summary-shell {
+      margin-top: -24px;
+      margin-bottom: 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .submission-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(250px, 0.7fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--submit-panel);
+      border: 1px solid var(--submit-line);
+      border-radius: 24px;
+      box-shadow: var(--submit-shadow);
+      padding: clamp(20px, 2.2vw, 32px);
+    }
+
+    .panel-title {
+      margin: 0 0 18px;
+      font-size: clamp(1.5rem, 2vw, 2.1rem);
+      font-family: var(--font-display, Georgia, serif);
+    }
+
+    .procedure-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .procedure-card {
+      background: var(--submit-soft);
+      border: 1px solid var(--submit-line);
+      border-radius: 18px;
+      padding: 16px 18px;
+      cursor: pointer;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+      text-align: left;
+      color: var(--Primaire1, #1b2f66);
+    }
+
+    .procedure-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--Primaire1, #1b2f66);
+    }
+
+    .procedure-card.active {
+      background: rgba(38, 64, 139, 0.06);
+      border-color: var(--Primaire1, #1b2f66);
+      box-shadow: inset 0 0 0 1px rgba(38, 64, 139, 0.1);
+    }
+
+    .procedure-card h3 {
+      font-size: 1.08rem;
+      margin: 0 0 4px;
+    }
+
+    .procedure-card small {
+      display: block;
+      color: var(--submit-muted);
+      font-size: 0.78rem;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .field label {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--submit-muted);
+      font-weight: 700;
+    }
+
+    .input {
+      width: 100%;
+      min-height: 50px;
+      border-radius: 12px;
+      border: 1px solid var(--submit-line);
+      background: #fff;
+      padding: 0 14px;
+      font: inherit;
+      color: var(--Primaire1, #1b2f66);
+    }
+
+    .input:focus {
+      outline: none;
+      border-color: var(--Primaire1, #1b2f66);
+      box-shadow: 0 0 0 3px rgba(38, 64, 139, 0.08);
+    }
+
+    .requirements-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 16px 0 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--submit-line);
+    }
+
+    .requirements-head h3 {
+      font-family: var(--font-display, Georgia, serif);
+      font-size: 1.35rem;
+      margin: 0;
+    }
+
+    .progress-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--submit-muted);
+    }
+
+    .progress {
+      position: relative;
+      width: 140px;
+      height: 10px;
+      background: rgba(38, 64, 139, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0%;
+      background: linear-gradient(90deg, #26408b 0%, #4ea8de 100%);
+      border-radius: inherit;
+      transition: width 0.25s ease;
+    }
+
+    .document-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .document-item {
+      background: #fff;
+      border: 1px solid var(--submit-line);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .document-item.ready {
+      border-color: rgba(14, 159, 110, 0.35);
+      background: rgba(14, 159, 110, 0.04);
+    }
+
+    .document-item-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .doc-status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(38, 64, 139, 0.08);
+      color: var(--Primaire1, #1b2f66);
+      font-size: 0.9rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .document-item.ready .doc-status {
+      background: rgba(14, 159, 110, 0.15);
+      color: var(--submit-success);
+    }
+
+    .document-item h4 {
+      margin: 0 0 6px;
+      font-size: 1.02rem;
+    }
+
+    .document-item p {
+      margin: 0;
+      color: var(--submit-muted);
+      line-height: 1.6;
+      font-size: 0.92rem;
+    }
+
+    .doc-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .download-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--Primaire1, #1b2f66);
+      text-decoration: none;
+    }
+
+    .download-link:hover {
+      text-decoration: underline;
+    }
+
+    .upload-zone {
+      margin-top: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .upload-zone label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      border: 1px dashed rgba(38, 64, 139, 0.35);
+      border-radius: 12px;
+      background: rgba(38, 64, 139, 0.03);
+      color: var(--Primaire1, #1b2f66);
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      width: 100%;
+    }
+
+    .upload-zone label:hover {
+      border-color: var(--Primaire1, #1b2f66);
+      background: rgba(38, 64, 139, 0.05);
+    }
+
+    .upload-zone input {
+      display: none;
+    }
+
+    .file-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.83rem;
+      color: var(--submit-muted);
+      min-height: 18px;
+    }
+
+    .file-meta strong {
+      color: var(--Primaire1, #1b2f66);
+    }
+
+    .file-error {
+      color: var(--submit-error);
+      font-size: 0.8rem;
+      min-height: 1em;
+      display: none;
+    }
+
+    .file-error.visible {
+      display: block;
+    }
+
+    .submit-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--submit-line);
+    }
+
+    .submit-note {
+      color: var(--submit-muted);
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+
+    .btn {
+      min-height: 52px;
+      border: none;
+      border-radius: 999px;
+      padding: 0 26px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.2s ease;
+      font: inherit;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-accent {
+      background: var(--Primaire1, #1b2f66);
+      color: #fff;
+      box-shadow: 0 14px 26px -16px rgba(27, 36, 54, 0.8);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--Primaire1, #1b2f66);
+      border: 1px solid rgba(38, 64, 139, 0.3);
+    }
+
+    .summary-panel {
+      background: rgba(38, 64, 139, 0.04);
+      border: 1px solid rgba(38, 64, 139, 0.12);
+      border-radius: 22px;
+      padding: 22px 18px;
+    }
+
+    .summary-panel h3 {
+      margin: 0 0 14px;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .summary-panel ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+      color: var(--submit-muted);
+    }
+
+    .summary-panel li::before {
+      content: "✓";
+      color: var(--submit-success);
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .success-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 27, 23, 0.7);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 200;
+    }
+
+    .success-overlay.show {
+      display: flex;
+    }
+
+    .success-modal {
+      width: min(560px, 100%);
+      background: #fff;
+      border-radius: 24px;
+      padding: clamp(24px, 3vw, 36px);
+      box-shadow: var(--submit-shadow);
+      text-align: center;
+    }
+
+    .success-icon {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: rgba(14, 159, 110, 0.12);
+      display: grid;
+      place-items: center;
+      margin: 0 auto 18px;
+      color: var(--submit-success);
+      font-size: 2.2rem;
+      font-weight: 800;
+    }
+
+    .success-modal h2 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 3vw, 2.5rem);
+      font-family: var(--font-display, Georgia, serif);
+    }
+
+    .success-modal p {
+      color: var(--submit-muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .tracking-code {
+      display: inline-block;
+      background: var(--submit-soft);
+      border: 1px solid var(--submit-line);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      margin-top: 8px;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .submission-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .procedure-grid,
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .submit-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .submit-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="MY NEW DOCUMENT">
+        <span class="brand-txt">
+          <span class="brand-name">My New Document</span>
+          <span class="brand-sub">Service de documents</span>
+        </span>
+      </a>
+      <div class="header-right">
+        <a class="btn btn-accent" href="index.html">Retour</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="submission-hero">
+      <div class="submit-wrap">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Accueil</a>
+          <span class="sep">/</span>
+          <span>Soumission de dossier</span>
+        </nav>
+        <h1>Soumission de dossier</h1>
+        <p class="lead">Sélectionnez la procédure concernée, téléchargez les pièces demandées puis validez votre dossier pour traitement rapide.</p>
+      </div>
+    </section>
+
+    <section class="summary-shell">
+      <div class="submit-wrap">
+        <div class="submission-grid">
+          <div class="panel">
+            <h2 class="panel-title">Choisir une procédure</h2>
+
+            <div class="field-grid" style="margin-bottom:0;">
+              <div class="field">
+                <label for="applicantName">Nom complet</label>
+                <input class="input" id="applicantName" type="text" placeholder="Votre nom complet" autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="applicantEmail">Email</label>
+                <input class="input" id="applicantEmail" type="email" placeholder="vous@exemple.com" autocomplete="email">
+              </div>
+            </div>
+
+            <div class="procedure-grid" id="procedureGrid" aria-label="Procédures"></div>
+
+            <div class="requirements-head">
+              <h3 id="procedureTitle">Documents requis</h3>
+              <div class="progress-box">
+                <span id="progressLabel">0/0 fournis</span>
+                <div class="progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+              </div>
+            </div>
+
+            <div class="document-list" id="documentList"></div>
+
+            <div class="submit-actions">
+              <div class="submit-note">Les pièces doivent être au format PDF, JPG ou PNG et ne pas dépasser 2 Mo.</div>
+              <button class="btn btn-accent" id="submitButton" type="button" disabled>Soumettre le dossier</button>
+            </div>
+          </div>
+
+          <aside class="panel summary-panel">
+            <h3>Ce que vous devez préparer</h3>
+            <ul>
+              <li>Documents d’identité et justificatifs</li>
+              <li>Photo numérique récente</li>
+              <li>Formulaires et modèles téléchargés</li>
+              <li>Pièces fournies au format PDF/JPG/PNG</li>
+            </ul>
+            <div style="margin-top:22px;border-top:1px solid var(--submit-line);padding-top:20px;">
+              <h3 style="margin-bottom:10px;">Suggestions</h3>
+              <ul>
+                <li>Nommer les fichiers clairement</li>
+                <li>Vérifier la qualité des scans</li>
+                <li>Conserver une copie locale avant validation</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-brand reveal">
+        <img src="logo.png" alt="MY NEW DOCUMENT">
+        <span class="name">My New Document</span>
+      </div>
+      <nav class="footer-links" aria-label="Navigation du pied de page">
+        <a href="index.html">Accueil</a>
+        <a href="apropos.html">À propos</a>
+        <a href="commander.html">Commander</a>
+        <a href="suivi.html">Suivi</a>
+        <a href="aide.html">Aide</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p class="giant-word" aria-hidden="true">Documents</p>
+      <div class="foot-bottom">
+        <span class="mini-logos" aria-hidden="true"><span>FR</span><span>EN</span><span>DE</span><span>IT</span></span>
+        <span>© 2021 MY NEW DOCUMENT — service@mynewdocument.live</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="success-overlay" id="successOverlay" aria-modal="true" role="dialog">
+    <div class="success-modal">
+      <div class="success-icon">✓</div>
+      <h2>Dossier envoyé</h2>
+      <p>Votre demande a bien été enregistrée. Notre équipe va vérifier vos pièces jointes et vous répondra rapidement.</p>
+      <div class="tracking-code" id="trackingCode">MND-000000</div>
+      <button class="btn btn-accent" type="button" id="closeSuccess">Retour à l'accueil</button>
+    </div>
+  </div>
+
+  <script type="module">
+    const FIREBASE_CONFIG = {
+      apiKey:"AIzaSyBbeXGBV89c-qYvJb_VFUQFnMKIuc8XCic",
+      authDomain:"my-new-document-29e20.firebaseapp.com",
+      projectId:"my-new-document-29e20",
+      storageBucket:"my-new-document-29e20.firebasestorage.app",
+      messagingSenderId:"663011415857",
+      appId:"1:663011415857:web:4baad8e8d58ae744be8210"
+    };
+
+    const PROCEDURES = {
+      passport: {
+        label: 'Passeport',
+        docs: [
+          { key: 'photo', title: 'Photo d’identité récente', note: 'Photo numérique claire et conforme aux critères officiels.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'current_id', title: 'Carte d’identité ou passeport actuel', note: 'Recto et verso si nécessaire.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'residency', title: 'Justificatif de domicile', note: 'Facture, quittance ou document de résidence.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'passport_form', title: 'Formulaire de demande de passeport', note: 'Téléchargez et renseignez le formulaire avant de l’importer.', required: true, acceptable: ['application/pdf', 'image/png', 'image/jpeg', 'image/jpg'], template: { name: 'Formulaire passeport', content: 'FORMULAIRE DE DEMANDE DE PASSEPORT\n\n1. Coordonnées civiles\n- Nom : ...\n- Prénom : ...\n- Date de naissance : ...\n\n2. Pièces jointes\n- Photo d’identité\n- Carte d’identité actuelle\n- Justificatif de domicile\n- Timbre fiscal\n\n3. Signature\nDate et signature du demandeur.' } },
+          { key: 'tax_stamp', title: 'Timbre fiscal', note: 'Le timbre fiscal ou le justificatif correspondant.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null }
+        ]
+      },
+      id_card: {
+        label: 'Carte d’identité',
+        docs: [
+          { key: 'photo', title: 'Photo d’identité récente', note: 'Photo de face, sans filtre, de bonne qualité.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'old_id', title: 'Ancienne carte d’identité ou passeport', note: 'Pièce à fournir si elle est encore détenue.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'residency', title: 'Justificatif de domicile', note: 'Facture de services publics ou autre preuve.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'birth_certificate', title: 'Acte de naissance si nécessaire', note: 'Seulement si votre situation l’exige.', required: false, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'id_form', title: 'Formulaire de demande de carte d’identité', note: 'Téléchargez le formulaire puis ajoutez-le.', required: true, acceptable: ['application/pdf', 'image/png', 'image/jpeg', 'image/jpg'], template: { name: 'Formulaire carte d’identité', content: 'FORMULAIRE DE DEMANDE DE CARTE D’IDENTITÉ\n\n1. Identité\n- Nom : ...\n- Prénom : ...\n- Date de naissance : ...\n\n2. Adresse\n- Rue : ...\n- Ville : ...\n- Code postal : ...\n\n3. Déclaration\nJe certifie l’exactitude des informations renseignées.' } }
+        ]
+      },
+      residence_permit: {
+        label: 'Carte de séjour',
+        docs: [
+          { key: 'passport_origin', title: 'Passeport du pays d’origine', note: 'Version scannée ou photo lisible.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'photo', title: 'Photo d’identité récente', note: 'Format standard, fond uni, sans reflets.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'residency', title: 'Justificatif de domicile', note: 'Adresse en cours de résidence.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'resources', title: 'Justificatif de ressources', note: 'Relevé bancaire, salaire ou document officiel.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'health_insurance', title: 'Attestation d’assurance maladie', note: 'Document valide de l’assureur.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'residence_form', title: 'Formulaire de demande de carte de séjour', note: 'Téléchargez puis complétez le formulaire.', required: true, acceptable: ['application/pdf', 'image/png', 'image/jpeg', 'image/jpg'], template: { name: 'Formulaire carte de séjour', content: 'FORMULAIRE DE DEMANDE DE CARTE DE SÉJOUR\n\nRenseignez :\n- Nom, prénom\n- Nationalité\n- Adresse actuelle\n- Date d’arrivée\n- Motif de séjour\n- Signature du demandeur.' } }
+        ]
+      },
+      driving_license: {
+        label: 'Permis de conduire',
+        docs: [
+          { key: 'photo', title: 'Photo d’identité récente', note: 'Photo frontale conforme aux critères.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'identity', title: 'Pièce d’identité', note: 'Carte d’identité ou passeport valide.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'residency', title: 'Justificatif de domicile', note: 'Électricité, téléphone, bail ou facture.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'medical', title: 'Certificat médical', note: 'Document attestant la conformité médicale.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null },
+          { key: 'current_license', title: 'Copie du permis actuel si renouvellement', note: 'À fournir pour un renouvellement de permis.', required: true, acceptable: ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'], template: null }
+        ]
+      }
+    };
+
+    const MAX_FILE_SIZE = 2 * 1024 * 1024;
+    const STORAGE_KEY = 'mnd_submissions';
+    let selectedProcedure = 'passport';
+    let uploadedFiles = {};
+    let db = null;
+    let storage = null;
+    let firebaseReady = false;
+
+    const procedureGrid = document.getElementById('procedureGrid');
+    const documentList = document.getElementById('documentList');
+    const procedureTitle = document.getElementById('procedureTitle');
+    const progressBar = document.getElementById('progressBar');
+    const progressLabel = document.getElementById('progressLabel');
+    const submitButton = document.getElementById('submitButton');
+    const successOverlay = document.getElementById('successOverlay');
+    const trackingCode = document.getElementById('trackingCode');
+
+    async function initFirebase() {
+      if (firebaseReady) return;
+      try {
+        const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js');
+        const { getFirestore, doc, setDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
+        const { getStorage, ref, uploadBytes, getDownloadURL } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js');
+        const app = initializeApp(FIREBASE_CONFIG);
+        db = getFirestore(app);
+        storage = getStorage(app);
+        window.mndFirebase = { doc, setDoc, serverTimestamp, ref, uploadBytes, getDownloadURL };
+        firebaseReady = true;
+      } catch (error) {
+        console.warn('Firebase introuvable : fallback localStorage activé.', error);
+      }
+    }
+
+    function renderProcedureCards() {
+      procedureGrid.innerHTML = Object.entries(PROCEDURES).map(([key, value]) => `
+        <button class="procedure-card ${selectedProcedure === key ? 'active' : ''}" type="button" data-procedure="${key}">
+          <h3>${value.label}</h3>
+          <small>${value.docs.length} document${value.docs.length > 1 ? 's' : ''}</small>
+        </button>
+      `).join('');
+
+      procedureGrid.querySelectorAll('.procedure-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          selectedProcedure = card.dataset.procedure;
+          uploadedFiles = {};
+          renderProcedureCards();
+          renderDocuments();
+        });
+      });
+    }
+
+    function renderDocuments() {
+      const items = PROCEDURES[selectedProcedure].docs;
+      procedureTitle.textContent = `${PROCEDURES[selectedProcedure].label} — documents requis`;
+
+      documentList.innerHTML = items.map((doc) => {
+        const fileMeta = uploadedFiles[doc.key];
+        const hasFile = !!fileMeta;
+        const inputId = `input-${doc.key}`;
+
+        return `
+          <div class="document-item ${hasFile ? 'ready' : ''}">
+            <div class="document-item-header">
+              <div style="display:flex;gap:12px;flex:1;">
+                <span class="doc-status">${hasFile ? '✓' : ''}</span>
+                <div>
+                  <h4>${doc.title}</h4>
+                  <p>${doc.note}</p>
+                </div>
+              </div>
+            </div>
+            <div class="doc-actions">
+              ${doc.template ? `<a class="download-link" href="#" data-template="${doc.key}">Télécharger le modèle</a>` : ''}
+            </div>
+            <div class="upload-zone">
+              <label for="${inputId}">Ajouter un fichier</label>
+              <input id="${inputId}" type="file" data-doc-key="${doc.key}" accept="${doc.acceptable.join(',')}" />
+              <div class="file-meta"><span>${hasFile ? 'Fichier ajouté' : 'Aucun fichier sélectionné'}</span><strong>${hasFile ? uploadedFiles[doc.key].name : ''}</strong></div>
+              <div class="file-error" data-error-for="${doc.key}"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      documentList.querySelectorAll('input[type="file"]').forEach((input) => {
+        input.addEventListener('change', handleUpload);
+      });
+
+      documentList.querySelectorAll('[data-template]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          const key = link.dataset.template;
+          const doc = PROCEDURES[selectedProcedure].docs.find((item) => item.key === key);
+          if (!doc || !doc.template) return;
+          const blob = new Blob([doc.template.content], { type: 'text/plain;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const anchor = document.createElement('a');
+          anchor.href = url;
+          anchor.download = `${doc.template.name}.txt`;
+          anchor.click();
+          URL.revokeObjectURL(url);
+        });
+      });
+
+      updateProgress();
+    }
+
+    function handleUpload(event) {
+      const input = event.target;
+      const file = input.files[0];
+      const docKey = input.dataset.docKey;
+      const doc = PROCEDURES[selectedProcedure].docs.find((item) => item.key === docKey);
+      const errorNode = document.querySelector(`[data-error-for="${docKey}"]`);
+
+      if (!doc) return;
+      if (!file) {
+        if (uploadedFiles[docKey]) delete uploadedFiles[docKey];
+        updateProgress();
+        return;
+      }
+
+      if (file.size > MAX_FILE_SIZE) {
+        showError(docKey, 'Le fichier dépasse la limite de 2 Mo.');
+        input.value = '';
+        return;
+      }
+
+      const allowed = doc.acceptable;
+      const isAccepted = allowed.includes(file.type) || allowed.some((type) => file.name.toLowerCase().endsWith(type.replace('image/', '.')));
+      if (!isAccepted) {
+        showError(docKey, 'Format non accepté. Utilisez PDF, JPG ou PNG.');
+        input.value = '';
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        uploadedFiles[docKey] = {
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          dataUrl: reader.result
+        };
+        if (errorNode) {
+          errorNode.textContent = '';
+          errorNode.classList.remove('visible');
+        }
+        renderDocuments();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function showError(docKey, message) {
+      const errorNode = document.querySelector(`[data-error-for="${docKey}"]`);
+      if (!errorNode) return;
+      errorNode.textContent = message;
+      errorNode.classList.add('visible');
+    }
+
+    function updateProgress() {
+      const docs = PROCEDURES[selectedProcedure].docs.filter((doc) => doc.required !== false);
+      const total = docs.length;
+      const provided = docs.filter((doc) => uploadedFiles[doc.key]).length;
+      const percent = total ? Math.round((provided / total) * 100) : 0;
+      progressBar.style.width = `${percent}%`;
+      progressLabel.textContent = `${provided}/${total} fournis`;
+      submitButton.disabled = !(provided === total && total > 0 && checkRequiredFields());
+    }
+
+    function checkRequiredFields() {
+      const name = document.getElementById('applicantName').value.trim();
+      const email = document.getElementById('applicantEmail').value.trim();
+      return name.length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function generateTrackingCode() {
+      return `MND-${Date.now().toString().slice(-8)}`;
+    }
+
+    function parseFullName(fullName) {
+      const parts = fullName.trim().split(/\s+/);
+      if (parts.length <= 1) return { firstName: parts[0] || '', lastName: '' };
+      return { firstName: parts[0], lastName: parts.slice(1).join(' ') };
+    }
+
+    function saveLocalSubmission(record) {
+      const bucket = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      bucket.unshift(record);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(bucket));
+    }
+
+    async function saveFirebaseSubmission(record) {
+      if (!db || !storage || !window.mndFirebase) {
+        throw new Error('Firebase non initialisé');
+      }
+
+      const { doc: fDoc, setDoc, serverTimestamp, ref: storageRef, uploadBytes, getDownloadURL } = window.mndFirebase;
+      const fileList = [];
+      for (const [key, file] of Object.entries(uploadedFiles)) {
+        const fileBlob = await fetch(file.dataUrl).then((res) => res.blob());
+        const extension = (file.name.split('.').pop() || 'bin').toLowerCase();
+        const storagePath = `soumissions/${record.trackingCode}/${key}-${Date.now()}.${extension}`;
+        const fileReference = storageRef(storage, storagePath);
+        await uploadBytes(fileReference, fileBlob);
+        const url = await getDownloadURL(fileReference);
+        fileList.push({ key, name: file.name, type: file.type || 'application/octet-stream', size: file.size, url });
+      }
+
+      const submission = {
+        ...record,
+        files: fileList,
+        createdAt: serverTimestamp(),
+        status: 'Soumis',
+        procedure: PROCEDURES[selectedProcedure].label,
+        applicantName: record.applicantName,
+        applicantEmail: record.applicantEmail,
+      };
+
+      await setDoc(fDoc(db, 'soumissions', record.trackingCode), submission);
+
+      const demand = {
+        trackingNumber: record.trackingCode,
+        documentType: selectedProcedure,
+        documentTypeName: PROCEDURES[selectedProcedure].label,
+        status: 'Soumis',
+        commonFields: {
+          firstName: record.applicantFirstName,
+          lastName: record.applicantLastName,
+          email: record.applicantEmail,
+          phone: '',
+          street: '',
+          zip: '',
+          city: '',
+          country: '',
+          language: 'fr'
+        },
+        statusHistory: [{ status: 'Soumis', date: new Date().toISOString(), comment: 'Dossier soumis' }],
+        createdAt: serverTimestamp(),
+        files: fileList
+      };
+
+      await setDoc(fDoc(db, 'demandes', record.trackingCode), demand);
+      return submission;
+    }
+
+    async function submitRequest() {
+      const name = document.getElementById('applicantName').value.trim();
+      const email = document.getElementById('applicantEmail').value.trim();
+      const fullname = parseFullName(name);
+      const tracking = generateTrackingCode();
+      const record = {
+        id: Date.now(),
+        procedure: PROCEDURES[selectedProcedure].label,
+        applicantName: name,
+        applicantFirstName: fullname.firstName,
+        applicantLastName: fullname.lastName,
+        applicantEmail: email,
+        submittedAt: new Date().toISOString(),
+        trackingCode: tracking,
+        files: Object.entries(uploadedFiles).map(([key, file]) => ({
+          key,
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          dataUrl: file.dataUrl
+        }))
+      };
+
+      try {
+        await initFirebase();
+        if (db && storage && window.mndFirebase) {
+          const saved = await saveFirebaseSubmission(record);
+          if (saved) {
+            trackingCode.textContent = record.trackingCode;
+          }
+        } else {
+          saveLocalSubmission(record);
+          trackingCode.textContent = record.trackingCode;
+        }
+      } catch (error) {
+        console.error(error);
+        saveLocalSubmission(record);
+        trackingCode.textContent = record.trackingCode;
+      }
+
+      successOverlay.classList.add('show');
+      submitButton.disabled = true;
+      document.getElementById('applicantName').value = '';
+      document.getElementById('applicantEmail').value = '';
+      uploadedFiles = {};
+      renderDocuments();
+    }
+
+    document.getElementById('submitButton').addEventListener('click', async () => {
+      if (!checkRequiredFields()) {
+        alert('Veuillez renseigner votre nom et votre email avant de soumettre le dossier.');
+        return;
+      }
+
+      const docs = PROCEDURES[selectedProcedure].docs.filter((doc) => doc.required !== false);
+      const provided = docs.filter((doc) => uploadedFiles[doc.key]).length;
+      if (provided !== docs.length) {
+        alert('Veuillez téléverser tous les documents obligatoires avant de finaliser le dossier.');
+        return;
+      }
+
+      await submitRequest();
+    });
+
+    document.getElementById('closeSuccess').addEventListener('click', () => {
+      successOverlay.classList.remove('show');
+      window.location.href = 'index.html';
+    });
+
+    document.getElementById('applicantName').addEventListener('input', updateProgress);
+    document.getElementById('applicantEmail').addEventListener('input', updateProgress);
+
+    renderProcedureCards();
+    renderDocuments();
+  </script>
+</body>
+</html>

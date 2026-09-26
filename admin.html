@@ -132,6 +132,15 @@ textarea.input{resize:vertical;min-height:60px;font-family:inherit}
 
   <div class="stats" id="stats"></div>
 
+  <div class="table-card" style="margin-top:22px;">
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Date</th><th>Code</th><th>Procédure</th><th>Demandeur</th><th>Pièces</th><th></th></tr></thead>
+        <tbody id="localTbody"><tr><td colspan="6" class="loading">Aucune pièce locale soumise.</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
   <div class="toolbar">
     <input class="input" id="search" placeholder="Rechercher : nom, email, code de suivi…">
     <select class="input" id="filterStatus">
@@ -215,14 +224,16 @@ const FIREBASE_CONFIG = {
 const LOGO_PATH = "logo.png";
 /* ================================================================== */
 
-let db=null, FS=null, auth=null, AUTH=null, fbReady=null;
+let db=null, FS=null, storage=null, auth=null, AUTH=null, fbReady=null;
 fbReady=(async()=>{
   try{
     const { initializeApp }=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
     const fs=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
     const a =await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
+    const st=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js");
     const app=initializeApp(FIREBASE_CONFIG);
     db=fs.getFirestore(app);
+    storage=st.getStorage(app);
     FS={ collection:fs.collection, getDocs:fs.getDocs, query:fs.query, orderBy:fs.orderBy, doc:fs.doc, updateDoc:fs.updateDoc, arrayUnion:fs.arrayUnion };
     auth=a.getAuth(app);
     AUTH={ signIn:a.signInWithEmailAndPassword, signOut:a.signOut };
@@ -273,7 +284,7 @@ async function loadData(){
     ALL=snap.docs.map(d=>({ id:d.id, ...d.data() }));
     ALL.sort((a,b)=> (tsOf(b)-tsOf(a)));
     $("#lastUpdate").textContent="Dernière actualisation : "+new Date().toLocaleString("fr-FR");
-    renderStats(); renderTable();
+    renderStats(); renderTable(); renderLocalSubmissions(); await renderCloudSubmissions();
   }catch(e){ console.error(e); $("#tbody").innerHTML=`<tr><td colspan="6" class="empty">Erreur de chargement. Vérifiez votre connexion et les règles Firestore.</td></tr>`; }
 }
 function tsOf(d){ if(d.createdAt&&d.createdAt.seconds) return d.createdAt.seconds*1000; const h=d.statusHistory&&d.statusHistory[0]; return h&&h.date?new Date(h.date).getTime():0; }
@@ -287,6 +298,59 @@ function renderStats(){
     <div class="stat"><div class="num">${c["Soumis"]}</div><div class="lab">Soumis</div></div>
     <div class="stat"><div class="num">${c["En cours"]}</div><div class="lab">En cours</div></div>
     <div class="stat"><div class="num">${c["Document prêt"]+c["Expédié"]}</div><div class="lab">Prêts / Expédiés</div></div>`;
+}
+
+function renderLocalSubmissions(){
+  const rows=[];
+  let localItems=[];
+  try{ localItems=JSON.parse(localStorage.getItem("mnd_submissions") || "[]"); }catch(e){ localItems=[]; }
+  localItems.forEach(item=>{
+    const files=(item.files||[]).map(file=>({ name:file.name, url:file.dataUrl || file.url, type:file.type || "document" }));
+    if(files.length){ rows.push({ id:item.trackingCode||`local-${Date.now()}-${Math.random()}`, date:item.submittedAt, trackingCode:item.trackingCode||"—", procedure:item.procedure||"—", applicant:item.applicantName||"—", email:item.applicantEmail||"", files }); }
+  });
+  if(!rows.length){ $("#localTbody").innerHTML=`<tr><td colspan="6" class="empty">Aucun dossier local enregistré.</td></tr>`; return; }
+  $("#localTbody").innerHTML=rows.map(item=>{
+    const files=(item.files||[]).map((file, index)=>`<a href="${file.url}" target="_blank" rel="noopener" download="${file.name}" style="display:block; margin:4px 0; color:var(--brand); text-decoration:none;">${index+1}. ${file.name}</a>`).join('');
+    return `<tr>
+      <td>${new Date(item.date).toLocaleDateString("fr-FR")}</td>
+      <td class="track-cell">${item.trackingCode}</td>
+      <td>${item.procedure}</td>
+      <td>${item.applicant}<br><span style="color:var(--muted);font-size:.8rem">${item.email}</span></td>
+      <td>${files || "—"}</td>
+      <td style="text-align:right"><a class="btn-view" href="${(item.files||[])[0]?.url || '#'}" target="_blank" rel="noopener" download="${(item.files||[])[0]?.name || 'document'}" style="display:inline-block;text-decoration:none;line-height:1.8;">Télécharger</a></td>
+    </tr>`;
+  }).join('');
+}
+
+async function renderCloudSubmissions(){
+  if(!db||!FS){ return; }
+  try{
+    const snap=await FS.getDocs(FS.collection(db,"soumissions"));
+    const items=snap.docs.map(doc=>({ id:doc.id, ...doc.data() }));
+    if(!items.length){ return; }
+    const rows=items.map(item=>({
+      id:item.id,
+      date:item.createdAt && item.createdAt.toDate ? item.createdAt.toDate() : new Date(item.createdAt || Date.now()),
+      trackingCode:item.trackingCode || item.id,
+      procedure:item.procedure || "—",
+      applicant:item.applicantName || "—",
+      email:item.applicantEmail || "",
+      files:(item.files || []).map(file=>({ name:file.name, url:file.url, type:file.type || "document" }))
+    }));
+    $("#localTbody").innerHTML=rows.map(item=>{
+      const files=(item.files||[]).map((file, index)=>`<a href="${file.url}" target="_blank" rel="noopener" download="${file.name}" style="display:block; margin:4px 0; color:var(--brand); text-decoration:none;">${index+1}. ${file.name}</a>`).join('');
+      return `<tr>
+        <td>${new Date(item.date).toLocaleDateString("fr-FR")}</td>
+        <td class="track-cell">${item.trackingCode}</td>
+        <td>${item.procedure}</td>
+        <td>${item.applicant}<br><span style="color:var(--muted);font-size:.8rem">${item.email}</span></td>
+        <td>${files || "—"}</td>
+        <td style="text-align:right"><a class="btn-view" href="${(item.files||[])[0]?.url || '#'}" target="_blank" rel="noopener" download="${(item.files||[])[0]?.name || 'document'}" style="display:inline-block;text-decoration:none;line-height:1.8;">Télécharger</a></td>
+      </tr>`;
+    }).join('');
+  }catch(e){
+    console.warn("Impossible de charger les dossiers Firebase", e);
+  }
 }
 
 function renderTable(){
@@ -319,7 +383,7 @@ function renderTable(){
 $("#search").addEventListener("input",renderTable);
 $("#filterStatus").addEventListener("change",renderTable);
 $("#filterType").addEventListener("change",renderTable);
-$("#refreshBtn").addEventListener("click",loadData);
+$("#refreshBtn").addEventListener("click",async()=>{ await loadData(); renderLocalSubmissions(); await renderCloudSubmissions(); });
 
 /* ---- modal ---- */
 let currentId=null;

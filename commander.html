@@ -1,197 +1,244 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Commander — MY NEW DOCUMENT</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --paper:#FAF9F5;--surface:#FFFFFF;--ink:#1B2436;--ink-soft:#5A6276;--muted:#8A92A6;
-  --brand:#26408B;--brand-dark:#1B2F66;--brand-tint:#EEF1F9;--seal:#B0843E;--seal-light:#D7B36B;
-  --success:#0E9F6E;--success-2:#057A55;--error:#D64545;--error-tint:#FBEAEA;--border:#E7E3D6;
-  --radius:16px;--radius-sm:11px;
-  --shadow-sm:0 1px 2px rgba(27,36,54,.06),0 2px 6px rgba(27,36,54,.05);
-  --shadow:0 22px 48px -20px rgba(27,36,54,.32);--shadow-seal:0 14px 30px -12px rgba(176,132,62,.5);
-  --font-display:"Newsreader",Georgia,serif;--font-ui:"Inter",system-ui,-apple-system,sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{font-family:var(--font-ui);color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
-.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-ui);font-size:1rem;font-weight:600;text-decoration:none;cursor:pointer;border:0;border-radius:999px;padding:14px 26px;transition:.18s;min-height:50px;line-height:1}
-.btn-gold{background:linear-gradient(135deg,var(--seal-light),var(--seal));color:#fff;box-shadow:var(--shadow-seal)}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title id="docTitle">Commander — MY NEW DOCUMENT</title>
+<meta id="docDesc" name="description" content="Commandez votre document administratif en ligne : passeport, carte d’identité, carte de séjour ou permis de conduire. Vous recevez vos instructions par email.">
+<link rel="icon" href="logo.png">
 
-/* header/nav (identique aux autres pages) */
-.site-header{position:sticky;top:0;z-index:40;background:rgba(27,36,54,.97);backdrop-filter:blur(8px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
-.header-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:13px 0}
-.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:#fff}
-.brand-seal{width:38px;height:38px;border-radius:50%;flex:0 0 auto;background:radial-gradient(circle at 35% 30%,var(--seal-light),var(--seal));display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)}
-.brand-seal svg{width:19px;height:19px}
-.brand img{height:38px;width:auto}
-.brand-name{font-family:var(--font-display);font-size:1.15rem;font-weight:600;line-height:1;white-space:nowrap}
-.brand-sub{display:none;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#A9B2C7;margin-top:3px}
-.nav-toggle{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:rgba(255,255,255,.08);border:0;border-radius:10px;cursor:pointer;padding:0 11px}
-.nav-toggle span{height:2px;background:#fff;border-radius:2px;transition:.2s}
-.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.nav-toggle.open span:nth-child(2){opacity:0}
-.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.nav{display:none;flex-basis:100%;flex-direction:column;gap:4px;padding:8px 0 6px}
-.nav.open{display:flex}
-.nav a.navlink{color:#D7DBE6;text-decoration:none;font-weight:600;font-size:.95rem;padding:11px 6px;border-radius:8px}
-.nav a.navlink:hover,.nav a.navlink.active{color:#fff}
-.lang-switch{display:inline-flex;background:rgba(255,255,255,.08);border-radius:999px;padding:3px;width:max-content;margin:6px 0}
-.lang-switch button{border:0;background:transparent;color:#C3CAD9;font:inherit;font-size:.78rem;font-weight:600;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.16s}
-.lang-switch button.active{background:#fff;color:var(--ink)}
-.nav .btn-gold{padding:11px 20px;min-height:auto;font-size:.92rem}
-@media(min-width:900px){.header-inner{flex-wrap:nowrap}.brand-sub{display:block}.nav-toggle{display:none}.nav{display:flex;flex-basis:auto;flex-direction:row;align-items:center;gap:20px;padding:0}.lang-switch{margin:0}}
+<!-- MY NEW DOCUMENT — page intérieure sur le même système de design que index.html (theme.css + theme.js, 4 langues FR/EN/DE/IT). -->
 
-.page{max-width:760px;margin:0 auto;padding:0 20px}
-.hero{padding:48px 0 8px;text-align:center}
-.hero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--seal);font-weight:700}
-.hero .eyebrow::before,.hero .eyebrow::after{content:"";width:22px;height:1.5px;background:var(--seal)}
-.hero h1{font-family:var(--font-display);font-size:2.3rem;font-weight:500;line-height:1.1;margin:14px 0 12px}
-.hero p{color:var(--ink-soft);font-size:1.04rem;max-width:520px;margin:0 auto}
-
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:32px;margin:36px 0 64px;position:relative}
-.card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--brand),var(--seal));border-radius:var(--radius) var(--radius) 0 0}
-.field-group{margin-bottom:26px}
-.group-title{font-family:var(--font-display);font-size:1.05rem;font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.group-title .n{width:24px;height:24px;border-radius:50%;background:var(--brand-tint);color:var(--brand);font-family:var(--font-ui);font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.row-3{display:grid;grid-template-columns:1fr 2fr;gap:14px}
-@media(max-width:560px){.row,.row-3{grid-template-columns:1fr}}
-label.lbl{display:block;font-size:.82rem;font-weight:600;color:var(--ink-soft);margin-bottom:6px}
-label.lbl .req{color:var(--error);margin-left:2px}
-.input{width:100%;font-family:var(--font-ui);font-size:.95rem;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:11px 13px;transition:border-color .15s,box-shadow .15s}
-.input::placeholder{color:#B6BCCB}
-.input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(38,64,139,.12)}
-select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%235A6276' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:38px}
-.input.invalid{border-color:var(--error);box-shadow:0 0 0 3px rgba(214,69,69,.12)}
-.err-msg{color:var(--error);font-size:.78rem;margin-top:5px;display:none}
-.err-msg.show{display:block}
-.btn-primary{background:var(--brand);color:#fff;width:100%;border:0;border-radius:999px;font-size:.98rem;font-weight:600;padding:14px 26px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.18s}
-.btn-primary:hover{background:var(--brand-dark)}
-.btn-primary:disabled{opacity:.6;cursor:not-allowed}
-.btn-primary .spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
-.btn-primary.loading .spin{display:inline-block}
-@keyframes spin{to{transform:rotate(360deg)}}
-.footer-note{text-align:center;color:var(--muted);font-size:.8rem;padding:0 0 40px}
-.footer-note a{color:var(--brand);text-decoration:none}
-
-.confirm-overlay{position:fixed;inset:0;background:rgba(27,36,54,.55);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:24px;z-index:60}
-.confirm-overlay.show{display:flex;animation:fadeBg .3s ease}
-@keyframes fadeBg{from{opacity:0}to{opacity:1}}
-.confirm-card{background:linear-gradient(160deg,#EAF8F1 0%,#DDF3E8 55%,#D2F0E1 100%);border:1px solid #BFE6D2;border-radius:20px;max-width:480px;width:100%;padding:40px 34px;text-align:center;box-shadow:0 30px 60px -20px rgba(5,122,85,.4);animation:fadeInUp .55s cubic-bezier(.2,.9,.3,1.2)}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(28px) scale(.96)}to{opacity:1;transform:none}}
-.check-ring{width:84px;height:84px;margin:0 auto 18px;border-radius:50%;background:linear-gradient(145deg,var(--success),var(--success-2));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px -8px rgba(5,122,85,.55);animation:pop .5s .15s both cubic-bezier(.2,.9,.3,1.4)}
-@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
-.check-ring svg{width:44px;height:44px}
-.check-ring path{stroke-dasharray:48;stroke-dashoffset:48;animation:draw .5s .45s forwards ease}
-@keyframes draw{to{stroke-dashoffset:0}}
-.confirm-card h2{font-family:var(--font-display);font-size:1.7rem;font-weight:600;color:#0B5138;margin-bottom:8px}
-.confirm-card .greet{color:#16734F;font-size:1rem;margin-bottom:18px}
-.confirm-card .info-line{font-size:.92rem;color:#185c41;background:rgba(255,255,255,.6);border-radius:10px;padding:11px 13px;margin-bottom:10px;text-align:left}
-.confirm-card .info-line strong{color:#0B5138}
-.confirm-actions{display:flex;gap:10px;margin-top:18px;justify-content:center;flex-wrap:wrap}
-.btn-track{background:var(--success-2);color:#fff;text-decoration:none;border:0;border-radius:999px;padding:12px 22px;font-weight:600;font-size:.95rem;cursor:pointer}
-.btn-ghost2{background:rgba(255,255,255,.7);color:#0B5138;border:1px solid #BFE6D2;border-radius:999px;padding:12px 22px;font-weight:600;font-size:.95rem;cursor:pointer}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:13px 20px;border-radius:12px;font-size:.9rem;box-shadow:var(--shadow);opacity:0;transition:.3s;z-index:70;max-width:90%}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.toast.error{background:var(--error)}
-@media(max-width:560px){.hero h1{font-size:2rem}.card{padding:24px 20px}}
-</style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip" href="#main">Aller au contenu principal</a>
 
+<!-- ===== HEADER FIXE ===== -->
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="index.html">
-      <span class="brand-seal" id="brandSeal"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/><path d="M9 13h6M9 17h4"/></svg></span>
-      <span><span class="brand-name">MY NEW DOCUMENT</span><span class="brand-sub" data-i18n="tagline">Service de documents</span></span>
+    <a class="brand" href="index.html" data-i18n-aria="brandAria">
+      <img src="logo.png" alt="">
+      <span class="brand-txt">
+        <span class="brand-name">My New Document</span>
+        <span class="brand-sub" data-i18n="brandSub">Service de documents</span>
+      </span>
     </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="nav" id="nav">
-      <a class="navlink" href="index.html" data-i18n="navHome">Accueil</a>
-      <a class="navlink" href="apropos.html" data-i18n="navAbout">À propos</a>
-      <a class="navlink" href="suivi.html" data-i18n="navTrack">Suivi</a>
-      <a class="navlink" href="aide.html" data-i18n="navHelp">Aide</a>
-      <a class="navlink" href="contact.html" data-i18n="navContact">Contact</a>
-      <div class="lang-switch" id="langSwitch"><button data-lang="fr">FR</button><button data-lang="en">EN</button><button data-lang="de">DE</button></div>
-      <a class="btn btn-gold navlink active" href="commander.html" data-i18n="navCta">Commander</a>
-    </nav>
+    <img class="header-logo" src="logo.png" alt="">
+    <div class="header-right">
+      <div class="lang-switch" role="group" data-i18n-aria="langLabel">
+        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="de" aria-pressed="false">DE</button>
+        <button type="button" data-lang="it" aria-pressed="false">IT</button>
+      </div>
+      <a class="btn btn-accent" href="commander.html" data-i18n="navCta">Commander</a>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="mega" data-i18n-aria="menuOpen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
-<div class="page">
-  <section class="hero">
-    <span class="eyebrow" data-i18n="heroEyebrow">Nouvelle demande</span>
-    <h1 data-i18n="heroTitle">Commandez votre document</h1>
-    <p data-i18n="heroSubtitle">Remplissez le formulaire en quelques minutes. Vous recevrez vos instructions par email.</p>
+<!-- ===== MÉGA-MENU PLEIN ÉCRAN ===== -->
+<div class="mega" id="mega" role="dialog" aria-modal="true" data-i18n-aria="menuLabel">
+  <button class="burger mega-close" id="megaClose" data-i18n-aria="menuClose">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="mega-nav">
+    <a class="mega-link" href="index.html"><i>01</i><span data-i18n="navHome">Accueil</span></a>
+    <a class="mega-link" href="apropos.html"><i>02</i><span data-i18n="navAbout">À propos</span></a>
+    <a class="mega-link" href="soumission.html"><i>03</i><span>Soumission</span></a>
+    <a class="mega-link" href="commander.html"><i>04</i><span data-i18n="navOrder">Commander</span></a>
+    <a class="mega-link" href="suivi.html"><i>05</i><span data-i18n="navTrack">Suivi</span></a>
+    <a class="mega-link" href="aide.html"><i>06</i><span data-i18n="navHelp">Aide</span></a>
+    <a class="mega-link" href="contact.html"><i>07</i><span data-i18n="navContact">Contact</span></a>
+  </nav>
+  <aside class="mega-aside">
+    <span class="eyebrow on-dark" data-i18n="asideEyebrow">Documents administratifs</span>
+    <h3 data-i18n="asideTitle">Votre demande en ligne, suivie de A à Z</h3>
+    <p data-i18n="asideText">Passeport, carte d'identité, carte de séjour, permis de conduire. Instructions claires par email et code de suivi personnel.</p>
+    <a class="btn btn-accent" href="commander.html" data-i18n="asideCta">Commencer ma demande</a>
+    <a class="mail" href="mailto:service@mynewdocument.live">service@mynewdocument.live</a>
+    <p style="font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0" data-i18n="asideHours">
+      Lundi au vendredi · 09:00 – 18:00
+    </p>
+    <div class="lang-switch on-dark" role="group" data-i18n-aria="langLabel">
+      <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      <button type="button" data-lang="it" aria-pressed="false">IT</button>
+    </div>
+  </aside>
+</div>
+
+<main id="main" class="page-main">
+  <!-- ===== BANDEAU DE TITRE ===== -->
+  <section class="page-hero">
+    <div class="wrap wrap-narrow">
+      <span class="eyebrow on-dark" data-i18n="heroEyebrow">Nouvelle demande</span>
+      <h1 data-i18n="heroTitle">Commandez votre document</h1>
+      <p class="lead" data-i18n="heroLead">Remplissez le formulaire en quelques minutes. Vous recevrez vos instructions par email.</p>
+      <nav class="crumbs" data-i18n-aria="crumbsLabel">
+        <a href="index.html" data-i18n="navHome">Accueil</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <span data-i18n="navOrder">Commander</span>
+      </nav>
+    </div>
   </section>
 
-  <form class="card" id="requestForm" novalidate>
-    <div class="field-group">
-      <div class="group-title"><span class="n">1</span><span data-i18n="grpType">Type de document</span></div>
-      <label class="lbl" for="documentType" data-i18n="lblDocType">Quel document souhaitez-vous ?<span class="req">*</span></label>
-      <select class="input" id="documentType" required></select>
-      <div class="err-msg" data-err="documentType" data-i18n="errRequired">Ce champ est obligatoire.</div>
-    </div>
+  <!-- ===== FORMULAIRE ===== -->
+  <section class="sec">
+    <div class="wrap wrap-narrow">
+      <form class="panel" id="requestForm" novalidate>
 
-    <div class="field-group">
-      <div class="group-title"><span class="n">2</span><span data-i18n="grpIdentity">Identité</span></div>
-      <div class="row">
-        <div><label class="lbl" for="firstName" data-i18n="lblFirstName">Prénom<span class="req">*</span></label><input class="input" id="firstName" required><div class="err-msg" data-err="firstName" data-i18n="errRequired">Ce champ est obligatoire.</div></div>
-        <div><label class="lbl" for="lastName" data-i18n="lblLastName">Nom<span class="req">*</span></label><input class="input" id="lastName" required><div class="err-msg" data-err="lastName" data-i18n="errRequired">Ce champ est obligatoire.</div></div>
+        <!-- 1. Type de document -->
+        <div class="reveal" style="margin-bottom:clamp(30px,3.4vw,44px)">
+          <div class="step"><span class="n" aria-hidden="true">1</span><h3 data-i18n="grpType">Type de document</h3></div>
+          <div class="field">
+            <label for="documentType" data-i18n-html="lblDocType">Quel document souhaitez-vous ? <span class="req" aria-hidden="true">*</span></label>
+            <select class="input" id="documentType" required></select>
+            <div class="err-msg" data-err="documentType" data-i18n="errRequired">Ce champ est obligatoire.</div>
+          </div>
+        </div>
+
+        <!-- 2. Identité -->
+        <div class="reveal" style="margin-bottom:clamp(30px,3.4vw,44px)">
+          <div class="step"><span class="n" aria-hidden="true">2</span><h3 data-i18n="grpIdentity">Identité</h3></div>
+          <div class="form-row" style="margin-top:0">
+            <div class="field">
+              <label for="firstName" data-i18n-html="lblFirstName">Prénom <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="firstName" type="text" autocomplete="given-name" required>
+              <div class="err-msg" data-err="firstName" data-i18n="errRequired">Ce champ est obligatoire.</div>
+            </div>
+            <div class="field">
+              <label for="lastName" data-i18n-html="lblLastName">Nom <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="lastName" type="text" autocomplete="family-name" required>
+              <div class="err-msg" data-err="lastName" data-i18n="errRequired">Ce champ est obligatoire.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Coordonnées -->
+        <div class="reveal" style="margin-bottom:clamp(30px,3.4vw,44px)">
+          <div class="step"><span class="n" aria-hidden="true">3</span><h3 data-i18n="grpContact">Coordonnées</h3></div>
+          <div class="form-row" style="margin-top:0">
+            <div class="field">
+              <label for="email" data-i18n-html="lblEmail">Email <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="email" type="email" autocomplete="email" required>
+              <div class="err-msg" data-err="email" data-i18n="errEmail">Adresse email invalide.</div>
+            </div>
+            <div class="field">
+              <label for="phone" data-i18n-html="lblPhone">Téléphone <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="phone" type="tel" autocomplete="tel" required>
+              <div class="err-msg" data-err="phone" data-i18n="errRequired">Ce champ est obligatoire.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Adresse postale -->
+        <div class="reveal" style="margin-bottom:clamp(30px,3.4vw,44px)">
+          <div class="step"><span class="n" aria-hidden="true">4</span><h3 data-i18n="grpAddress">Adresse postale</h3></div>
+          <div class="field">
+            <label for="street" data-i18n-html="lblStreet">Rue et numéro <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" id="street" type="text" autocomplete="street-address" required>
+            <div class="err-msg" data-err="street" data-i18n="errRequired">Ce champ est obligatoire.</div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="zip" data-i18n-html="lblZip">Code postal <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="zip" type="text" autocomplete="postal-code" required>
+              <div class="err-msg" data-err="zip" data-i18n="errRequired">Ce champ est obligatoire.</div>
+            </div>
+            <div class="field">
+              <label for="city" data-i18n-html="lblCity">Ville <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="city" type="text" autocomplete="address-level2" required>
+              <div class="err-msg" data-err="city" data-i18n="errRequired">Ce champ est obligatoire.</div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="country" data-i18n-html="lblCountry">Pays de résidence <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" id="country" type="text" autocomplete="country-name" required>
+            <div class="err-msg" data-err="country" data-i18n="errRequired">Ce champ est obligatoire.</div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-accent" type="submit" id="submitBtn" style="width:100%">
+            <span id="submitLabel" data-i18n="submitBtn">Envoyer ma demande</span>
+          </button>
+        </div>
+        <p class="hint" style="margin-top:16px;text-align:center" data-i18n="formNote">Aucun paiement n’est demandé sur le site : le coût et les modalités vous sont communiqués par email.</p>
+      </form>
+
+      <p class="hint" style="text-align:center;margin-top:26px">
+        <span data-i18n="footAlready">Vous avez déjà une demande ?</span>
+        <a class="mail-line" style="min-height:auto" href="suivi.html" data-i18n="footTrack">Suivre mon dossier →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== BANDE D'INFORMATION ===== -->
+  <div class="mq mq-info" aria-hidden="true">
+    <div class="mq-track"><span class="mq-item">Instructions par email · code de suivi personnel</span></div>
+  </div>
+
+  <!-- ===== CONFIRMATION ===== -->
+  <div class="overlay" id="confirmOverlay" role="dialog" aria-modal="true" aria-labelledby="cfTitle">
+    <div class="modal" style="max-width:560px;text-align:center">
+      <span class="icon-tile" aria-hidden="true" style="margin:0 auto;width:72px;height:72px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="width:34px;height:34px"><path d="M5 13l4 4L19 7"/></svg>
+      </span>
+      <h2 id="cfTitle" style="margin-top:22px" data-i18n="cfThanks">Merci !</h2>
+      <p id="cfGreet" style="margin-top:14px;color:var(--Secondaire4)"></p>
+      <div class="panel panel-beige panel-tight" style="margin-top:24px;text-align:left" data-i18n-html="cfEmail">📧 <strong>Consultez votre boîte email</strong> : les instructions à suivre vous ont été envoyées.</div>
+      <div class="panel panel-beige panel-tight" style="margin-top:14px;text-align:left" data-i18n-html="cfSpam">⚠️ <strong>Pensez à vérifier vos spams</strong> si vous ne trouvez pas notre message dans les 5 minutes.</div>
+      <div style="margin-top:22px">
+        <div class="dt" data-i18n="cfCodeLabel">Code de suivi</div>
+        <div class="track-cell" id="cfTrackNum" style="margin-top:6px"></div>
       </div>
-    </div>
-
-    <div class="field-group">
-      <div class="group-title"><span class="n">3</span><span data-i18n="grpContact">Coordonnées</span></div>
-      <div class="row">
-        <div><label class="lbl" for="email" data-i18n="lblEmail">Email<span class="req">*</span></label><input class="input" id="email" type="email" required placeholder="vous@exemple.com"><div class="err-msg" data-err="email" data-i18n="errEmail">Adresse email invalide.</div></div>
-        <div><label class="lbl" for="phone" data-i18n="lblPhone">Téléphone<span class="req">*</span></label><input class="input" id="phone" type="tel" required placeholder="+33 6 12 34 56 78"><div class="err-msg" data-err="phone" data-i18n="errRequired">Ce champ est obligatoire.</div></div>
+      <div class="form-actions" style="justify-content:center">
+        <button class="btn btn-accent" type="button" id="cfClose" data-i18n="cfNew">Nouvelle demande</button>
+        <a class="btn btn-ghost" style="color:var(--Primaire1);box-shadow:inset 0 0 0 1.5px var(--Primaire1)" href="suivi.html" data-i18n="cfTrack">Suivre mon dossier</a>
       </div>
-    </div>
-
-    <div class="field-group">
-      <div class="group-title"><span class="n">4</span><span data-i18n="grpAddress">Adresse postale</span></div>
-      <label class="lbl" for="street" data-i18n="lblStreet">Rue et numéro<span class="req">*</span></label>
-      <input class="input" id="street" required style="margin-bottom:14px">
-      <div class="err-msg" data-err="street" data-i18n="errRequired">Ce champ est obligatoire.</div>
-      <div class="row-3">
-        <div><label class="lbl" for="zip" data-i18n="lblZip">Code postal<span class="req">*</span></label><input class="input" id="zip" required><div class="err-msg" data-err="zip" data-i18n="errRequired">Ce champ est obligatoire.</div></div>
-        <div><label class="lbl" for="city" data-i18n="lblCity">Ville<span class="req">*</span></label><input class="input" id="city" required><div class="err-msg" data-err="city" data-i18n="errRequired">Ce champ est obligatoire.</div></div>
-      </div>
-      <div style="margin-top:14px"><label class="lbl" for="country" data-i18n="lblCountry">Pays de résidence<span class="req">*</span></label><input class="input" id="country" required><div class="err-msg" data-err="country" data-i18n="errRequired">Ce champ est obligatoire.</div></div>
-    </div>
-
-    <button type="submit" class="btn-primary" id="submitBtn"><span class="spin"></span><span data-i18n="submitBtn">Envoyer ma demande</span></button>
-  </form>
-
-  <p class="footer-note"><span data-i18n="footAlready">Vous avez déjà une demande ?</span> <a href="suivi.html" data-i18n="footTrack">Suivre mon dossier →</a></p>
-</div>
-
-<div class="confirm-overlay" id="confirmOverlay">
-  <div class="confirm-card">
-    <div class="check-ring"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div>
-    <h2 data-i18n="cfThanks">Merci !</h2>
-    <p class="greet" id="cfGreet"></p>
-    <div class="info-line" data-i18n="cfEmail">📧 <strong>Consultez votre boîte email</strong> : les instructions à suivre vous ont été envoyées.</div>
-    <div class="info-line" data-i18n="cfSpam">⚠️ <strong>Pensez à vérifier vos spams</strong> si vous ne trouvez pas notre message dans les 5 minutes.</div>
-    <div class="confirm-actions">
-      <button type="button" class="btn-ghost2" id="cfClose" data-i18n="cfNew">Nouvelle demande</button>
     </div>
   </div>
-</div>
 
-<div class="toast" id="toast"></div>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-brand reveal">
+        <img src="logo.png" alt="">
+        <span class="name">My New Document</span>
+      </div>
+      <nav class="footer-links" data-i18n-aria="footNavLabel">
+        <a href="index.html" data-i18n="navHome">Accueil</a>
+        <a href="apropos.html" data-i18n="navAbout">À propos</a>
+        <a href="soumission.html">Soumission</a>
+        <a href="commander.html" data-i18n="navOrder">Commander</a>
+        <a href="suivi.html" data-i18n="navTrack">Suivi</a>
+        <a href="aide.html" data-i18n="navHelp">Aide</a>
+        <a href="contact.html" data-i18n="navContact">Contact</a>
+      </nav>
+      <p class="giant-word" aria-hidden="true" data-i18n="giantWord">Documents</p>
+      <div class="foot-bottom">
+        <span class="mini-logos" aria-hidden="true">
+          <span>FR</span><span>EN</span><span>DE</span><span>IT</span>
+        </span>
+        <span>© 2021 MY NEW DOCUMENT — service@mynewdocument.live</span>
+      </div>
+    </div>
+  </footer>
 
+</main>
+
+<a class="fab" href="https://wa.me/436703046023" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.5 3.5a11.7 11.7 0 0 0-16.8 16.2L2.4 21l1.4-4.1A11.7 11.7 0 1 0 20.5 3.5Zm-5.8 14.3c-.3 0-.7-.1-1.1-.3l-.7-.3-3.7 1 1-3.6-.4-.7a7.7 7.7 0 0 1-1-4 7.8 7.8 0 0 1 7.8-7.8 7.7 7.7 0 0 1 7.7 7.7 7.8 7.8 0 0 1-6.8 7.7Zm4.2-5.7c-.2-.1-1.1-.5-1.3-.6-.2-.1-.3-.1-.5.1-.1.1-.5.6-.6.7-.1.1-.3.1-.5.1s-.4-.1-.8-.4a6.2 6.2 0 0 1-1.8-1.8c-.2-.3-.2-.7 0-.9l.2-.2c.1-.1.1-.2.2-.3.1-.1.1-.2 0-.3l-.2-.5c-.1-.2-.4-.5-.7-.8-.2-.2-.4-.3-.6-.3h-.2c-.2 0-.5.1-.7.4-.2.2-.8.8-.8 2s.8 2.4 1 2.6c.1.2 1.8 2.9 4.5 4 .6.3 1.1.4 1.5.5.7.2 1.2.2 1.6.1.5-.1 1.6-.7 1.8-1.3.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
+</a>
+
+<script src="theme.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script type="module">
-/* ====================== CONFIG (vos valeurs) ====================== */
+/* ====================== CONFIG ====================== */
 const FIREBASE_CONFIG = {
   apiKey:"AIzaSyBbeXGBV89c-qYvJb_VFUQFnMKIuc8XCic",
   authDomain:"my-new-document-29e20.firebaseapp.com",
@@ -205,209 +252,304 @@ const EMAILJS_SERVICE_ID      = "service_jkmhpnn";
 const EMAILJS_TEMPLATE_CLIENT = "template_yqlvk14";
 const EMAILJS_TEMPLATE_ADMIN  = "template_1id9gyw";
 const ADMIN_EMAIL             = "service@mynewdocument.online";
-const LOGO_PATH               = "logo.png";
-/* ================================================================== */
+/* =================================================== */
 
-/* Firebase chargé dynamiquement : si le chargement échoue (ex. ouverture en
-   double-clic via file://), le formulaire reste affiché et utilisable. */
+/* Firebase chargé dynamiquement : si le chargement échoue (ouverture locale
+   en file://), le formulaire reste affiché et utilisable. */
 let db = null, FS = null;
 (async () => {
-  try{
+  try {
     const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
     const { getFirestore, doc, setDoc, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
     const app = initializeApp(FIREBASE_CONFIG);
     db = getFirestore(app);
     FS = { doc, setDoc, serverTimestamp };
-  }catch(e){ console.warn("Firebase non chargé (test local en file:// ?). Le formulaire fonctionne, mais l'enregistrement sera actif une fois le site en ligne.", e); }
+  } catch (e) {
+    console.warn("Firebase non chargé (test local en file:// ?). Le formulaire fonctionne, mais l'enregistrement sera actif une fois le site en ligne.", e);
+  }
 })();
 if (window.emailjs) emailjs.init({ publicKey: EMAILJS_USER_ID });
 
 /* Types de documents (fixes) */
 const DOC_TYPES = [
-  { key:"passport",        fr:"Passeport",          en:"Passport",          de:"Reisepass" },
-  { key:"id_card",         fr:"Carte d'identité",   en:"Identity card",     de:"Personalausweis" },
-  { key:"residence_permit",fr:"Carte de séjour",    en:"Residence permit",  de:"Aufenthaltstitel" },
-  { key:"driving_license", fr:"Permis de conduire", en:"Driving licence",   de:"Führerschein" }
+  { key:"passport",         fr:"Passeport",          en:"Passport",         de:"Reisepass",        it:"Passaporto" },
+  { key:"id_card",          fr:"Carte d'identité",   en:"Identity card",    de:"Personalausweis",  it:"Carta d'identità" },
+  { key:"residence_permit", fr:"Carte de séjour",    en:"Residence permit", de:"Aufenthaltstitel", it:"Permesso di soggiorno" },
+  { key:"driving_license",  fr:"Permis de conduire", en:"Driving licence",  de:"Führerschein",     it:"Patente di guida" }
 ];
 
+/* Contenu propre à la page « Commander » (4 langues). */
 const T = {
-  fr:{ tagline:"Service de documents", navHome:"Accueil", navAbout:"À propos", navTrack:"Suivi", navHelp:"Aide", navContact:"Contact", navCta:"Commander",
+  fr:{
+    docTitle:"Commander — MY NEW DOCUMENT",
+    docDesc:"Commandez votre document administratif en ligne : passeport, carte d’identité, carte de séjour ou permis de conduire. Vous recevez vos instructions par email.",
+    crumbsLabel:"Fil d’Ariane",
     heroEyebrow:"Nouvelle demande", heroTitle:"Commandez votre document",
-    heroSubtitle:"Remplissez le formulaire en quelques minutes. Vous recevrez vos instructions par email.",
-    grpType:"Type de document", lblDocType:"Quel document souhaitez-vous ?", optChoose:"— Choisissez un type —",
-    grpIdentity:"Identité", lblFirstName:"Prénom", lblLastName:"Nom", grpContact:"Coordonnées",
-    lblEmail:"Email", lblPhone:"Téléphone", grpAddress:"Adresse postale",
-    lblStreet:"Rue et numéro", lblZip:"Code postal", lblCity:"Ville", lblCountry:"Pays de résidence",
-    submitBtn:"Envoyer ma demande", footAlready:"Vous avez déjà une demande ?", footTrack:"Suivre mon dossier →",
+    heroLead:"Remplissez le formulaire en quelques minutes. Vous recevrez vos instructions par email.",
+    grpType:"Type de document",
+    lblDocType:'Quel document souhaitez-vous ? <span class="req" aria-hidden="true">*</span>',
+    optChoose:"— Choisissez un type —",
+    grpIdentity:"Identité", grpContact:"Coordonnées", grpAddress:"Adresse postale",
+    lblFirstName:'Prénom <span class="req" aria-hidden="true">*</span>',
+    lblLastName:'Nom <span class="req" aria-hidden="true">*</span>',
+    lblEmail:'Email <span class="req" aria-hidden="true">*</span>',
+    lblPhone:'Téléphone <span class="req" aria-hidden="true">*</span>',
+    lblStreet:'Rue et numéro <span class="req" aria-hidden="true">*</span>',
+    lblZip:'Code postal <span class="req" aria-hidden="true">*</span>',
+    lblCity:'Ville <span class="req" aria-hidden="true">*</span>',
+    lblCountry:'Pays de résidence <span class="req" aria-hidden="true">*</span>',
+    submitBtn:"Envoyer ma demande", sending:"Envoi en cours…",
+    formNote:"Aucun paiement n’est demandé sur le site : le coût et les modalités vous sont communiqués par email.",
+    footAlready:"Vous avez déjà une demande ?", footTrack:"Suivre mon dossier →",
     errRequired:"Ce champ est obligatoire.", errEmail:"Adresse email invalide.",
-    cfThanks:"Merci !",
-    cfEmail:"📧 <strong>Consultez votre boîte email</strong> : les instructions à suivre vous ont été envoyées.",
-    cfSpam:"⚠️ <strong>Pensez à vérifier vos spams</strong> si vous ne trouvez pas notre message dans les 5 minutes.",
-    cfNew:"Nouvelle demande",
-    greet:n=>`Bravo ${n}, votre demande a bien été envoyée à notre équipe.`,
     toastError:"Une erreur est survenue. Vérifiez vos champs et réessayez.",
+    cfThanks:"Merci !",
+    cfEmail:'📧 <strong>Consultez votre boîte email</strong> : les instructions à suivre vous ont été envoyées.',
+    cfSpam:'⚠️ <strong>Pensez à vérifier vos spams</strong> si vous ne trouvez pas notre message dans les 5 minutes.',
+    cfCodeLabel:"Code de suivi", cfNew:"Nouvelle demande", cfTrack:"Suivre mon dossier",
+    greet:n => 'Bravo ' + n + ', votre demande a bien été envoyée à notre équipe.',
     emailSubject:"Votre demande MY NEW DOCUMENT a bien été enregistrée",
-    emailBody:(p,doc)=>`Bonjour ${p},
-
-Nous vous remercions pour votre confiance.
-Votre demande de « ${doc} » a bien été enregistrée par notre équipe.
-
-Dans les prochaines heures, vous recevrez :
-- La liste des documents nécessaires au traitement de votre dossier ;
-- Le coût de la prestation ;
-- Le délai estimatif de réalisation ;
-- Les modalités de paiement.
-
-Un code de suivi personnel vous sera également communiqué afin de suivre en temps réel l'évolution de votre dossier.
-
-Pour toute question, notre équipe reste à votre entière disposition.
-
-Merci de votre confiance.
-
-Cordialement,
-L'équipe MY NEW DOCUMENT
-Votre partenaire pour la création et l'obtention de documents administratifs et professionnels.` },
-  en:{ tagline:"Document service", navHome:"Home", navAbout:"About", navTrack:"Tracking", navHelp:"Help", navContact:"Contact", navCta:"Order",
+    emailBody:(p,doc) => 'Bonjour ' + p + ',\n\n' +
+      'Nous vous remercions pour votre confiance.\n' +
+      'Votre demande de « ' + doc + ' » a bien été enregistrée par notre équipe.\n\n' +
+      'Dans les prochaines heures, vous recevrez :\n' +
+      '- La liste des documents nécessaires au traitement de votre dossier ;\n' +
+      '- Le coût de la prestation ;\n' +
+      '- Le délai estimatif de réalisation ;\n' +
+      '- Les modalités de paiement.\n\n' +
+      'Un code de suivi personnel vous sera également communiqué afin de suivre en temps réel l\'évolution de votre dossier.\n\n' +
+      'Pour toute question, notre équipe reste à votre entière disposition.\n\n' +
+      'Merci de votre confiance.\n\n' +
+      'Cordialement,\nL\'équipe MY NEW DOCUMENT\n' +
+      'Votre partenaire pour la création et l\'obtention de documents administratifs et professionnels.'
+  },
+  en:{
+    docTitle:"Order — MY NEW DOCUMENT",
+    docDesc:"Order your administrative document online: passport, identity card, residence permit or driving licence. You receive your instructions by email.",
+    crumbsLabel:"Breadcrumb",
     heroEyebrow:"New request", heroTitle:"Order your document",
-    heroSubtitle:"Fill in the form in a few minutes. You will receive your instructions by email.",
-    grpType:"Document type", lblDocType:"Which document do you need?", optChoose:"— Choose a type —",
-    grpIdentity:"Identity", lblFirstName:"First name", lblLastName:"Last name", grpContact:"Contact details",
-    lblEmail:"Email", lblPhone:"Phone", grpAddress:"Postal address",
-    lblStreet:"Street and number", lblZip:"Postal code", lblCity:"City", lblCountry:"Country of residence",
-    submitBtn:"Send my request", footAlready:"Already have a request?", footTrack:"Track my file →",
+    heroLead:"Fill in the form in a few minutes. You will receive your instructions by email.",
+    grpType:"Document type",
+    lblDocType:'Which document do you need? <span class="req" aria-hidden="true">*</span>',
+    optChoose:"— Choose a type —",
+    grpIdentity:"Identity", grpContact:"Contact details", grpAddress:"Postal address",
+    lblFirstName:'First name <span class="req" aria-hidden="true">*</span>',
+    lblLastName:'Last name <span class="req" aria-hidden="true">*</span>',
+    lblEmail:'Email <span class="req" aria-hidden="true">*</span>',
+    lblPhone:'Phone <span class="req" aria-hidden="true">*</span>',
+    lblStreet:'Street and number <span class="req" aria-hidden="true">*</span>',
+    lblZip:'Postal code <span class="req" aria-hidden="true">*</span>',
+    lblCity:'City <span class="req" aria-hidden="true">*</span>',
+    lblCountry:'Country of residence <span class="req" aria-hidden="true">*</span>',
+    submitBtn:"Send my request", sending:"Sending…",
+    formNote:"No payment is requested on the website: the cost and payment methods are sent to you by email.",
+    footAlready:"Already have a request?", footTrack:"Track my file →",
     errRequired:"This field is required.", errEmail:"Invalid email address.",
-    cfThanks:"Thank you!",
-    cfEmail:"📧 <strong>Check your inbox</strong>: the instructions to follow have been sent to you.",
-    cfSpam:"⚠️ <strong>Remember to check your spam folder</strong> if you can't find our message within 5 minutes.",
-    cfNew:"New request",
-    greet:n=>`Well done ${n}, your request has been sent to our team.`,
     toastError:"Something went wrong. Please check your fields and try again.",
+    cfThanks:"Thank you!",
+    cfEmail:'📧 <strong>Check your inbox</strong>: the instructions to follow have been sent to you.',
+    cfSpam:'⚠️ <strong>Remember to check your spam folder</strong> if you can\'t find our message within 5 minutes.',
+    cfCodeLabel:"Tracking code", cfNew:"New request", cfTrack:"Track my file",
+    greet:n => 'Well done ' + n + ', your request has been sent to our team.',
     emailSubject:"Your MY NEW DOCUMENT request has been registered",
-    emailBody:(p,doc)=>`Hello ${p},
-
-Thank you for your trust.
-Your request for « ${doc} » has been successfully registered by our team.
-
-In the next few hours, you will receive:
-- The list of documents required to process your file;
-- The cost of the service;
-- The estimated completion time;
-- The payment methods.
-
-A personal tracking code will also be sent to you so you can follow the progress of your file in real time.
-
-For any questions, our team remains at your full disposal.
-
-Thank you for your trust.
-
-Best regards,
-The MY NEW DOCUMENT team
-Your partner for the creation and obtaining of administrative and professional documents.` },
-  de:{ tagline:"Dokumentenservice", navHome:"Startseite", navAbout:"Über uns", navTrack:"Verfolgung", navHelp:"Hilfe", navContact:"Kontakt", navCta:"Bestellen",
+    emailBody:(p,doc) => 'Hello ' + p + ',\n\n' +
+      'Thank you for your trust.\n' +
+      'Your request for « ' + doc + ' » has been successfully registered by our team.\n\n' +
+      'In the next few hours, you will receive:\n' +
+      '- The list of documents required to process your file;\n' +
+      '- The cost of the service;\n' +
+      '- The estimated completion time;\n' +
+      '- The payment methods.\n\n' +
+      'A personal tracking code will also be sent to you so you can follow the progress of your file in real time.\n\n' +
+      'For any questions, our team remains at your full disposal.\n\n' +
+      'Thank you for your trust.\n\n' +
+      'Best regards,\nThe MY NEW DOCUMENT team\n' +
+      'Your partner for the creation and obtaining of administrative and professional documents.'
+  },
+  de:{
+    docTitle:"Bestellen — MY NEW DOCUMENT",
+    docDesc:"Bestellen Sie Ihr Verwaltungsdokument online: Reisepass, Personalausweis, Aufenthaltstitel oder Führerschein. Sie erhalten Ihre Anweisungen per E-Mail.",
+    crumbsLabel:"Brotkrümelnavigation",
     heroEyebrow:"Neue Anfrage", heroTitle:"Bestellen Sie Ihr Dokument",
-    heroSubtitle:"Füllen Sie das Formular in wenigen Minuten aus. Sie erhalten Ihre Anweisungen per E-Mail.",
-    grpType:"Dokumententyp", lblDocType:"Welches Dokument benötigen Sie?", optChoose:"— Typ wählen —",
-    grpIdentity:"Identität", lblFirstName:"Vorname", lblLastName:"Nachname", grpContact:"Kontaktdaten",
-    lblEmail:"E-Mail", lblPhone:"Telefon", grpAddress:"Postanschrift",
-    lblStreet:"Straße und Nummer", lblZip:"Postleitzahl", lblCity:"Stadt", lblCountry:"Wohnsitzland",
-    submitBtn:"Antrag senden", footAlready:"Sie haben bereits einen Antrag?", footTrack:"Antrag verfolgen →",
+    heroLead:"Füllen Sie das Formular in wenigen Minuten aus. Sie erhalten Ihre Anweisungen per E-Mail.",
+    grpType:"Dokumententyp",
+    lblDocType:'Welches Dokument benötigen Sie? <span class="req" aria-hidden="true">*</span>',
+    optChoose:"— Typ wählen —",
+    grpIdentity:"Identität", grpContact:"Kontaktdaten", grpAddress:"Postanschrift",
+    lblFirstName:'Vorname <span class="req" aria-hidden="true">*</span>',
+    lblLastName:'Nachname <span class="req" aria-hidden="true">*</span>',
+    lblEmail:'E-Mail <span class="req" aria-hidden="true">*</span>',
+    lblPhone:'Telefon <span class="req" aria-hidden="true">*</span>',
+    lblStreet:'Straße und Nummer <span class="req" aria-hidden="true">*</span>',
+    lblZip:'Postleitzahl <span class="req" aria-hidden="true">*</span>',
+    lblCity:'Stadt <span class="req" aria-hidden="true">*</span>',
+    lblCountry:'Wohnsitzland <span class="req" aria-hidden="true">*</span>',
+    submitBtn:"Antrag senden", sending:"Wird gesendet…",
+    formNote:"Auf der Website ist keine Zahlung erforderlich: Kosten und Zahlungsmodalitäten werden Ihnen per E-Mail mitgeteilt.",
+    footAlready:"Sie haben bereits einen Antrag?", footTrack:"Antrag verfolgen →",
     errRequired:"Dieses Feld ist erforderlich.", errEmail:"Ungültige E-Mail-Adresse.",
-    cfThanks:"Vielen Dank!",
-    cfEmail:"📧 <strong>Überprüfen Sie Ihr Postfach</strong>: Die zu befolgenden Anweisungen wurden Ihnen gesendet.",
-    cfSpam:"⚠️ <strong>Bitte prüfen Sie Ihren Spam-Ordner</strong>, falls Sie unsere Nachricht nicht innerhalb von 5 Minuten finden.",
-    cfNew:"Neuer Antrag",
-    greet:n=>`Gut gemacht, ${n}, Ihre Anfrage wurde an unser Team gesendet.`,
     toastError:"Ein Fehler ist aufgetreten. Bitte prüfen Sie Ihre Felder und versuchen Sie es erneut.",
+    cfThanks:"Vielen Dank!",
+    cfEmail:'📧 <strong>Überprüfen Sie Ihr Postfach</strong>: Die zu befolgenden Anweisungen wurden Ihnen gesendet.',
+    cfSpam:'⚠️ <strong>Bitte prüfen Sie Ihren Spam-Ordner</strong>, falls Sie unsere Nachricht nicht innerhalb von 5 Minuten finden.',
+    cfCodeLabel:"Verfolgungscode", cfNew:"Neuer Antrag", cfTrack:"Antrag verfolgen",
+    greet:n => 'Gut gemacht, ' + n + ', Ihre Anfrage wurde an unser Team gesendet.',
     emailSubject:"Ihre Anfrage bei MY NEW DOCUMENT wurde registriert",
-    emailBody:(p,doc)=>`Hallo ${p},
-
-vielen Dank für Ihr Vertrauen.
-Ihre Anfrage für „${doc}" wurde von unserem Team erfolgreich registriert.
-
-In den nächsten Stunden erhalten Sie:
-- die Liste der für die Bearbeitung Ihres Antrags erforderlichen Dokumente;
-- die Kosten der Dienstleistung;
-- die voraussichtliche Bearbeitungszeit;
-- die Zahlungsmodalitäten.
-
-Außerdem erhalten Sie einen persönlichen Tracking-Code, mit dem Sie den Fortschritt Ihres Antrags in Echtzeit verfolgen können.
-
-Bei Fragen steht Ihnen unser Team jederzeit zur Verfügung.
-
-Vielen Dank für Ihr Vertrauen.
-
-Mit freundlichen Grüßen,
-Das MY NEW DOCUMENT Team
-Ihr Partner für die Erstellung und Beschaffung von Verwaltungs- und Geschäftsdokumenten.` }
+    emailBody:(p,doc) => 'Hallo ' + p + ',\n\n' +
+      'vielen Dank für Ihr Vertrauen.\n' +
+      'Ihre Anfrage für „' + doc + '“ wurde von unserem Team erfolgreich registriert.\n\n' +
+      'In den nächsten Stunden erhalten Sie:\n' +
+      '- die Liste der für die Bearbeitung Ihres Antrags erforderlichen Dokumente;\n' +
+      '- die Kosten der Dienstleistung;\n' +
+      '- die voraussichtliche Bearbeitungszeit;\n' +
+      '- die Zahlungsmodalitäten.\n\n' +
+      'Außerdem erhalten Sie einen persönlichen Verfolgungscode, mit dem Sie den Fortschritt Ihres Antrags in Echtzeit verfolgen können.\n\n' +
+      'Bei Fragen steht Ihnen unser Team jederzeit zur Verfügung.\n\n' +
+      'Vielen Dank für Ihr Vertrauen.\n\n' +
+      'Mit freundlichen Grüßen,\nDas MY NEW DOCUMENT Team\n' +
+      'Ihr Partner für die Erstellung und Beschaffung von Verwaltungs- und Geschäftsdokumenten.'
+  },
+  it:{
+    docTitle:"Ordinare — MY NEW DOCUMENT",
+    docDesc:"Ordina online il tuo documento amministrativo: passaporto, carta d’identità, permesso di soggiorno o patente di guida. Ricevi le istruzioni via email.",
+    crumbsLabel:"Percorso di navigazione",
+    heroEyebrow:"Nuova richiesta", heroTitle:"Ordina il tuo documento",
+    heroLead:"Compila il modulo in pochi minuti. Riceverai le istruzioni via email.",
+    grpType:"Tipo di documento",
+    lblDocType:'Quale documento ti serve? <span class="req" aria-hidden="true">*</span>',
+    optChoose:"— Scegli un tipo —",
+    grpIdentity:"Identità", grpContact:"Recapiti", grpAddress:"Indirizzo postale",
+    lblFirstName:'Nome <span class="req" aria-hidden="true">*</span>',
+    lblLastName:'Cognome <span class="req" aria-hidden="true">*</span>',
+    lblEmail:'Email <span class="req" aria-hidden="true">*</span>',
+    lblPhone:'Telefono <span class="req" aria-hidden="true">*</span>',
+    lblStreet:'Via e numero <span class="req" aria-hidden="true">*</span>',
+    lblZip:'Codice postale <span class="req" aria-hidden="true">*</span>',
+    lblCity:'Città <span class="req" aria-hidden="true">*</span>',
+    lblCountry:'Paese di residenza <span class="req" aria-hidden="true">*</span>',
+    submitBtn:"Invia la richiesta", sending:"Invio in corso…",
+    formNote:"Sul sito non è richiesto alcun pagamento: costo e modalità ti vengono comunicati via email.",
+    footAlready:"Hai già una richiesta?", footTrack:"Segui la pratica →",
+    errRequired:"Questo campo è obbligatorio.", errEmail:"Indirizzo email non valido.",
+    toastError:"Si è verificato un errore. Controlla i campi e riprova.",
+    cfThanks:"Grazie!",
+    cfEmail:'📧 <strong>Controlla la tua casella email</strong>: le istruzioni da seguire ti sono state inviate.',
+    cfSpam:'⚠️ <strong>Ricorda di controllare lo spam</strong> se non trovi il nostro messaggio entro 5 minuti.',
+    cfCodeLabel:"Codice di tracciamento", cfNew:"Nuova richiesta", cfTrack:"Segui la pratica",
+    greet:n => 'Perfetto ' + n + ', la tua richiesta è stata inviata al nostro team.',
+    emailSubject:"La tua richiesta MY NEW DOCUMENT è stata registrata",
+    emailBody:(p,doc) => 'Ciao ' + p + ',\n\n' +
+      'grazie per la tua fiducia.\n' +
+      'La tua richiesta di « ' + doc + ' » è stata registrata dal nostro team.\n\n' +
+      'Nelle prossime ore riceverai:\n' +
+      '- l\'elenco dei documenti necessari per la lavorazione della pratica;\n' +
+      '- il costo del servizio;\n' +
+      '- i tempi stimati di realizzazione;\n' +
+      '- le modalità di pagamento.\n\n' +
+      'Ti verrà inoltre comunicato un codice di tracciamento personale per seguire in tempo reale l\'avanzamento della pratica.\n\n' +
+      'Per qualsiasi domanda, il nostro team resta a tua completa disposizione.\n\n' +
+      'Grazie per la fiducia.\n\n' +
+      'Cordiali saluti,\nIl team MY NEW DOCUMENT\n' +
+      'Il tuo partner per la creazione e l\'ottenimento di documenti amministrativi e professionali.'
+  }
 };
 
-const $ = s => document.querySelector(s);
-const t = () => T[lang];
-let lang = localStorage.getItem("mnd_lang");
-if (!["fr","en","de"].includes(lang)){ const n=(navigator.language||"fr").slice(0,2); lang=["fr","en","de"].includes(n)?n:"fr"; }
+MND.init(T);
 
-if (LOGO_PATH){ const s=$("#brandSeal"); const img=new Image(); img.alt="MY NEW DOCUMENT"; img.src=LOGO_PATH; img.onload=()=>s.replaceWith(img); }
-
-const navToggle=$("#navToggle"), nav=$("#nav");
-navToggle.addEventListener("click",()=>{ const o=nav.classList.toggle("open"); navToggle.classList.toggle("open",o); navToggle.setAttribute("aria-expanded",o); });
-
-function fillTypes(){
-  const sel=$("#documentType");
-  const cur=sel.value;
-  sel.innerHTML = `<option value="">${t().optChoose}</option>` + DOC_TYPES.map(d=>`<option value="${d.key}">${d[lang]}</option>`).join("");
-  if (cur) sel.value=cur;
+/* --- Remplissage du sélecteur de types selon la langue --- */
+function fillTypes() {
+  const sel = MND.byId('documentType');
+  const cur = sel.value;
+  const lang = MND.getLang();
+  sel.innerHTML = '<option value="">' + MND.esc(MND.t('optChoose')) + '</option>' +
+    DOC_TYPES.map(d => '<option value="' + d.key + '">' + MND.esc(d[lang] || d.fr) + '</option>').join('');
+  if (cur) sel.value = cur;
 }
-function applyLang(){
-  document.documentElement.lang=lang;
-  document.querySelectorAll("[data-i18n]").forEach(el=>{ const k=el.getAttribute("data-i18n"); if(t()[k]!==undefined && typeof t()[k]==="string") el.innerHTML=t()[k]; });
-  document.querySelectorAll("#langSwitch button").forEach(b=> b.classList.toggle("active", b.dataset.lang===lang));
-  fillTypes();
-}
-document.querySelectorAll("#langSwitch button").forEach(b=> b.addEventListener("click",()=>{ lang=b.dataset.lang; localStorage.setItem("mnd_lang",lang); applyLang(); nav.classList.remove("open"); navToggle.classList.remove("open"); }));
+MND.onLang(fillTypes);
 
-function setErr(id,show){ const i=$("#"+id); if(i)i.classList.toggle("invalid",show); const e=document.querySelector(`[data-err="${id}"]`); if(e)e.classList.toggle("show",show); }
-function validate(){
-  let ok=true;
-  ["documentType","firstName","lastName","email","phone","street","zip","city","country"].forEach(id=>{ const bad=!$("#"+id).value.trim(); setErr(id,bad); if(bad)ok=false; });
-  const em=$("#email").value.trim();
-  if(em && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ setErr("email",true); ok=false; }
+/* --- Validation --- */
+const FIELDS = ['documentType','firstName','lastName','email','phone','street','zip','city','country'];
+function setErr(id, show) {
+  const i = MND.byId(id);
+  if (i) i.classList.toggle('invalid', show);
+  const e = document.querySelector('[data-err="' + id + '"]');
+  if (e) e.classList.toggle('show', show);
+}
+function validate() {
+  let ok = true;
+  FIELDS.forEach(id => {
+    const bad = !MND.byId(id).value.trim();
+    setErr(id, bad);
+    if (bad) ok = false;
+  });
+  const em = MND.byId('email').value.trim();
+  if (em && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { setErr('email', true); ok = false; }
   return ok;
 }
+FIELDS.forEach(id => {
+  MND.byId(id).addEventListener('input', () => setErr(id, false));
+});
 
-const form=$("#requestForm"), submitBtn=$("#submitBtn");
-function genTracking(){
-  let rnd="";
-  try{ const a=new Uint8Array(8); crypto.getRandomValues(a); rnd=Array.from(a,b=>b.toString(36).padStart(2,"0")).join(""); }
-  catch(_){ rnd=(Math.random().toString(36)+Math.random().toString(36)).replace(/[^a-z0-9]/g,""); }
-  return `DOC-${Date.now().toString(36)}-${rnd.slice(0,12)}`.toUpperCase();
+/* --- Envoi --- */
+const form = MND.byId('requestForm');
+const submitBtn = MND.byId('submitBtn');
+const submitLabel = MND.byId('submitLabel');
+
+function genTracking() {
+  let rnd = '';
+  try {
+    const a = new Uint8Array(8);
+    crypto.getRandomValues(a);
+    rnd = Array.from(a, b => b.toString(36).padStart(2, '0')).join('');
+  } catch (_) {
+    rnd = (Math.random().toString(36) + Math.random().toString(36)).replace(/[^a-z0-9]/g, '');
+  }
+  return ('DOC-' + Date.now().toString(36) + '-' + rnd.slice(0, 12)).toUpperCase();
 }
-form.addEventListener("submit", async e=>{
+
+form.addEventListener('submit', async e => {
   e.preventDefault();
-  if(!validate()){ toast(t().toastError,true); return; }
-  submitBtn.classList.add("loading"); submitBtn.disabled=true;
+  if (!validate()) {
+    MND.toast(MND.t('toastError'), true);
+    const firstBad = FIELDS.map(id => MND.byId(id)).find(el => el.classList.contains('invalid'));
+    if (firstBad) firstBad.focus();
+    return;
+  }
+
+  const lang = MND.getLang();
+  submitBtn.disabled = true;
+  submitBtn.style.opacity = '.6';
+  submitLabel.textContent = MND.t('sending');
 
   const trackingNumber = genTracking();
-  const dt=DOC_TYPES.find(d=>d.key===$("#documentType").value);
-  const docNameClient = dt ? dt[lang] : "";
-  const docNameFr = dt ? dt.fr : "";
-  const commonFields={ firstName:$("#firstName").value.trim(), lastName:$("#lastName").value.trim(),
-    email:$("#email").value.trim(), phone:$("#phone").value.trim(), street:$("#street").value.trim(),
-    zip:$("#zip").value.trim(), city:$("#city").value.trim(), country:$("#country").value.trim() };
+  const dt = DOC_TYPES.find(d => d.key === MND.byId('documentType').value);
+  const docNameClient = dt ? (dt[lang] || dt.fr) : '';
+  const docNameFr = dt ? dt.fr : '';
+  const commonFields = {
+    firstName: MND.byId('firstName').value.trim(),
+    lastName:  MND.byId('lastName').value.trim(),
+    email:     MND.byId('email').value.trim(),
+    phone:     MND.byId('phone').value.trim(),
+    street:    MND.byId('street').value.trim(),
+    zip:       MND.byId('zip').value.trim(),
+    city:      MND.byId('city').value.trim(),
+    country:   MND.byId('country').value.trim()
+  };
 
-  try{
-    if(db && FS){
-      const now=new Date().toISOString();
-      const firstHistory=[{ status:"Soumis", date:now, comment:"" }];
+  try {
+    if (db && FS) {
+      const now = new Date().toISOString();
+      const firstHistory = [{ status: "Soumis", date: now, comment: "" }];
       /* Demande complète (données personnelles) — lisible par l'admin connecté uniquement */
-      await FS.setDoc(FS.doc(db,"demandes",trackingNumber),{
-        trackingNumber, documentType: dt?dt.key:"", documentTypeName: docNameFr,
-        commonFields, status:"Soumis", statusHistory:firstHistory,
+      await FS.setDoc(FS.doc(db, "demandes", trackingNumber), {
+        trackingNumber, documentType: dt ? dt.key : "", documentTypeName: docNameFr,
+        commonFields, status: "Soumis", statusHistory: firstHistory,
         language: lang, createdAt: FS.serverTimestamp()
       });
       /* Miroir public de suivi — AUCUNE donnée personnelle */
-      await FS.setDoc(FS.doc(db,"suivi_public",trackingNumber),{
-        trackingNumber, documentType: dt?dt.key:"", documentTypeName: docNameFr,
-        status:"Soumis", statusHistory:firstHistory,
+      await FS.setDoc(FS.doc(db, "suivi_public", trackingNumber), {
+        trackingNumber, documentType: dt ? dt.key : "", documentTypeName: docNameFr,
+        status: "Soumis", statusHistory: firstHistory,
         language: lang, createdAt: FS.serverTimestamp()
       });
     } else {
@@ -416,60 +558,76 @@ form.addEventListener("submit", async e=>{
 
     await sendEmails({ trackingNumber, commonFields, docNameClient, docNameFr });
 
-    showConfirmation(commonFields.firstName);
-    form.reset(); fillTypes();
-  }catch(err){
+    showConfirmation(commonFields.firstName, trackingNumber);
+    form.reset();
+    fillTypes();
+  } catch (err) {
     console.error(err);
-    toast(t().toastError,true);
-  }finally{
-    submitBtn.classList.remove("loading"); submitBtn.disabled=false;
+    MND.toast(MND.t('toastError'), true);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.style.opacity = '';
+    submitLabel.textContent = MND.t('submitBtn');
   }
 });
 
-async function sendEmails({ trackingNumber, commonFields, docNameClient, docNameFr }){
-  if(!window.emailjs) return;
-  const fullName=`${commonFields.firstName} ${commonFields.lastName}`;
+async function sendEmails({ trackingNumber, commonFields, docNameClient, docNameFr }) {
+  if (!window.emailjs) return;
+  const fullName = commonFields.firstName + ' ' + commonFields.lastName;
 
   /* CLIENT — traduit dans la langue du formulaire */
-  const clientParams={
+  const clientParams = {
     to_email: commonFields.email,
-    subject: t().emailSubject,
-    message: t().emailBody(fullName, docNameClient)
+    subject: MND.t('emailSubject'),
+    message: MND.raw('emailBody')(fullName, docNameClient)
   };
   /* ADMIN — notification (toujours en français) */
   const adminMessage =
-`Nouvelle demande — ${trackingNumber}
+    'Nouvelle demande — ' + trackingNumber + '\n\n' +
+    'Type de document : ' + docNameFr + '\n' +
+    'Langue du formulaire : ' + MND.getLang().toUpperCase() + '\n\n' +
+    '— Identité —\n' +
+    commonFields.firstName + ' ' + commonFields.lastName + '\n' +
+    'Email : ' + commonFields.email + '\n' +
+    'Téléphone : ' + commonFields.phone + '\n\n' +
+    '— Adresse —\n' +
+    commonFields.street + '\n' +
+    commonFields.zip + ' ' + commonFields.city + '\n' +
+    commonFields.country;
+  const adminParams = {
+    to_email: ADMIN_EMAIL,
+    subject: 'Nouvelle demande MY NEW DOCUMENT - ' + trackingNumber,
+    message: adminMessage
+  };
 
-Type de document : ${docNameFr}
-Langue du formulaire : ${lang.toUpperCase()}
-
-— Identité —
-${commonFields.firstName} ${commonFields.lastName}
-Email : ${commonFields.email}
-Téléphone : ${commonFields.phone}
-
-— Adresse —
-${commonFields.street}
-${commonFields.zip} ${commonFields.city}
-${commonFields.country}`;
-  const adminParams={ to_email: ADMIN_EMAIL, subject:`Nouvelle demande MY NEW DOCUMENT - ${trackingNumber}`, message: adminMessage };
-
-  try{
+  try {
     await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_CLIENT, clientParams);
     await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ADMIN, adminParams);
-  }catch(e){ console.error("EmailJS:",e); }
+  } catch (e) {
+    console.error("EmailJS:", e);
+  }
 }
 
-function showConfirmation(firstName){
-  $("#cfGreet").textContent=t().greet(firstName);
-  $("#confirmOverlay").classList.add("show");
+const overlay = MND.byId('confirmOverlay');
+let lastFocus = null;
+
+function showConfirmation(firstName, trackingNumber) {
+  MND.byId('cfGreet').textContent = MND.raw('greet')(firstName);
+  MND.byId('cfTrackNum').textContent = trackingNumber;
+  lastFocus = document.activeElement;
+  overlay.classList.add('show');
+  document.body.style.overflow = 'hidden';
+  const btn = MND.byId('cfClose');
+  if (btn) btn.focus();
 }
-$("#cfClose").addEventListener("click",()=> $("#confirmOverlay").classList.remove("show"));
-
-let toastTimer;
-function toast(msg,err=false){ const el=$("#toast"); el.textContent=msg; el.classList.toggle("error",err); el.classList.add("show"); clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.classList.remove("show"),4000); }
-
-applyLang();
+function closeConfirm() {
+  overlay.classList.remove('show');
+  document.body.style.overflow = '';
+  if (lastFocus) lastFocus.focus();
+}
+MND.byId('cfClose').addEventListener('click', closeConfirm);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeConfirm(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('show')) closeConfirm(); });
 </script>
 </body>
 </html>
