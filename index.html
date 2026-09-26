@@ -82,10 +82,10 @@
   /* Animation de progression simulée jusqu'à 85% */
   var fake=0;
   var fakeTimer=setInterval(function(){
-    fake+=Math.random()*8;
+    fake+=Math.random()*4;
     if(fake>=85){fake=85;clearInterval(fakeTimer);}
     setProgress(fake);
-  },180);
+  },220);
 
   /* Quand la vidéo hero est prête */
   function watchVideo(){
@@ -97,10 +97,10 @@
     video.addEventListener('canplay',function(){
       clearInterval(fakeTimer);setProgress(100);
     },{once:true});
-    /* Fallback : si la vidéo met trop longtemps (>4s) on ouvre quand même */
+    /* Fallback : si la vidéo met trop longtemps (>7s) on ouvre quand même */
     setTimeout(function(){
       clearInterval(fakeTimer);setProgress(100);
-    },4000);
+    },7000);
   }
 
   /* Attendre que le DOM soit prêt pour chercher la vidéo */
@@ -184,9 +184,6 @@
         <source src="videos/hero2.mp4" type="video/mp4">
       </video>
     </div>
-    <span class="slot-tag" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="14" height="14" rx="2"/><path d="M16 10l6-3v10l-6-3z"/></svg>
-      <span data-i18n="videoSlot">Emplacement vidéo</span>&nbsp;— videos/hero.mp4
     </span>
     <div class="wrap">
       <div>
@@ -405,9 +402,6 @@
     <video class="full-media" autoplay muted loop playsinline preload="auto" poster="images/produit-5.jpeg" aria-label="Vidéo d'expérience utilisateur">
       <source src="videos/hero.mp4" type="video/mp4">
     </video>
-    <span class="slot-tag" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="14" height="14" rx="2"/><path d="M16 10l6-3v10l-6-3z"/></svg>
-      <span data-i18n="videoSlot">Emplacement vidéo</span>&nbsp;— videos/hero.mp4
     </span>
     <div class="wrap">
       <h2 data-i18n-html="expTitle">Vivre l'expérience <span class="gap-box">en ligne</span></h2>
@@ -431,9 +425,6 @@
     <video class="full-media" autoplay muted loop playsinline preload="auto" poster="images/produit-9.jpeg" aria-label="Vidéo de suivi de A à Z">
       <source src="videos/hero2.mp4" type="video/mp4">
     </video>
-    <span class="slot-tag" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="14" height="14" rx="2"/><path d="M16 10l6-3v10l-6-3z"/></svg>
-      <span data-i18n="videoSlot">Emplacement vidéo</span>&nbsp;— videos/hero2.mp4
     </span>
     <div class="wrap">
       <h2 data-i18n-html="engTitle">Un <span class="gap-box">suivi</span> de A à Z</h2>
