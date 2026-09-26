@@ -17,8 +17,100 @@
 
 <link rel="stylesheet" href="theme.css">
 <!-- Polices Anton + Barlow auto-hebergees, aucun hotlink Google Fonts. -->
+<style>
+/* ===== LOADER ===== */
+#loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--Primaire3);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+  transition:opacity .6s ease, visibility .6s ease;
+}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{display:flex;flex-direction:column;align-items:center;gap:14px}
+.loader-logo img{width:56px;height:56px;object-fit:contain;animation:loader-pulse 1.8s ease-in-out infinite}
+.loader-name{font-family:var(--font-display);font-size:clamp(1.1rem,2vw,1.5rem);
+  text-transform:uppercase;letter-spacing:.18em;color:var(--Primaire2)}
+.loader-sub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);margin-top:-8px}
+.loader-bar-wrap{width:180px;height:2px;background:rgba(255,255,255,.12);overflow:hidden}
+.loader-bar{height:100%;width:0%;background:var(--Secondaire1);
+  transition:width .3s ease;border-radius:0}
+.loader-pct{font-size:.72rem;letter-spacing:.1em;color:rgba(255,255,255,.4);
+  font-family:ui-monospace,monospace}
+@keyframes loader-pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.6;transform:scale(.92)}
+}
+</style>
 </head>
 <body>
+
+<!-- ===== LOADER ===== -->
+<div id="loader" role="status" aria-label="Chargement du site en cours">
+  <div class="loader-logo">
+    <img src="logo.png" alt="MY NEW DOCUMENT">
+    <span class="loader-name">My New Document</span>
+    <span class="loader-sub">Service de documents</span>
+  </div>
+  <div class="loader-bar-wrap">
+    <div class="loader-bar" id="loaderBar"></div>
+  </div>
+  <span class="loader-pct" id="loaderPct">0%</span>
+</div>
+
+<script>
+(function(){
+  var bar=document.getElementById('loaderBar');
+  var pct=document.getElementById('loaderPct');
+  var loader=document.getElementById('loader');
+  var progress=0;
+  var video=null;
+
+  function setProgress(val){
+    progress=Math.min(100,Math.round(val));
+    bar.style.width=progress+'%';
+    pct.textContent=progress+'%';
+    if(progress>=100) hide();
+  }
+
+  function hide(){
+    setTimeout(function(){
+      loader.classList.add('hidden');
+    },300);
+  }
+
+  /* Animation de progression simulée jusqu'à 85% */
+  var fake=0;
+  var fakeTimer=setInterval(function(){
+    fake+=Math.random()*8;
+    if(fake>=85){fake=85;clearInterval(fakeTimer);}
+    setProgress(fake);
+  },180);
+
+  /* Quand la vidéo hero est prête */
+  function watchVideo(){
+    video=document.querySelector('.hero-video');
+    if(!video){setTimeout(watchVideo,100);return;}
+    if(video.readyState>=3){
+      clearInterval(fakeTimer);setProgress(100);return;
+    }
+    video.addEventListener('canplay',function(){
+      clearInterval(fakeTimer);setProgress(100);
+    },{once:true});
+    /* Fallback : si la vidéo met trop longtemps (>4s) on ouvre quand même */
+    setTimeout(function(){
+      clearInterval(fakeTimer);setProgress(100);
+    },4000);
+  }
+
+  /* Attendre que le DOM soit prêt pour chercher la vidéo */
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',watchVideo,{once:true});
+  } else {
+    watchVideo();
+  }
+})();
+</script>
 <a class="skip" href="#main">Aller au contenu principal</a>
 
 <!-- ===== 1. HEADER FIXE (89px) ===== -->
