@@ -227,8 +227,8 @@
       <!-- Sélection procédure -->
       <div class="sec-head reveal" style="margin-bottom:24px">
         <div>
-          <span class="eyebrow">Étape 1</span>
-          <h2 style="margin-top:12px">Choisissez votre procédure</h2>
+          <span class="eyebrow" data-i18n="step1">Étape 1</span>
+          <h2 style="margin-top:12px" data-i18n="step1Title">Choisissez votre procédure</h2>
         </div>
       </div>
       <div class="procedure-grid reveal" id="procedureGrid"></div>
@@ -242,27 +242,27 @@
           <!-- Coordonnées -->
           <div class="sec-head" style="margin-bottom:22px">
             <div>
-              <span class="eyebrow">Étape 2</span>
-              <h3 style="margin-top:10px;font-size:clamp(1.1rem,1.6vw,1.4rem)">Vos coordonnées</h3>
+              <span class="eyebrow" data-i18n="step2">Étape 2</span>
+              <h3 style="margin-top:10px;font-size:clamp(1.1rem,1.6vw,1.4rem)" data-i18n="step2Title">Vos coordonnées</h3>
             </div>
           </div>
           <div class="field-row-2">
             <div class="soum-field">
-              <label for="firstName">Prénom <span class="req">*</span></label>
+              <label for="firstName"><span data-i18n="labelFirst">Prénom</span> <span class="req">*</span></label>
               <input class="soum-input" id="firstName" type="text" placeholder="Jean" autocomplete="given-name">
             </div>
             <div class="soum-field">
-              <label for="lastName">Nom <span class="req">*</span></label>
+              <label for="lastName"><span data-i18n="labelLast">Nom</span> <span class="req">*</span></label>
               <input class="soum-input" id="lastName" type="text" placeholder="Dupont" autocomplete="family-name">
             </div>
           </div>
           <div class="field-row-2">
             <div class="soum-field">
-              <label for="email">Email <span class="req">*</span></label>
+              <label for="email"><span data-i18n="labelEmail">Email</span> <span class="req">*</span></label>
               <input class="soum-input" id="email" type="email" placeholder="vous@exemple.com" autocomplete="email">
             </div>
             <div class="soum-field">
-              <label for="phone">Téléphone</label>
+              <label for="phone"><span data-i18n="labelPhone">Téléphone</span></label>
               <input class="soum-input" id="phone" type="tel" placeholder="+33 6 00 00 00 00" autocomplete="tel">
             </div>
           </div>
@@ -270,8 +270,8 @@
           <!-- Documents -->
           <div class="soum-sep">
             <div>
-              <span class="eyebrow">Étape 3</span>
-              <h3 id="docsTitle" style="margin-top:6px;font-size:clamp(1.1rem,1.6vw,1.4rem)">Documents requis</h3>
+              <span class="eyebrow" data-i18n="step3">Étape 3</span>
+              <h3 id="docsTitle" style="margin-top:6px;font-size:clamp(1.1rem,1.6vw,1.4rem)" data-i18n="step3Title">Documents requis</h3>
             </div>
             <div class="progress-pill">
               <span id="progressLabel">0 / 0</span>
@@ -285,8 +285,8 @@
 
           <!-- Actions -->
           <div class="submit-zone">
-            <p class="submit-note">Formats acceptés : PDF, JPG, PNG — 2 Mo maximum par fichier.</p>
-            <button class="btn btn-accent" id="submitBtn" type="button" disabled>
+            <p class="submit-note" data-i18n="submitNote">Formats acceptés : PDF, JPG, PNG — 2 Mo maximum par fichier.</p>
+            <button class="btn btn-accent" id="submitBtn" type="button" disabled data-i18n="submitBtn">
               Soumettre mon dossier
             </button>
           </div>
@@ -294,26 +294,26 @@
 
         <!-- Aside -->
         <aside class="soum-aside">
-          <span class="eyebrow on-dark" style="margin-bottom:14px;display:flex">À préparer</span>
-          <h3>Ce dont vous<br>avez besoin</h3>
+          <span class="eyebrow on-dark" style="margin-bottom:14px;display:flex" data-i18n="asideLabel">À préparer</span>
+          <h3 data-i18n="asideNeedTitle">Ce dont vous<br>avez besoin</h3>
           <ul class="aside-checklist">
-            <li>Vos documents d'identité en cours de validité</li>
-            <li>Une photo numérique récente, fond uni</li>
-            <li>Un justificatif de domicile de moins de 3 mois</li>
-            <li>Les formulaires téléchargés et complétés</li>
-            <li>Fichiers nommés clairement (ex. photo_identite.jpg)</li>
+            <li data-i18n="asideL1">Vos documents d'identité en cours de validité</li>
+            <li data-i18n="asideL2">Une photo numérique récente, fond uni</li>
+            <li data-i18n="asideL3">Un justificatif de domicile de moins de 3 mois</li>
+            <li data-i18n="asideL4">Les formulaires téléchargés et complétés</li>
+            <li data-i18n="asideL5">Fichiers nommés clairement (ex. photo_identite.jpg)</li>
           </ul>
           <hr class="aside-sep">
-          <h3 style="margin-bottom:14px">Récapitulatif</h3>
-          <div class="aside-stat"><span>Procédure</span><strong id="asideProcedure">—</strong></div>
-          <div class="aside-stat"><span>Documents requis</span><strong id="asideTotal">—</strong></div>
-          <div class="aside-stat"><span>Fournis</span><strong id="asideFournis">0</strong></div>
-          <div class="aside-stat"><span>Délai de traitement</span><strong>24 h</strong></div>
+          <h3 style="margin-bottom:14px" data-i18n="asideSummaryTitle">Récapitulatif</h3>
+          <div class="aside-stat"><span data-i18n="asideProc">Procédure</span><strong id="asideProcedure">—</strong></div>
+          <div class="aside-stat"><span data-i18n="asideReq">Documents requis</span><strong id="asideTotal">—</strong></div>
+          <div class="aside-stat"><span data-i18n="asideProvided">Fournis</span><strong id="asideFournis">0</strong></div>
+          <div class="aside-stat"><span data-i18n="asideDelay">Délai de traitement</span><strong>24 h</strong></div>
           <hr class="aside-sep">
-          <p style="font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6">
+          <p style="font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6" data-i18n="asideInfo">
             Après soumission, vous recevrez un code de suivi par email pour suivre votre dossier en temps réel.
           </p>
-          <a class="btn btn-ghost" href="suivi.html" style="margin-top:18px;width:100%;justify-content:center">Suivre une demande existante</a>
+          <a class="btn btn-ghost" href="suivi.html" style="margin-top:18px;width:100%;justify-content:center" data-i18n="asideTrack">Suivre une demande existante</a>
         </aside>
       </div>
 
@@ -324,11 +324,11 @@
   <section class="page-cta">
     <div class="wrap page-cta-grid reveal">
       <div>
-        <span class="eyebrow on-dark">Questions ?</span>
-        <h2 style="margin-top:12px">Notre équipe est disponible</h2>
+        <span class="eyebrow on-dark" data-i18n="ctaEyebrow">Questions ?</span>
+        <h2 style="margin-top:12px" data-i18n="ctaTitle">Notre équipe est disponible</h2>
       </div>
-      <p>Du lundi au vendredi, de 09:00 à 18:00. Réponse sous 24 h.</p>
-      <a class="btn btn-accent" href="contact.html">Nous contacter</a>
+      <p data-i18n="ctaText">Du lundi au vendredi, de 09:00 à 18:00. Réponse sous 24 h.</p>
+      <a class="btn btn-accent" href="contact.html" data-i18n="ctaBtn">Nous contacter</a>
     </div>
   </section>
 
@@ -364,13 +364,13 @@
     <div class="success-icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
-    <h2 id="successTitle">Dossier envoyé</h2>
-    <p>Votre demande a bien été enregistrée. Notre équipe vérifiera vos pièces et vous répondra dans les 24 heures.</p>
+    <h2 id="successTitle" data-i18n="successTitle">Dossier envoyé</h2>
+    <p data-i18n="successText">Votre demande a bien été enregistrée. Notre équipe vérifiera vos pièces et vous répondra dans les 24 heures.</p>
     <div class="tracking-pill" id="trackingCode">MND-000000</div>
-    <p style="font-size:.82rem;color:var(--Secondaire4);margin-bottom:24px">Conservez ce code pour suivre l'avancement de votre dossier.</p>
+    <p style="font-size:.82rem;color:var(--Secondaire4);margin-bottom:24px" data-i18n="successNote">Conservez ce code pour suivre l'avancement de votre dossier.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a class="btn btn-dark" href="suivi.html">Suivre mon dossier</a>
-      <button class="btn btn-accent" id="closeSuccess">Retour à l'accueil</button>
+      <a class="btn btn-dark" href="suivi.html" data-i18n="successTrack">Suivre mon dossier</a>
+      <button class="btn btn-accent" id="closeSuccess" data-i18n="successHome">Retour à l'accueil</button>
     </div>
   </div>
 </div>
@@ -387,18 +387,43 @@ MND.init({
   fr:{
     docTitle:"Soumission de dossier — MY NEW DOCUMENT",
     docDesc:"Soumettez vos pièces justificatives en ligne pour votre passeport, carte d'identité, carte de séjour ou permis de conduire.",
-    brandAria:"MY NEW DOCUMENT, accueil",
-    brandSub:"Service de documents",
+    brandAria:"MY NEW DOCUMENT, accueil", brandSub:"Service de documents",
     menuOpen:"Ouvrir le menu", menuClose:"Fermer le menu", menuLabel:"Menu principal",
     navHome:"Accueil", navAbout:"À propos", navOrder:"Commander", navTrack:"Suivi",
     navHelp:"Aide", navContact:"Contact", navCta:"Commander",
     asideEyebrow:"Documents administratifs",
     asideTitle:"Votre demande en ligne, suivie de A à Z",
     asideText:"Passeport, carte d'identité, carte de séjour, permis de conduire. Instructions claires par email et code de suivi personnel.",
-    asideCta:"Commencer ma demande",
-    asideHours:"Lundi au vendredi · 09:00 – 18:00",
-    footNavLabel:"Navigation de pied de page",
-    giantWord:"Documents"
+    asideCta:"Commencer ma demande", asideHours:"Lundi au vendredi · 09:00 – 18:00",
+    footNavLabel:"Navigation de pied de page", giantWord:"Documents",
+    step1:"Étape 1", step1Title:"Choisissez votre procédure",
+    step2:"Étape 2", step2Title:"Vos coordonnées",
+    step3:"Étape 3", step3Title:"Documents requis",
+    labelFirst:"Prénom", labelLast:"Nom", labelEmail:"Email", labelPhone:"Téléphone",
+    submitNote:"Formats acceptés : PDF, JPG, PNG — 2 Mo maximum par fichier.",
+    submitBtn:"Soumettre mon dossier",
+    asideLabel:"À préparer", asideNeedTitle:"Ce dont vous avez besoin",
+    asideL1:"Vos documents d'identité en cours de validité",
+    asideL2:"Une photo numérique récente, fond uni",
+    asideL3:"Un justificatif de domicile de moins de 3 mois",
+    asideL4:"Les formulaires téléchargés et complétés",
+    asideL5:"Fichiers nommés clairement (ex. photo_identite.jpg)",
+    asideSummaryTitle:"Récapitulatif", asideProc:"Procédure",
+    asideReq:"Documents requis", asideProvided:"Fournis",
+    asideDelay:"Délai de traitement", asideTrack:"Suivre une demande existante",
+    asideInfo:"Après soumission, vous recevrez un code de suivi par email pour suivre votre dossier en temps réel.",
+    ctaEyebrow:"Questions ?", ctaTitle:"Notre équipe est disponible",
+    ctaText:"Du lundi au vendredi, de 09:00 à 18:00. Réponse sous 24 h.", ctaBtn:"Nous contacter",
+    addFile:"Ajouter un fichier", replaceFile:"Remplacer le fichier", dlTemplate:"Télécharger le modèle",
+    noFile:"Aucun fichier sélectionné", errSize:"Le fichier dépasse la limite de 2 Mo.",
+    errFormat:"Format non accepté. Utilisez PDF, JPG ou PNG.",
+    alertFields:"Veuillez renseigner vos prénom, nom et email.",
+    alertDocs:"Veuillez fournir tous les documents obligatoires.",
+    optional:"optionnel",
+    successTitle:"Dossier envoyé",
+    successText:"Votre demande a bien été enregistrée. Notre équipe vérifiera vos pièces et vous répondra dans les 24 heures.",
+    successNote:"Conservez ce code pour suivre l'avancement de votre dossier.",
+    successTrack:"Suivre mon dossier", successHome:"Retour à l'accueil"
   },
   en:{
     docTitle:"Submit your file — MY NEW DOCUMENT",
@@ -410,10 +435,36 @@ MND.init({
     asideEyebrow:"Administrative documents",
     asideTitle:"Your online application, tracked A to Z",
     asideText:"Passport, ID card, residence permit, driving licence. Clear instructions by email and a personal tracking code.",
-    asideCta:"Start my application",
-    asideHours:"Monday to Friday · 09:00 – 18:00",
-    footNavLabel:"Footer navigation",
-    giantWord:"Documents"
+    asideCta:"Start my application", asideHours:"Monday to Friday · 09:00 – 18:00",
+    footNavLabel:"Footer navigation", giantWord:"Documents",
+    step1:"Step 1", step1Title:"Choose your procedure",
+    step2:"Step 2", step2Title:"Your details",
+    step3:"Step 3", step3Title:"Required documents",
+    labelFirst:"First name", labelLast:"Last name", labelEmail:"Email", labelPhone:"Phone",
+    submitNote:"Accepted formats: PDF, JPG, PNG — 2 MB maximum per file.",
+    submitBtn:"Submit my file",
+    asideLabel:"To prepare", asideNeedTitle:"What you need",
+    asideL1:"Your valid identity documents",
+    asideL2:"A recent digital photo, plain background",
+    asideL3:"Proof of address less than 3 months old",
+    asideL4:"Downloaded and completed forms",
+    asideL5:"Files clearly named (e.g. identity_photo.jpg)",
+    asideSummaryTitle:"Summary", asideProc:"Procedure",
+    asideReq:"Required documents", asideProvided:"Provided",
+    asideDelay:"Processing time", asideTrack:"Track an existing application",
+    asideInfo:"After submission, you will receive a tracking code by email to follow your file in real time.",
+    ctaEyebrow:"Questions?", ctaTitle:"Our team is available",
+    ctaText:"Monday to Friday, 09:00 to 18:00. Reply within 24 hours.", ctaBtn:"Contact us",
+    addFile:"Add a file", replaceFile:"Replace file", dlTemplate:"Download template",
+    noFile:"No file selected", errSize:"File exceeds the 2 MB limit.",
+    errFormat:"Format not accepted. Use PDF, JPG or PNG.",
+    alertFields:"Please fill in your first name, last name and email.",
+    alertDocs:"Please provide all required documents.",
+    optional:"optional",
+    successTitle:"File submitted",
+    successText:"Your application has been recorded. Our team will review your documents and get back to you within 24 hours.",
+    successNote:"Keep this code to track your file.",
+    successTrack:"Track my file", successHome:"Back to home"
   },
   de:{
     docTitle:"Unterlagen einreichen — MY NEW DOCUMENT",
@@ -425,10 +476,36 @@ MND.init({
     asideEyebrow:"Amtliche Dokumente",
     asideTitle:"Ihr Online-Antrag, von A bis Z begleitet",
     asideText:"Reisepass, Personalausweis, Aufenthaltstitel, Führerschein. Klare Anweisungen per E-Mail und persönlicher Tracking-Code.",
-    asideCta:"Antrag starten",
-    asideHours:"Montag bis Freitag · 09:00 – 18:00",
-    footNavLabel:"Fußzeilen-Navigation",
-    giantWord:"Dokumente"
+    asideCta:"Antrag starten", asideHours:"Montag bis Freitag · 09:00 – 18:00",
+    footNavLabel:"Fußzeilen-Navigation", giantWord:"Dokumente",
+    step1:"Schritt 1", step1Title:"Verfahren auswählen",
+    step2:"Schritt 2", step2Title:"Ihre Angaben",
+    step3:"Schritt 3", step3Title:"Erforderliche Dokumente",
+    labelFirst:"Vorname", labelLast:"Nachname", labelEmail:"E-Mail", labelPhone:"Telefon",
+    submitNote:"Akzeptierte Formate: PDF, JPG, PNG — max. 2 MB pro Datei.",
+    submitBtn:"Akte einreichen",
+    asideLabel:"Vorzubereiten", asideNeedTitle:"Was Sie benötigen",
+    asideL1:"Gültige Ausweisdokumente",
+    asideL2:"Aktuelles digitales Foto, einfarbiger Hintergrund",
+    asideL3:"Wohnsitznachweis, nicht älter als 3 Monate",
+    asideL4:"Heruntergeladene und ausgefüllte Formulare",
+    asideL5:"Dateien klar benennen (z.B. ausweis_foto.jpg)",
+    asideSummaryTitle:"Zusammenfassung", asideProc:"Verfahren",
+    asideReq:"Erforderliche Dokumente", asideProvided:"Eingereicht",
+    asideDelay:"Bearbeitungszeit", asideTrack:"Bestehenden Antrag verfolgen",
+    asideInfo:"Nach der Einreichung erhalten Sie per E-Mail einen Tracking-Code, um Ihre Akte in Echtzeit zu verfolgen.",
+    ctaEyebrow:"Fragen?", ctaTitle:"Unser Team ist verfügbar",
+    ctaText:"Montag bis Freitag, 09:00 bis 18:00 Uhr. Antwort innerhalb von 24 Stunden.", ctaBtn:"Kontakt aufnehmen",
+    addFile:"Datei hinzufügen", replaceFile:"Datei ersetzen", dlTemplate:"Vorlage herunterladen",
+    noFile:"Keine Datei ausgewählt", errSize:"Die Datei überschreitet das Limit von 2 MB.",
+    errFormat:"Format nicht akzeptiert. Verwenden Sie PDF, JPG oder PNG.",
+    alertFields:"Bitte geben Sie Vorname, Nachname und E-Mail ein.",
+    alertDocs:"Bitte stellen Sie alle erforderlichen Dokumente bereit.",
+    optional:"optional",
+    successTitle:"Akte eingereicht",
+    successText:"Ihr Antrag wurde erfasst. Unser Team prüft Ihre Unterlagen und antwortet Ihnen innerhalb von 24 Stunden.",
+    successNote:"Bewahren Sie diesen Code auf, um Ihre Akte zu verfolgen.",
+    successTrack:"Meine Akte verfolgen", successHome:"Zurück zur Startseite"
   },
   it:{
     docTitle:"Invio documenti — MY NEW DOCUMENT",
@@ -440,10 +517,36 @@ MND.init({
     asideEyebrow:"Documenti amministrativi",
     asideTitle:"La tua richiesta online, seguita dalla A alla Z",
     asideText:"Passaporto, carta d'identità, permesso di soggiorno, patente. Istruzioni chiare via email e codice di tracciamento personale.",
-    asideCta:"Inizia la mia richiesta",
-    asideHours:"Lunedì al venerdì · 09:00 – 18:00",
-    footNavLabel:"Navigazione del piè di pagina",
-    giantWord:"Documenti"
+    asideCta:"Inizia la mia richiesta", asideHours:"Lunedì al venerdì · 09:00 – 18:00",
+    footNavLabel:"Navigazione del piè di pagina", giantWord:"Documenti",
+    step1:"Fase 1", step1Title:"Scegli la tua procedura",
+    step2:"Fase 2", step2Title:"I tuoi dati",
+    step3:"Fase 3", step3Title:"Documenti richiesti",
+    labelFirst:"Nome", labelLast:"Cognome", labelEmail:"Email", labelPhone:"Telefono",
+    submitNote:"Formati accettati: PDF, JPG, PNG — max 2 MB per file.",
+    submitBtn:"Invia il mio dossier",
+    asideLabel:"Da preparare", asideNeedTitle:"Cosa ti serve",
+    asideL1:"I tuoi documenti d'identità in corso di validità",
+    asideL2:"Una foto digitale recente, sfondo neutro",
+    asideL3:"Prova di residenza di meno di 3 mesi",
+    asideL4:"Moduli scaricati e compilati",
+    asideL5:"File denominati chiaramente (es. foto_identita.jpg)",
+    asideSummaryTitle:"Riepilogo", asideProc:"Procedura",
+    asideReq:"Documenti richiesti", asideProvided:"Forniti",
+    asideDelay:"Tempo di elaborazione", asideTrack:"Seguire una richiesta esistente",
+    asideInfo:"Dopo l'invio, riceverai un codice di tracciamento via email per seguire il tuo dossier in tempo reale.",
+    ctaEyebrow:"Domande?", ctaTitle:"Il nostro team è disponibile",
+    ctaText:"Dal lunedì al venerdì, dalle 09:00 alle 18:00. Risposta entro 24 ore.", ctaBtn:"Contattaci",
+    addFile:"Aggiungi un file", replaceFile:"Sostituisci file", dlTemplate:"Scarica modello",
+    noFile:"Nessun file selezionato", errSize:"Il file supera il limite di 2 MB.",
+    errFormat:"Formato non accettato. Usa PDF, JPG o PNG.",
+    alertFields:"Si prega di inserire nome, cognome ed email.",
+    alertDocs:"Si prega di fornire tutti i documenti obbligatori.",
+    optional:"opzionale",
+    successTitle:"Dossier inviato",
+    successText:"La tua richiesta è stata registrata. Il nostro team verificherà i tuoi documenti e ti risponderà entro 24 ore.",
+    successNote:"Conserva questo codice per seguire l'avanzamento del tuo dossier.",
+    successTrack:"Segui il mio dossier", successHome:"Torna alla home"
   }
 });
 </script>
@@ -530,12 +633,21 @@ async function initFirebase(){
 
 /* ===== RENDER PROCÉDURES ===== */
 function renderProcedures(){
-  const grid=document.getElementById("procedureGrid");
-  grid.innerHTML=Object.entries(PROCEDURES).map(([key,val])=>`
-    <button class="procedure-btn${selectedProc===key?" active":""}" type="button" data-proc="${key}">
-      <h3>${val.label}</h3>
-      <small>${val.docs.length} document${val.docs.length>1?"s":""}</small>
-    </button>`).join("");
+  var PROC_LABELS={
+    passport:    {fr:"Passeport",       en:"Passport",       de:"Reisepass",    it:"Passaporto"},
+    id_card:     {fr:"Carte d'identité",en:"ID Card",        de:"Personalausweis",it:"Carta d'identità"},
+    residence_permit:{fr:"Carte de séjour",en:"Residence Permit",de:"Aufenthaltstitel",it:"Permesso di soggiorno"},
+    driving_license: {fr:"Permis de conduire",en:"Driving Licence",de:"Führerschein",it:"Patente di guida"}
+  };
+  var lang=MND.getLang()||'fr';
+  var grid=document.getElementById("procedureGrid");
+  grid.innerHTML=Object.entries(PROCEDURES).map(([key,val])=>{
+    var label=(PROC_LABELS[key]&&PROC_LABELS[key][lang])||val.label;
+    return `<button class="procedure-btn${selectedProc===key?" active":""}" type="button" data-proc="${key}">
+      <h3>${label}</h3>
+      <small>${val.docs.length} ${val.docs.length>1?(lang==='fr'?'documents':lang==='de'?'Dokumente':lang==='it'?'documenti':'documents'):(lang==='fr'?'document':lang==='de'?'Dokument':lang==='it'?'documento':'document')}</small>
+    </button>`;
+  }).join("");
   grid.querySelectorAll(".procedure-btn").forEach(btn=>{
     btn.addEventListener("click",()=>{
       selectedProc=btn.dataset.proc;
@@ -550,34 +662,49 @@ function renderProcedures(){
 /* ===== RENDER DOCUMENTS ===== */
 function renderDocs(){
   const proc=PROCEDURES[selectedProc];
-  document.getElementById("docsTitle").textContent=`${proc.label} — documents requis`;
+  const lang=MND.getLang()||'fr';
+  const addTxt=MND.t('addFile')||'Ajouter un fichier';
+  const replaceTxt=MND.t('replaceFile')||'Remplacer le fichier';
+  const dlTxt=MND.t('dlTemplate')||'Télécharger le modèle';
+  const noFileTxt=MND.t('noFile')||'Aucun fichier sélectionné';
+  const optTxt=MND.t('optional')||'optionnel';
+  const PROC_TITLES={
+    passport:    {fr:"Passeport — documents requis",       en:"Passport — required documents",       de:"Reisepass — erforderliche Dokumente",    it:"Passaporto — documenti richiesti"},
+    id_card:     {fr:"Carte d'identité — documents requis",en:"ID Card — required documents",        de:"Personalausweis — erforderliche Dokumente",it:"Carta d'identità — documenti richiesti"},
+    residence_permit:{fr:"Carte de séjour — documents requis",en:"Residence Permit — required documents",de:"Aufenthaltstitel — erforderliche Dokumente",it:"Permesso di soggiorno — documenti richiesti"},
+    driving_license: {fr:"Permis de conduire — documents requis",en:"Driving Licence — required documents",de:"Führerschein — erforderliche Dokumente",it:"Patente — documenti richiesti"}
+  };
+  const titleEl=document.getElementById("docsTitle");
+  if(titleEl) titleEl.textContent=(PROC_TITLES[selectedProc]&&PROC_TITLES[selectedProc][lang])||proc.label;
   const list=document.getElementById("docList");
   list.innerHTML=proc.docs.map((doc,i)=>{
     const done=!!uploadedFiles[doc.key];
     const inputId=`file-${doc.key}`;
+    const docTitle=doc.titles?doc.titles[lang]||doc.title:doc.title;
+    const docNote=doc.notes?doc.notes[lang]||doc.note:doc.note;
     return `
     <div class="doc-item${done?" ready":""}" data-key="${doc.key}">
       <div class="doc-item-head">
         <div class="doc-num">${done?`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`:i+1}</div>
         <div>
-          <h4>${doc.title}${doc.required===false?" <span style='font-size:.7rem;font-weight:400;text-transform:none;opacity:.6'>(optionnel)</span>":""}</h4>
-          <p>${doc.note}</p>
+          <h4>${docTitle}${doc.required===false?` <span style='font-size:.7rem;font-weight:400;text-transform:none;opacity:.6'>(${optTxt})</span>`:""}</h4>
+          <p>${docNote}</p>
         </div>
       </div>
       <div class="doc-actions">
         ${doc.template?`<button class="btn-download-tpl" data-tpl="${doc.key}" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Télécharger le modèle</button>`:""}
+          ${dlTxt}</button>`:""}
         <div class="upload-zone">
           <label for="${inputId}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            ${done?"Remplacer le fichier":"Ajouter un fichier"}
+            ${done?replaceTxt:addTxt}
           </label>
           <input id="${inputId}" type="file" data-key="${doc.key}" accept="${doc.types.join(",")}">
         </div>
       </div>
       <div class="file-name-display" id="meta-${doc.key}">
-        ${done?`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <strong>${uploadedFiles[doc.key].name}</strong>`:"Aucun fichier sélectionné"}
+        ${done?`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <strong>${uploadedFiles[doc.key].name}</strong>`:noFileTxt}
       </div>
       <div class="file-error" id="err-${doc.key}"></div>
     </div>`;
@@ -611,9 +738,9 @@ function handleFile(e, proc){
   if(!doc) return;
   errEl.textContent=""; errEl.classList.remove("visible");
   if(!file){ delete uploadedFiles[key]; updateProgress(); updateAside(); return; }
-  if(file.size>MAX_SIZE){ errEl.textContent="Le fichier dépasse la limite de 2 Mo."; errEl.classList.add("visible"); input.value=""; return; }
+  if(file.size>MAX_SIZE){ errEl.textContent=MND.t('errSize')||"Le fichier dépasse la limite de 2 Mo."; errEl.classList.add("visible"); input.value=""; return; }
   const ok=doc.types.includes(file.type)||doc.types.some(t=>file.name.toLowerCase().endsWith(t.replace("image/",".")));
-  if(!ok){ errEl.textContent="Format non accepté. Utilisez PDF, JPG ou PNG."; errEl.classList.add("visible"); input.value=""; return; }
+  if(!ok){ errEl.textContent=MND.t('errFormat')||"Format non accepté. Utilisez PDF, JPG ou PNG."; errEl.classList.add("visible"); input.value=""; return; }
   const reader=new FileReader();
   reader.onload=()=>{
     uploadedFiles[key]={name:file.name,size:file.size,type:file.type,dataUrl:reader.result};
@@ -725,10 +852,10 @@ function saveLocal(record){
 }
 
 document.getElementById("submitBtn").addEventListener("click",async()=>{
-  if(!checkFields()){ alert("Veuillez renseigner vos prénom, nom et email."); return; }
+  if(!checkFields()){ alert(MND.t('alertFields')||"Veuillez renseigner vos prénom, nom et email."); return; }
   const proc=PROCEDURES[selectedProc];
   const required=proc.docs.filter(d=>d.required!==false);
-  if(required.some(d=>!uploadedFiles[d.key])){ alert("Veuillez fournir tous les documents obligatoires."); return; }
+  if(required.some(d=>!uploadedFiles[d.key])){ alert(MND.t('alertDocs')||"Veuillez fournir tous les documents obligatoires."); return; }
   await submitDossier();
 });
 
@@ -741,6 +868,24 @@ document.getElementById("closeSuccess").addEventListener("click",()=>{
 renderProcedures();
 renderDocs();
 updateAside();
+
+/* Re-render quand la langue change */
+MND.onLang(function(){
+  renderProcedures();
+  renderDocs();
+  updateAside();
+  /* Modale succès */
+  var t=MND.t.bind(MND)||function(k){return k;};
+  var sTitle=document.getElementById('successTitle');
+  var sText=document.querySelector('.success-modal p');
+  var sNote=document.querySelector('.success-modal p:last-of-type');
+  if(sTitle) sTitle.textContent=MND.t('successTitle')||'';
+  /* Boutons modale */
+  var btnTrack=document.querySelector('.success-modal a.btn');
+  var btnHome=document.getElementById('closeSuccess');
+  if(btnTrack) btnTrack.textContent=MND.t('successTrack')||'';
+  if(btnHome) btnHome.textContent=MND.t('successHome')||'';
+});
 </script>
 </body>
 </html>
