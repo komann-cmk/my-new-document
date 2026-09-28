@@ -566,47 +566,114 @@ const FIREBASE_CONFIG = {
 /* ===== PROCÉDURES ===== */
 const PROCEDURES = {
   passport:{
-    label:"Passeport", count:5,
+    label:"Passeport",
+    labels:{fr:"Passeport",en:"Passport",de:"Reisepass",it:"Passaporto"},
     docs:[
-      {key:"photo",       title:"Photo d'identité récente",          note:"Photo numérique claire et conforme aux critères officiels.",required:true, types:["image/png","image/jpeg","application/pdf"]},
-      {key:"current_id",  title:"Carte d'identité ou passeport actuel", note:"Recto et verso si nécessaire.",                       required:true, types:["image/png","image/jpeg","application/pdf"]},
-      {key:"residency",   title:"Justificatif de domicile",           note:"Facture, quittance ou document de résidence.",           required:true, types:["image/png","image/jpeg","application/pdf"]},
-      {key:"passport_form",title:"Formulaire de demande de passeport",note:"Téléchargez, complétez puis importez le formulaire.",    required:true, types:["application/pdf","image/png","image/jpeg"],
+      {key:"photo",
+        titles:{fr:"Photo d'identité récente",en:"Recent identity photo",de:"Aktuelles Lichtbild",it:"Foto recente"},
+        notes:{fr:"Photo numérique claire et conforme aux critères officiels.",en:"Clear digital photo meeting official criteria.",de:"Klares digitales Foto gemäß den offiziellen Kriterien.",it:"Foto digitale chiara conforme ai criteri ufficiali."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"current_id",
+        titles:{fr:"Carte d'identité ou passeport actuel",en:"Current ID card or passport",de:"Aktuelle Personalausweis oder Reisepass",it:"Carta d'identità o passaporto attuale"},
+        notes:{fr:"Recto et verso si nécessaire.",en:"Front and back if necessary.",de:"Vorder- und Rückseite falls erforderlich.",it:"Fronte e retro se necessario."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"residency",
+        titles:{fr:"Justificatif de domicile",en:"Proof of address",de:"Wohnsitznachweis",it:"Prova di residenza"},
+        notes:{fr:"Facture, quittance ou document de résidence.",en:"Invoice, receipt or residence document.",de:"Rechnung, Quittung oder Wohnnachweis.",it:"Fattura, ricevuta o documento di residenza."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"passport_form",
+        titles:{fr:"Formulaire de demande de passeport",en:"Passport application form",de:"Reisepassantrag",it:"Modulo di richiesta passaporto"},
+        notes:{fr:"Téléchargez, complétez puis importez le formulaire.",en:"Download, complete and upload the form.",de:"Formular herunterladen, ausfüllen und hochladen.",it:"Scarica, compila e carica il modulo."},
+        required:true, types:["application/pdf","image/png","image/jpeg"],
         template:{name:"Formulaire_passeport", content:"FORMULAIRE DE DEMANDE DE PASSEPORT\n\nNom : ...\nPrénom : ...\nDate de naissance : ...\nLieu de naissance : ...\nAdresse : ...\n\nPièces à joindre :\n- Photo d'identité\n- Carte d'identité actuelle\n- Justificatif de domicile\n- Timbre fiscal\n\nDate et signature :"}},
-      {key:"tax_stamp",   title:"Timbre fiscal",                      note:"Timbre fiscal ou justificatif de paiement.",             required:true, types:["image/png","image/jpeg","application/pdf"]}
+      {key:"tax_stamp",
+        titles:{fr:"Timbre fiscal",en:"Tax stamp",de:"Steuermarke",it:"Marca da bollo"},
+        notes:{fr:"Timbre fiscal ou justificatif de paiement.",en:"Tax stamp or payment receipt.",de:"Steuermarke oder Zahlungsnachweis.",it:"Marca da bollo o giustificativo di pagamento."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]}
     ]
   },
   id_card:{
-    label:"Carte d'identité", count:5,
+    label:"Carte d'identité",
+    labels:{fr:"Carte d'identité",en:"ID Card",de:"Personalausweis",it:"Carta d'identità"},
     docs:[
-      {key:"photo",     title:"Photo d'identité récente",        note:"De face, sans filtre, fond uni.",                             required:true, types:["image/png","image/jpeg","application/pdf"]},
-      {key:"old_id",    title:"Ancienne pièce d'identité",       note:"Carte d'identité ou passeport actuel.",                       required:true, types:["image/png","image/jpeg","application/pdf"]},
-      {key:"residency", title:"Justificatif de domicile",        note:"Facture de moins de 3 mois.",                                 required:true, types:["image/png","image/jpeg","application/pdf"]},
-      {key:"birth",     title:"Acte de naissance (si requis)",   note:"Seulement si votre situation l'exige.",                       required:false,types:["image/png","image/jpeg","application/pdf"]},
-      {key:"id_form",   title:"Formulaire de demande CNI",       note:"Téléchargez, complétez puis importez.",                       required:true, types:["application/pdf","image/png","image/jpeg"],
+      {key:"photo",
+        titles:{fr:"Photo d'identité récente",en:"Recent identity photo",de:"Aktuelles Lichtbild",it:"Foto recente"},
+        notes:{fr:"De face, sans filtre, fond uni.",en:"Front facing, no filter, plain background.",de:"Frontal, kein Filter, einfarbiger Hintergrund.",it:"Frontale, senza filtri, sfondo neutro."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"old_id",
+        titles:{fr:"Ancienne pièce d'identité",en:"Previous identity document",de:"Alter Ausweis",it:"Vecchio documento d'identità"},
+        notes:{fr:"Carte d'identité ou passeport actuel.",en:"Current ID card or passport.",de:"Aktueller Personalausweis oder Reisepass.",it:"Carta d'identità o passaporto attuale."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"residency",
+        titles:{fr:"Justificatif de domicile",en:"Proof of address",de:"Wohnsitznachweis",it:"Prova di residenza"},
+        notes:{fr:"Facture de moins de 3 mois.",en:"Invoice less than 3 months old.",de:"Rechnung, nicht älter als 3 Monate.",it:"Fattura di meno di 3 mesi."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"birth",
+        titles:{fr:"Acte de naissance (si requis)",en:"Birth certificate (if required)",de:"Geburtsurkunde (falls erforderlich)",it:"Atto di nascita (se richiesto)"},
+        notes:{fr:"Seulement si votre situation l'exige.",en:"Only if your situation requires it.",de:"Nur wenn Ihre Situation es erfordert.",it:"Solo se la tua situazione lo richiede."},
+        required:false, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"id_form",
+        titles:{fr:"Formulaire de demande CNI",en:"ID card application form",de:"Personalausweisantrag",it:"Modulo richiesta carta d'identità"},
+        notes:{fr:"Téléchargez, complétez puis importez.",en:"Download, complete and upload.",de:"Herunterladen, ausfüllen und hochladen.",it:"Scarica, compila e carica."},
+        required:true, types:["application/pdf","image/png","image/jpeg"],
         template:{name:"Formulaire_CNI", content:"FORMULAIRE DE DEMANDE DE CARTE D'IDENTITÉ\n\nNom : ...\nPrénom : ...\nDate de naissance : ...\nAdresse : ...\n\nJe certifie l'exactitude des informations ci-dessus.\n\nDate et signature :"}}
     ]
   },
   residence_permit:{
-    label:"Carte de séjour", count:6,
+    label:"Carte de séjour",
+    labels:{fr:"Carte de séjour",en:"Residence Permit",de:"Aufenthaltstitel",it:"Permesso di soggiorno"},
     docs:[
-      {key:"passport_origin",title:"Passeport du pays d'origine",  note:"Version scannée ou photo lisible.",                       required:true, types:["image/png","image/jpeg","application/pdf"]},
-      {key:"photo",          title:"Photo d'identité récente",      note:"Format standard, fond uni, sans reflets.",               required:true, types:["image/png","image/jpeg","application/pdf"]},
-      {key:"residency",      title:"Justificatif de domicile",      note:"Adresse en cours de résidence.",                        required:true, types:["image/png","image/jpeg","application/pdf"]},
-      {key:"resources",      title:"Justificatif de ressources",    note:"Relevé bancaire, salaire ou document officiel.",        required:true, types:["image/png","image/jpeg","application/pdf"]},
-      {key:"health",         title:"Attestation d'assurance maladie",note:"Document valide de l'assureur.",                      required:true, types:["image/png","image/jpeg","application/pdf"]},
-      {key:"residence_form", title:"Formulaire de demande",         note:"Téléchargez, complétez puis importez.",                 required:true, types:["application/pdf","image/png","image/jpeg"],
+      {key:"passport_origin",
+        titles:{fr:"Passeport du pays d'origine",en:"Passport from country of origin",de:"Reisepass des Herkunftslandes",it:"Passaporto del paese d'origine"},
+        notes:{fr:"Version scannée ou photo lisible.",en:"Scanned version or readable photo.",de:"Gescannte Version oder lesbares Foto.",it:"Versione scansionata o foto leggibile."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"photo",
+        titles:{fr:"Photo d'identité récente",en:"Recent identity photo",de:"Aktuelles Lichtbild",it:"Foto recente"},
+        notes:{fr:"Format standard, fond uni, sans reflets.",en:"Standard format, plain background, no glare.",de:"Standardformat, einfarbiger Hintergrund, kein Glanz.",it:"Formato standard, sfondo neutro, senza riflessi."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"residency",
+        titles:{fr:"Justificatif de domicile",en:"Proof of address",de:"Wohnsitznachweis",it:"Prova di residenza"},
+        notes:{fr:"Adresse en cours de résidence.",en:"Current residential address.",de:"Aktuelle Wohnadresse.",it:"Indirizzo di residenza attuale."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"resources",
+        titles:{fr:"Justificatif de ressources",en:"Proof of income",de:"Einkommensnachweis",it:"Giustificativo di reddito"},
+        notes:{fr:"Relevé bancaire, salaire ou document officiel.",en:"Bank statement, salary slip or official document.",de:"Kontoauszug, Gehaltsnachweis oder offizielles Dokument.",it:"Estratto conto, busta paga o documento ufficiale."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"health",
+        titles:{fr:"Attestation d'assurance maladie",en:"Health insurance certificate",de:"Krankenversicherungsnachweis",it:"Attestazione assicurazione sanitaria"},
+        notes:{fr:"Document valide de l'assureur.",en:"Valid document from the insurer.",de:"Gültiges Dokument des Versicherers.",it:"Documento valido dell'assicuratore."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"residence_form",
+        titles:{fr:"Formulaire de demande",en:"Application form",de:"Antragsformular",it:"Modulo di richiesta"},
+        notes:{fr:"Téléchargez, complétez puis importez.",en:"Download, complete and upload.",de:"Herunterladen, ausfüllen und hochladen.",it:"Scarica, compila e carica."},
+        required:true, types:["application/pdf","image/png","image/jpeg"],
         template:{name:"Formulaire_carte_sejour", content:"FORMULAIRE DE DEMANDE DE CARTE DE SÉJOUR\n\nNom : ...\nPrénom : ...\nNationalité : ...\nDate d'arrivée : ...\nAdresse : ...\nMotif de séjour : ...\n\nDate et signature :"}}
     ]
   },
   driving_license:{
-    label:"Permis de conduire", count:5,
+    label:"Permis de conduire",
+    labels:{fr:"Permis de conduire",en:"Driving Licence",de:"Führerschein",it:"Patente di guida"},
     docs:[
-      {key:"photo",    title:"Photo d'identité récente",              note:"Photo frontale conforme aux critères.",                required:true, types:["image/png","image/jpeg","application/pdf"]},
-      {key:"identity", title:"Pièce d'identité",                      note:"Carte d'identité ou passeport valide.",               required:true, types:["image/png","image/jpeg","application/pdf"]},
-      {key:"residency",title:"Justificatif de domicile",               note:"Électricité, téléphone, bail ou facture.",           required:true, types:["image/png","image/jpeg","application/pdf"]},
-      {key:"medical",  title:"Certificat médical",                    note:"Document attestant la conformité médicale.",         required:true, types:["image/png","image/jpeg","application/pdf"]},
-      {key:"license",  title:"Copie du permis actuel (renouvellement)",note:"À fournir uniquement pour un renouvellement.",       required:true, types:["image/png","image/jpeg","application/pdf"]}
+      {key:"photo",
+        titles:{fr:"Photo d'identité récente",en:"Recent identity photo",de:"Aktuelles Lichtbild",it:"Foto recente"},
+        notes:{fr:"Photo frontale conforme aux critères.",en:"Front-facing photo meeting criteria.",de:"Frontales Foto gemäß den Kriterien.",it:"Foto frontale conforme ai criteri."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"identity",
+        titles:{fr:"Pièce d'identité",en:"Identity document",de:"Ausweis",it:"Documento d'identità"},
+        notes:{fr:"Carte d'identité ou passeport valide.",en:"Valid ID card or passport.",de:"Gültiger Personalausweis oder Reisepass.",it:"Carta d'identità o passaporto valido."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"residency",
+        titles:{fr:"Justificatif de domicile",en:"Proof of address",de:"Wohnsitznachweis",it:"Prova di residenza"},
+        notes:{fr:"Électricité, téléphone, bail ou facture.",en:"Electricity, phone, lease or invoice.",de:"Strom, Telefon, Mietvertrag oder Rechnung.",it:"Elettricità, telefono, affitto o fattura."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"medical",
+        titles:{fr:"Certificat médical",en:"Medical certificate",de:"Ärztliches Attest",it:"Certificato medico"},
+        notes:{fr:"Document attestant la conformité médicale.",en:"Document certifying medical fitness.",de:"Dokument zur ärztlichen Bestätigung.",it:"Documento che attesta l'idoneità medica."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]},
+      {key:"license",
+        titles:{fr:"Copie du permis actuel (renouvellement)",en:"Copy of current licence (renewal)",de:"Kopie des aktuellen Führerscheins (Verlängerung)",it:"Copia della patente attuale (rinnovo)"},
+        notes:{fr:"À fournir uniquement pour un renouvellement.",en:"Required only for renewal.",de:"Nur bei Verlängerung erforderlich.",it:"Richiesta solo per il rinnovo."},
+        required:true, types:["image/png","image/jpeg","application/pdf"]}
     ]
   }
 };
@@ -633,19 +700,15 @@ async function initFirebase(){
 
 /* ===== RENDER PROCÉDURES ===== */
 function renderProcedures(){
-  var PROC_LABELS={
-    passport:    {fr:"Passeport",       en:"Passport",       de:"Reisepass",    it:"Passaporto"},
-    id_card:     {fr:"Carte d'identité",en:"ID Card",        de:"Personalausweis",it:"Carta d'identità"},
-    residence_permit:{fr:"Carte de séjour",en:"Residence Permit",de:"Aufenthaltstitel",it:"Permesso di soggiorno"},
-    driving_license: {fr:"Permis de conduire",en:"Driving Licence",de:"Führerschein",it:"Patente di guida"}
-  };
   var lang=MND.getLang()||'fr';
   var grid=document.getElementById("procedureGrid");
   grid.innerHTML=Object.entries(PROCEDURES).map(([key,val])=>{
-    var label=(PROC_LABELS[key]&&PROC_LABELS[key][lang])||val.label;
+    var label=(val.labels&&val.labels[lang])||val.label;
+    var docCount=val.docs.length;
+    var docWord=docCount>1?(lang==='de'?'Dokumente':lang==='it'?'documenti':'documents'):(lang==='de'?'Dokument':lang==='it'?'documento':'document');
     return `<button class="procedure-btn${selectedProc===key?" active":""}" type="button" data-proc="${key}">
       <h3>${label}</h3>
-      <small>${val.docs.length} ${val.docs.length>1?(lang==='fr'?'documents':lang==='de'?'Dokumente':lang==='it'?'documenti':'documents'):(lang==='fr'?'document':lang==='de'?'Dokument':lang==='it'?'documento':'document')}</small>
+      <small>${docCount} ${docWord}</small>
     </button>`;
   }).join("");
   grid.querySelectorAll(".procedure-btn").forEach(btn=>{
@@ -775,10 +838,11 @@ function checkFields(){
 /* ===== ASIDE ===== */
 function updateAside(){
   const proc=PROCEDURES[selectedProc];
+  const lang=MND.getLang()||'fr';
   const required=proc.docs.filter(d=>d.required!==false);
   const provided=required.filter(d=>uploadedFiles[d.key]).length;
-  document.getElementById("asideProcedure").textContent=proc.label;
-  document.getElementById("asideTotal").textContent=required.length+" pièce"+(required.length>1?"s":"");
+  document.getElementById("asideProcedure").textContent=(proc.labels&&proc.labels[lang])||proc.label;
+  document.getElementById("asideTotal").textContent=required.length+" "+(lang==='de'?'Stück':lang==='it'?'pezzi':'pièce'+(required.length>1?"s":""));
   document.getElementById("asideFournis").textContent=provided+" / "+required.length;
 }
 
