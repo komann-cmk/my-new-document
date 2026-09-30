@@ -189,34 +189,34 @@
   <!-- ===== BANDEAU DE TITRE ===== -->
   <section class="page-hero">
     <div class="wrap wrap-narrow">
-      <span class="eyebrow on-dark">Dépôt de pièces</span>
-      <h1>Soumission<br>de <span class="tbox accent">dossier</span></h1>
-      <p class="lead">Sélectionnez votre procédure, renseignez vos coordonnées, puis déposez vos pièces justificatives. Notre équipe traite votre dossier sous 24 h.</p>
+      <span class="eyebrow on-dark" data-i18n="heroEyebrow">Dépôt de pièces</span>
+      <h1 data-i18n-html="heroTitle">Soumission<br>de <span class="tbox accent">dossier</span></h1>
+      <p class="lead" data-i18n="heroLead">Sélectionnez votre procédure, renseignez vos coordonnées, puis déposez vos pièces justificatives. Notre équipe traite votre dossier sous 24 h.</p>
       <nav class="crumbs" aria-label="Fil d'Ariane">
-        <a href="index.html">Accueil</a>
+        <a href="index.html" data-i18n="navHome">Accueil</a>
         <span class="sep">/</span>
-        <span>Soumission de dossier</span>
+        <span data-i18n="heroPageName">Soumission de dossier</span>
       </nav>
     </div>
   </section>
 
   <!-- ===== MARQUEE ===== -->
-  <div class="mq mq-info" aria-hidden="true">
+  <div class="mq mq-info" aria-hidden="true" id="soumMarquee">
     <div class="mq-track">
-      <span class="mq-item">Dépôt sécurisé</span><span class="mq-item">PDF · JPG · PNG</span>
-      <span class="mq-item">Traitement sous 24 h</span><span class="mq-item">Code de suivi personnel</span>
-      <span class="mq-item">100% en ligne</span><span class="mq-item">Instructions par email</span>
-      <span class="mq-item">Dépôt sécurisé</span><span class="mq-item">PDF · JPG · PNG</span>
-      <span class="mq-item">Traitement sous 24 h</span><span class="mq-item">Code de suivi personnel</span>
-      <span class="mq-item">100% en ligne</span><span class="mq-item">Instructions par email</span>
+      <span class="mq-item" data-i18n="mq1">Dépôt sécurisé</span><span class="mq-item">PDF · JPG · PNG</span>
+      <span class="mq-item" data-i18n="mq2">Traitement sous 24 h</span><span class="mq-item" data-i18n="mq3">Code de suivi personnel</span>
+      <span class="mq-item" data-i18n="mq4">100% en ligne</span><span class="mq-item" data-i18n="mq5">Instructions par email</span>
+      <span class="mq-item" data-i18n="mq1">Dépôt sécurisé</span><span class="mq-item">PDF · JPG · PNG</span>
+      <span class="mq-item" data-i18n="mq2">Traitement sous 24 h</span><span class="mq-item" data-i18n="mq3">Code de suivi personnel</span>
+      <span class="mq-item" data-i18n="mq4">100% en ligne</span><span class="mq-item" data-i18n="mq5">Instructions par email</span>
     </div>
     <div class="mq-track">
-      <span class="mq-item">Dépôt sécurisé</span><span class="mq-item">PDF · JPG · PNG</span>
-      <span class="mq-item">Traitement sous 24 h</span><span class="mq-item">Code de suivi personnel</span>
-      <span class="mq-item">100% en ligne</span><span class="mq-item">Instructions par email</span>
-      <span class="mq-item">Dépôt sécurisé</span><span class="mq-item">PDF · JPG · PNG</span>
-      <span class="mq-item">Traitement sous 24 h</span><span class="mq-item">Code de suivi personnel</span>
-      <span class="mq-item">100% en ligne</span><span class="mq-item">Instructions par email</span>
+      <span class="mq-item" data-i18n="mq1">Dépôt sécurisé</span><span class="mq-item">PDF · JPG · PNG</span>
+      <span class="mq-item" data-i18n="mq2">Traitement sous 24 h</span><span class="mq-item" data-i18n="mq3">Code de suivi personnel</span>
+      <span class="mq-item" data-i18n="mq4">100% en ligne</span><span class="mq-item" data-i18n="mq5">Instructions par email</span>
+      <span class="mq-item" data-i18n="mq1">Dépôt sécurisé</span><span class="mq-item">PDF · JPG · PNG</span>
+      <span class="mq-item" data-i18n="mq2">Traitement sous 24 h</span><span class="mq-item" data-i18n="mq3">Code de suivi personnel</span>
+      <span class="mq-item" data-i18n="mq4">100% en ligne</span><span class="mq-item" data-i18n="mq5">Instructions par email</span>
     </div>
   </div>
 
@@ -391,6 +391,11 @@ MND.init({
     menuOpen:"Ouvrir le menu", menuClose:"Fermer le menu", menuLabel:"Menu principal",
     navHome:"Accueil", navAbout:"À propos", navOrder:"Commander", navTrack:"Suivi",
     navHelp:"Aide", navContact:"Contact", navCta:"Commander",
+    heroEyebrow:"Dépôt de pièces",
+    heroTitle:'Soumission<br>de <span class="tbox accent">dossier</span>',
+    heroLead:"Sélectionnez votre procédure, renseignez vos coordonnées, puis déposez vos pièces justificatives. Notre équipe traite votre dossier sous 24 h.",
+    heroPageName:"Soumission de dossier",
+    mq1:"Dépôt sécurisé", mq2:"Traitement sous 24 h", mq3:"Code de suivi personnel", mq4:"100% en ligne", mq5:"Instructions par email",
     asideEyebrow:"Documents administratifs",
     asideTitle:"Votre demande en ligne, suivie de A à Z",
     asideText:"Passeport, carte d'identité, carte de séjour, permis de conduire. Instructions claires par email et code de suivi personnel.",
@@ -432,6 +437,11 @@ MND.init({
     menuOpen:"Open menu", menuClose:"Close menu", menuLabel:"Main menu",
     navHome:"Home", navAbout:"About", navOrder:"Order", navTrack:"Track",
     navHelp:"Help", navContact:"Contact", navCta:"Order",
+    heroEyebrow:"File submission",
+    heroTitle:'File<br><span class="tbox accent">submission</span>',
+    heroLead:"Select your procedure, fill in your details, then upload your supporting documents. Our team processes your file within 24 hours.",
+    heroPageName:"File submission",
+    mq1:"Secure upload", mq2:"Processed within 24 h", mq3:"Personal tracking code", mq4:"100% online", mq5:"Instructions by email",
     asideEyebrow:"Administrative documents",
     asideTitle:"Your online application, tracked A to Z",
     asideText:"Passport, ID card, residence permit, driving licence. Clear instructions by email and a personal tracking code.",
@@ -473,6 +483,11 @@ MND.init({
     menuOpen:"Menü öffnen", menuClose:"Menü schließen", menuLabel:"Hauptmenü",
     navHome:"Startseite", navAbout:"Über uns", navOrder:"Bestellen", navTrack:"Verfolgen",
     navHelp:"Hilfe", navContact:"Kontakt", navCta:"Bestellen",
+    heroEyebrow:"Unterlagen einreichen",
+    heroTitle:'Einreichung<br>der <span class="tbox accent">Unterlagen</span>',
+    heroLead:"Wählen Sie Ihr Verfahren, geben Sie Ihre Daten ein und laden Sie Ihre Unterlagen hoch. Unser Team bearbeitet Ihre Akte innerhalb von 24 Stunden.",
+    heroPageName:"Unterlagen einreichen",
+    mq1:"Sicherer Upload", mq2:"Bearbeitung innerhalb 24 h", mq3:"Persönlicher Tracking-Code", mq4:"100% online", mq5:"Anweisungen per E-Mail",
     asideEyebrow:"Amtliche Dokumente",
     asideTitle:"Ihr Online-Antrag, von A bis Z begleitet",
     asideText:"Reisepass, Personalausweis, Aufenthaltstitel, Führerschein. Klare Anweisungen per E-Mail und persönlicher Tracking-Code.",
@@ -514,6 +529,11 @@ MND.init({
     menuOpen:"Apri menu", menuClose:"Chiudi menu", menuLabel:"Menu principale",
     navHome:"Home", navAbout:"Chi siamo", navOrder:"Ordina", navTrack:"Traccia",
     navHelp:"Aiuto", navContact:"Contatto", navCta:"Ordina",
+    heroEyebrow:"Deposito documenti",
+    heroTitle:'Invio del<br><span class="tbox accent">dossier</span>',
+    heroLead:"Seleziona la tua procedura, inserisci i tuoi dati e carica i tuoi documenti giustificativi. Il nostro team elabora la tua pratica entro 24 ore.",
+    heroPageName:"Invio del dossier",
+    mq1:"Caricamento sicuro", mq2:"Elaborazione entro 24 h", mq3:"Codice di tracciamento personale", mq4:"100% online", mq5:"Istruzioni via email",
     asideEyebrow:"Documenti amministrativi",
     asideTitle:"La tua richiesta online, seguita dalla A alla Z",
     asideText:"Passaporto, carta d'identità, permesso di soggiorno, patente. Istruzioni chiare via email e codice di tracciamento personale.",
